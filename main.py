@@ -1,6 +1,5 @@
-import sys
-sys.path.append("./readerClass")
-import readerClass
+
+import back_end.readerClass
 
 newReader = readerClass()
 
