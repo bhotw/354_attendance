@@ -1,5 +1,5 @@
 
-import sysConfig
+import sysConfig.py
 
 def get_time():
     time.time()

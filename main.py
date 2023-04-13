@@ -1,4 +1,4 @@
-from back_end import readerClass
+from back_end import readerClass.py
 
 newReader = readerClass()
 
