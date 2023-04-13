@@ -1,4 +1,4 @@
-import functions
+import * from functions
 
 class readerClass:
     # def __init__(self):
