@@ -1,8 +1,8 @@
 import functions
 
 class readerClass:
-    def __init__(self):
-
+    # def __init__(self):
+    #     self
     def destroy():
         GPIO.cleanup()
 
