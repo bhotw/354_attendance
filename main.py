@@ -16,7 +16,7 @@ def get_time():
     time.time()
 
 
-    current_time = time.localtime(time.time)
+    current_time = time.localtime(time.time())
 
     return current_time
 
@@ -62,4 +62,4 @@ class readerClass:
 
 newReader = readerClass()
 
-newReader.attendance(0,"in")
+newReader.attendance("in")
