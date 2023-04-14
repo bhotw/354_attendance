@@ -2,7 +2,6 @@
 # import back_end.readerClass as re
 
 import time
-# from tts import TTS
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
@@ -15,8 +14,16 @@ reader = SimpleMFRC522()
 def get_time():
     time.time()
 
+    year = str(se.time.strftime('%Y', se.time.localtime(se.time.time())))
+    month = str(se.time.strftime('%m', time.localtime(time.time())))
+    day = str(time.strftime('d', time.localtime(time.time())))
+    hour = str(time.strftime('%H', time.localtime(time.time())))
+    minute = str(time.strftime('%M', time.localtime(time.time())))
+    second = str(time.strftime('%S', time.localtime(time.time())))
 
-    current_time = time.localtime(time.time())
+    current_time = hour + '.' + minute + '.' + second + " : " + month + '.' + day + '.' + year
+
+    # current_time = time.localtime(time.time())
 
     return current_time
 
@@ -62,5 +69,15 @@ class readerClass:
 
 newReader = readerClass()
 
-newReader.attendance("in")
-newReader.destroy()
+while True:
+    try:
+        action = input("Sign in or Sign out: ")
+        if action == " Sign in":
+            newReader.attendance("in")
+        elif action == "Sign out":
+            newReader.attendance("out")
+        else:
+            print("Action not RECOGNIZED!!! Try again")
+    except:
+        newReader.destroy()
+
