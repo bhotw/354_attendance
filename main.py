@@ -1,6 +1,6 @@
 
-import back_end.readerClass
+import back_end.readerClass as re
 
-newReader = readerClass()
+newReader = re.readerClass()
 
 newReader.attendance("in")
