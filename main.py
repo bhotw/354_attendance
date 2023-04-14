@@ -62,4 +62,4 @@ class readerClass:
 
 newReader = readerClass()
 
-newReader.attendance("in")
+newReader.attendance(0,"in")
