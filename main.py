@@ -63,3 +63,4 @@ class readerClass:
 newReader = readerClass()
 
 newReader.attendance("in")
+newReader.destroy()
