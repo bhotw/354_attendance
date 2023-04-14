@@ -51,7 +51,7 @@ class readerClass:
 
         id, name = readerClass.read(self)
         present_time = get_time()
-        meta_data = [present_time + readerClass.get_action(action)]
+        meta_data = [present_time + readerClass.get_action(self, action)]
         attendance_statistics[name] = meta_data
 
 
