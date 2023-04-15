@@ -12,6 +12,8 @@ reader = SimpleMFRC522()
 # tts = tts.TTS(engine="espeak")
 # tts.lang('en-US')
 
+
+
 class readerClass:
     # def __init__(self):
     #     self
