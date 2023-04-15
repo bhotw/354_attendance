@@ -1,18 +1,18 @@
 
-import sysConfig as se
+import sysConfig as sys
 # import time
 
 def get_time():
-    se.time.time()
+    # sys.time.time()
 
-    # year = str(se.time.strftime('%Y', se.time.localtime(se.time.time())))
-    # month = str(se.time.strftime('%m', time.localtime(time.time())))
-    # day = str(time.strftime('d', time.localtime(time.time())))
-    # hour = str(time.strftime('%H', time.localtime(time.time())))
-    # minute = str(time.strftime('%M', time.localtime(time.time())))
-    # second = str(time.strftime('%S', time.localtime(time.time())))
-    #
-    # current_time = hour + '.' + minute + '.' + second + " : " + month + '.' + day + '.' + year
-    current_time = se.time.localtime(se.time.time)
+    year = str(sys.time.strftime('%Y', sys.time.localtime(sys.time.time())))
+    month = str(sys.time.strftime('%m', sys.time.localtime(sys.time.time())))
+    day = str(sys.time.strftime('d', sys.time.localtime(sys.time.time())))
+    hour = str(sys.time.strftime('%H', sys.time.localtime(sys.time.time())))
+    minute = str(sys.time.strftime('%M', sys.time.localtime(sys.time.time())))
+    second = str(sys.time.strftime('%S', sys.time.localtime(sys.time.time())))
+
+    current_time = hour + '.' + minute + '.' + second + " : " + month + '.' + day + '.' + year
+    # current_time = se.time.localtime(se.time.time)
 
     return current_time
