@@ -9,8 +9,7 @@ serial = spi(port = 0, device = 1, gpio = noop())
 
 reader = SimpleMFRC522()
 
-# tts = tts.TTS(engine="espeak")
-# tts.lang('en-US')
+
 
 
 

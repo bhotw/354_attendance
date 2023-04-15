@@ -2,6 +2,9 @@
 import back_end.readerClass as re
 from tts import TTS
 
+tts = tts.TTS(engine="espeak")
+tts.lang('en-US')
+
 
 
 # import time
