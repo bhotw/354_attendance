@@ -1,5 +1,5 @@
 import time
-import tts
+# import tts
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
