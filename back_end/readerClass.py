@@ -37,7 +37,6 @@ class readerClass:
         return action
 
     def get_time(self):
-        # sys.time.time()
 
         year = str(time.strftime('%Y', time.localtime(time.time())))
         month = str(time.strftime('%m', time.localtime(time.time())))
@@ -47,25 +46,24 @@ class readerClass:
         second = str(time.strftime('%S', time.localtime(time.time())))
 
         current_time = hour + '.' + minute + '.' + second + " : " + month + '.' + day + '.' + year
-        # current_time = se.time.localtime(se.time.time)
 
         return current_time
 
     def greetins(self):
-        id, name = readerClass.read(self)
+        id, name = readerClass.read()
         greeting = name + " Welcome!!"
         print(greeting)
 
     def bye(self):
-        id, name = readerClass.read(self)
+        id, name = self.read()
         bye = name + " It was nice to see you today. Have a good one!!!"
         print(bye)
 
     def attendance(self, action):
         attendance_statistics = {}
 
-        id, name = readerClass.read(self)
-        present_time = readerClass.get_time(self)
+        id, name = self.read(self)
+        present_time = self.get_time(self)
         meta_data = [present_time + " " + readerClass.get_action(self,action)]
         attendance_statistics[name] = meta_data
 
