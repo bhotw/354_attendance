@@ -9,6 +9,8 @@ serial = spi(port = 0, device = 1, gpio = noop())
 
 reader = SimpleMFRC522()
 
+tts = TTS(engine="espeak")
+tts.lang('en-US')
 
 class readerClass:
     # def __init__(self):
@@ -51,6 +53,15 @@ class readerClass:
 
         return current_time
 
+    def greetins(self):
+        id, name = readerClass.read()
+        greeting = name + " Welcome!!"
+        tts.say(greeting)
+
+    def bye(self):
+        id, name = readerClass.read()
+        bye = name + " It was nice to see you today. Have a good one!!!"
+        tts.say(bye)
 
     def attendance(self, action):
         attendance_statistics = {}
