@@ -1,4 +1,4 @@
-import psycopg2
+from psycopg2 import psycopg2
 
 conn = psycopg2.connect(database="test",
                         host="local",
