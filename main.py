@@ -1,6 +1,6 @@
 
 import back_end.readerClass as re
-from tts import TTS
+
 # import time
 #
 # import RPi.GPIO as GPIO
