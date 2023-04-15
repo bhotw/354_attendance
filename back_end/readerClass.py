@@ -1,5 +1,5 @@
 import time
-# from tts import TTS
+from tts import TTS
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
@@ -41,7 +41,7 @@ class readerClass:
 
         year = str(time.strftime('%Y', time.localtime(time.time())))
         month = str(time.strftime('%m', time.localtime(time.time())))
-        day = str(time.strftime('d', time.localtime(time.time())))
+        day = str(time.strftime('%d', time.localtime(time.time())))
         hour = str(time.strftime('%H', time.localtime(time.time())))
         minute = str(time.strftime('%M', time.localtime(time.time())))
         second = str(time.strftime('%S', time.localtime(time.time())))
