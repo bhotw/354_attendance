@@ -1,5 +1,8 @@
 
 import back_end.readerClass as re
+from tts import TTS
+
+
 
 # import time
 #
@@ -69,15 +72,26 @@ import back_end.readerClass as re
 
 newReader = re.readerClass()
 
+def greetins(self):
+    id, name = newReader.read()
+    greeting = name + " Welcome!!"
+    tts.say(greeting)
+
+
+def bye(self):
+    id, name = newReader.read()
+    bye = name + " It was nice to see you today. Have a good one!!!"
+    tts.say(bye)
+
 while True:
     try:
         action = input("Sign in or Sign out: ")
         if action == " Sign in":
             newReader.attendance("in")
-            newReader.greetins()
+            greetins()
         elif action == "Sign out":
             newReader.attendance("out")
-            newReader.bye()
+            bye()
         else:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:

@@ -53,15 +53,15 @@ class readerClass:
 
         return current_time
 
-    def greetins(self):
-        id, name = readerClass.read()
-        greeting = name + " Welcome!!"
-        tts.say(greeting)
-
-    def bye(self):
-        id, name = readerClass.read()
-        bye = name + " It was nice to see you today. Have a good one!!!"
-        tts.say(bye)
+    # def greetins(self):
+    #     id, name = readerClass.read()
+    #     greeting = name + " Welcome!!"
+    #     tts.say(greeting)
+    #
+    # def bye(self):
+    #     id, name = readerClass.read()
+    #     bye = name + " It was nice to see you today. Have a good one!!!"
+    #     tts.say(bye)
 
     def attendance(self, action):
         attendance_statistics = {}
