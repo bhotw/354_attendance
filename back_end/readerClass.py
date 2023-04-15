@@ -57,9 +57,9 @@ class readerClass:
 
         id, name = readerClass.read(self)
         present_time = readerClass.get_time(self)
-        meta_data = [present_time + readerClass.get_action(self,action)]
+        meta_data = [present_time + " " + readerClass.get_action(self,action)]
         attendance_statistics[name] = meta_data
 
 
         with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
-            [f.write('{0}  {1}\n'.format(name, attendance_statistics))]
+            [f.write('{0}\n'.format(attendance_statistics))]
