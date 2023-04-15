@@ -18,7 +18,7 @@ class readerClass:
 
     def read(self):
         print("TAP to read Data!")
-        id, text = reader.read(self)
+        id, text = reader.read()
         return id, text
 
 
@@ -28,7 +28,7 @@ class readerClass:
         reader.write(data)
         print("Data writing is complete.")
 
-    def get_action(self, s):
+    def get_action(s):
         action = str()
         if (s == "in"):
             action = "Sign In"
@@ -63,8 +63,8 @@ class readerClass:
         attendance_statistics = {}
 
         id, name = self.read(self)
-        present_time = self.get_time(self)
-        meta_data = [present_time + " " + readerClass.get_action(self,action)]
+        present_time = self.get_time()
+        meta_data = [present_time + " " + readerClass.get_action(action)]
         attendance_statistics[name] = meta_data
 
 
