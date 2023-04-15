@@ -1,6 +1,6 @@
 
 import back_end.readerClass as re
-
+from tts import TTS
 # import time
 #
 # import RPi.GPIO as GPIO
@@ -74,8 +74,10 @@ while True:
         action = input("Sign in or Sign out: ")
         if action == " Sign in":
             newReader.attendance("in")
+            newReader.greetins()
         elif action == "Sign out":
             newReader.attendance("out")
+            newReader.bye()
         else:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:
