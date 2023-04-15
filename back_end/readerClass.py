@@ -9,7 +9,7 @@ serial = spi(port = 0, device = 1, gpio = noop())
 
 reader = SimpleMFRC522()
 
-tts = TTS(engine="espeak")
+tts = tts.TTS(engine="espeak")
 tts.lang('en-US')
 
 class readerClass:
