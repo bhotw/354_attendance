@@ -80,4 +80,5 @@ while True:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:
         newReader.destroy()
+        break
 
