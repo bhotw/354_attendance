@@ -78,6 +78,6 @@ while True:
             newReader.attendance("out")
         else:
             print("Action not RECOGNIZED!!! Try again")
-    except:
+    except KeyboardInterrupt:
         newReader.destroy()
 
