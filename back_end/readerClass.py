@@ -50,7 +50,7 @@ class readerClass:
         return current_time
 
     def greetins(self):
-        id, name = readerClass.read()
+        id, name = self.read()
         greeting = name + " Welcome!!"
         print(greeting)
 
