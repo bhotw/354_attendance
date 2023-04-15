@@ -1,5 +1,5 @@
 import time
-# import tts
+
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
@@ -8,9 +8,6 @@ from luma.core.interface.serial import spi, noop
 serial = spi(port = 0, device = 1, gpio = noop())
 
 reader = SimpleMFRC522()
-
-
-
 
 
 class readerClass:
@@ -54,15 +51,15 @@ class readerClass:
 
         return current_time
 
-    # def greetins(self):
-    #     id, name = readerClass.read()
-    #     greeting = name + " Welcome!!"
-    #     tts.say(greeting)
-    #
-    # def bye(self):
-    #     id, name = readerClass.read()
-    #     bye = name + " It was nice to see you today. Have a good one!!!"
-    #     tts.say(bye)
+    def greetins(self):
+        id, name = readerClass.read()
+        greeting = name + " Welcome!!"
+        print(greeting)
+
+    def bye(self):
+        id, name = readerClass.read()
+        bye = name + " It was nice to see you today. Have a good one!!!"
+        print(bye)
 
     def attendance(self, action):
         attendance_statistics = {}
