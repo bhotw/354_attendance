@@ -18,7 +18,7 @@ class readerClass:
 
     def read(self):
         print("TAP to read Data!")
-        id, text = reader.read()
+        id, text = reader.read(self)
         return id, text
 
 
@@ -52,12 +52,12 @@ class readerClass:
         return current_time
 
     def greetins(self):
-        id, name = readerClass.read()
+        id, name = readerClass.read(self)
         greeting = name + " Welcome!!"
         print(greeting)
 
     def bye(self):
-        id, name = readerClass.read()
+        id, name = readerClass.read(self)
         bye = name + " It was nice to see you today. Have a good one!!!"
         print(bye)
 
