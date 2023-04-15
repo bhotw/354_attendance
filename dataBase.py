@@ -8,6 +8,6 @@ conn = psycopg2.connect(database="test",
 
 cursor = conn.cursor()
 
-cursor.execute("SELECT * FROM people")
+cursor.execute("SELECT * FROM students")
 
 print(cursor.fetchone())
