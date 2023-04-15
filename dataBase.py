@@ -1,7 +1,7 @@
 import psycopg2
 
 conn = psycopg2.connect(database="test",
-                        host="local",
+                        host="raspberrypi",
                         user="pitest",
                         password="pi_test",
                         port="5432")
