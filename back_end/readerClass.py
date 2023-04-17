@@ -4,10 +4,12 @@ import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
+import dataMan
+
 reader = SimpleMFRC522()
 
 
-class readerClass:
+class ReaderClass:
     # def __init__(self):
     #     self
     def destroy(self):
@@ -25,7 +27,7 @@ class readerClass:
         reader.write(data)
         print("Data writing is complete.")
 
-    def get_action(s):
+    def get_action(self, s):
         action = str()
         if (s == "in"):
             action = "Sign In"
