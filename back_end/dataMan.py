@@ -1,8 +1,8 @@
 
-import back_end.dataBaseConfig as data_base
+from back_end.dataBaseConfig import cursor as newDB
 # import dataBaseConfig as data_base
 
-newDB = data_base.cursor
+# newDB = data_base.cursor()
 
 class DataMan:
     # def __init__(self):
