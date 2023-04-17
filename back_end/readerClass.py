@@ -74,5 +74,10 @@ class ReaderClass:
         # with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
         #     [f.write('{0}\n'.format(attendance_statistics))]
 
-    def showTable(self):
-        DataMan.print(self)
+    def showTable(self, howMany):
+        if howMany == "one":
+            DataMan.print(self)
+        elif howMany == "all":
+            DataMan.printAll(self)
+        else:
+            print("Try: one or all")

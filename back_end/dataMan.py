@@ -21,3 +21,7 @@ class DataMan:
         cursor.execute("SELECT * FROM students")
         print(cursor.fetchone())
 
+    def printAll(self):
+        cursor.execute("SELECT * FROM students")
+        print(cursor.fetchall())
+

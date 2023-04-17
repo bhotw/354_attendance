@@ -85,7 +85,8 @@ while True:
             newReader.attendance("out")
             newReader.bye()
         elif action == "show":
-            newReader.showTable()
+            howMany = input("How many: ")
+            newReader.showTable(howMany)
         else:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:
