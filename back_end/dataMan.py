@@ -18,5 +18,5 @@ class DataMan:
 
 
     def print(self):
-        self.print(newDB.fetchone())
+        print(newDB.fetchone())
 
