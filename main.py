@@ -76,14 +76,16 @@ newReader = re.ReaderClass()
 
 while True:
     try:
-        action = input("Sign in or Sign out: ")
-        if action == " Sign in":
+        action = input("Sign in or Sign out or show: ")
+        if action == "Sign in":
             newReader.attendance("in")
             newReader.greetins()
             newReader.showTable()
         elif action == "Sign out":
             newReader.attendance("out")
             newReader.bye()
+        elif action == "show":
+            newReader.showTable()
         else:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:
