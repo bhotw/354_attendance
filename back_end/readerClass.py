@@ -67,9 +67,7 @@ class ReaderClass:
         meta_data = [present_time + " " + self.get_action(action)]
         attendance_statistics[name] = meta_data
 
-        table_name = "students"
-
-        DataMan.addToTable(self, attendance_statistics, table_name)
+        DataMan.addToTable(self, name, action, present_time)
 
         # with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
         #     [f.write('{0}\n'.format(attendance_statistics))]

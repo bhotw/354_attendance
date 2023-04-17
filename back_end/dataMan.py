@@ -10,11 +10,11 @@ class DataMan:
     def createTable(self, table_name):
         cursor.execute("CREATE TABLE (%S) (ID integer, firstName text, lastName text, Action text, Role text", table_name)
 
-    def addToTable(self, meta_data, table_name):
+    def addToTable(self, name, action, current_time):
         # reader_id , first_name, last_name, action, role = meta_data
         # newDB.execute("INSERT INTO (%s) VALUES('reader_id', 'first_name','last_name', 'action', 'role' )", (reader_id , first_name, last_name, action, role) )
         #
-        cursor.execute("INSERT INTO Students VALUES(%s)", (meta_data,))
+        cursor.execute("INSERT INTO Students VALUES(%s, %s)", (name, action,))
 
 
     def print(self):
