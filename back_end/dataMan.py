@@ -1,5 +1,5 @@
 
-from back_end.dataBaseConfig import cursor
+from back_end.dataBaseConfig import cursor, conn
 # import dataBaseConfig as data_base
 
 # newDB = data_base.cursor()
@@ -15,6 +15,8 @@ class DataMan:
         # newDB.execute("INSERT INTO (%s) VALUES('reader_id', 'first_name','last_name', 'action', 'role' )", (reader_id , first_name, last_name, action, role) )
         #
         cursor.execute("INSERT INTO Students(name, school) VALUES(%s, %s)", (name, action,))
+        conn.commit()
+        print("Record inserted into DB table")
 
 
     def print(self):
