@@ -1,4 +1,6 @@
-import dataBaseConfig as data_base
+
+import back_end.dataBaseConfig as data_base
+# import dataBaseConfig as data_base
 
 newDB = data_base.cursor
 

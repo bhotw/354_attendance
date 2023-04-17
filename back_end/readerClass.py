@@ -4,7 +4,8 @@ import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
-from dataMan import DataMan as DataMan
+# from dataMan import DataMan as DataMan
+from back_end.dataMan import DataMan
 
 reader = SimpleMFRC522()
 
