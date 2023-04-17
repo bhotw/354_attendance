@@ -75,4 +75,4 @@ class ReaderClass:
         #     [f.write('{0}\n'.format(attendance_statistics))]
 
     def showTable(self):
-        self.DataMan.print()
+        DataMan.DataMan.print()
