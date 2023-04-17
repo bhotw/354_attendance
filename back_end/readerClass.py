@@ -2,9 +2,9 @@
 
 import time
 import RPi.GPIO as GPIO
-from mfrc522 import SimpleMFRC522
+from mfrc522 import Simpl
 
-import dataMan
+from dataMan import DataMan
 
 reader = SimpleMFRC522()
 
@@ -66,6 +66,12 @@ class ReaderClass:
         meta_data = [present_time + " " + readerClass.get_action(action)]
         attendance_statistics[name] = meta_data
 
+        table_name = "students"
 
-        with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
-            [f.write('{0}\n'.format(attendance_statistics))]
+        DataMan.addToTable(self, attendance_statistics, table_name)
+
+        # with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
+        #     [f.write('{0}\n'.format(attendance_statistics))]
+
+    def showTable(self):
+        self.DataMan.print()

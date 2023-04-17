@@ -4,6 +4,7 @@ import back_end.readerClass as re
 
 
 
+
 # import time
 #
 # import RPi.GPIO as GPIO
@@ -79,6 +80,7 @@ while True:
         if action == " Sign in":
             newReader.attendance("in")
             newReader.greetins()
+            newReader.showTable()
         elif action == "Sign out":
             newReader.attendance("out")
             newReader.bye()
