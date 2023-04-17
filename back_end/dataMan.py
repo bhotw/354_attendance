@@ -18,5 +18,6 @@ class DataMan:
 
 
     def print(self):
+        cursor.execute("SELECT * FROM students")
         print(cursor.fetchone())
 
