@@ -71,7 +71,7 @@ import back_end.readerClass as re
 #
 
 
-newReader = re.readerClass()
+newReader = re.readerClass
 
 
 while True:
