@@ -2,7 +2,7 @@
 
 import time
 import RPi.GPIO as GPIO
-from mfrc522 import Simpl
+from mfrc522 import Simple
 
 from dataMan import DataMan
 
