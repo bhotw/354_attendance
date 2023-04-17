@@ -14,7 +14,7 @@ class DataMan:
         # reader_id , first_name, last_name, action, role = meta_data
         # newDB.execute("INSERT INTO (%s) VALUES('reader_id', 'first_name','last_name', 'action', 'role' )", (reader_id , first_name, last_name, action, role) )
         #
-        cursor.execute("INSERT INTO Students VALUES(%s, %s)", (name, action,))
+        cursor.execute("INSERT INTO Students(name, school) VALUES(%s, %s)", (name, action,))
 
 
     def print(self):
