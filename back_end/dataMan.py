@@ -7,6 +7,23 @@ from back_end.dataBaseConfig import cursor, conn
 class DataMan:
     # def __init__(self):
 
+    def getRole(self, reader_id, name):
+        storeed_name = cursor.execute("SELECT name FROM students")
+
+        # this needs to be tested and see how the data comes out from the tables and stuff.
+        
+
+    def isMember(self, reader_id, name):
+
+        if self.getRole(reader_id, name) == "mentor" or "student":
+            return True
+        else:
+            return False
+
+
+
+
+
     def registration(self, table_name, reader_id, name, role, present_date, present_time):
         cursor.execute("INSERT INTO %s (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (table_name, reader_id, name, role, present_date, present_time,) )
         conn.commit()
