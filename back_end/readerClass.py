@@ -28,7 +28,7 @@ class ReaderClass:
         reader.write(data)
         print("Data writing is complete.")
     def regidterNewMember(self):
-
+        data = 0
 
     def get_action(self, s):
         action = str()
