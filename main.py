@@ -18,6 +18,8 @@ while True:
         elif action == "show":
             howMany = input("How many: ")
             newReader.showTable(howMany)
+        elif action == "write":
+            newReader.write()
         else:
             print("Action not RECOGNIZED!!! Try again")
     except KeyboardInterrupt:

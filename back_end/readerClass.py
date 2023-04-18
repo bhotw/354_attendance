@@ -27,6 +27,8 @@ class ReaderClass:
         print("TAP to write new Data!")
         reader.write(data)
         print("Data writing is complete.")
+    def regidterNewMember(self):
+
 
     def get_action(self, s):
         action = str()
@@ -79,3 +81,5 @@ class ReaderClass:
             DataMan.printAll(self)
         else:
             print("Try: one or all")
+
+
