@@ -7,16 +7,18 @@ from back_end.dataBaseConfig import cursor, conn
 class DataMan:
     # def __init__(self):
 
-    def createTable(self, table_name):
-        cursor.execute("CREATE TABLE (%S) (ID integer, firstName text, lastName text, Action text, Role text", table_name)
-
-    def addToTable(self, name, action, current_time):
-        # reader_id , first_name, last_name, action, role = meta_data
-        # newDB.execute("INSERT INTO (%s) VALUES('reader_id', 'first_name','last_name', 'action', 'role' )", (reader_id , first_name, last_name, action, role) )
-        #
-        cursor.execute("INSERT INTO Students(name, school) VALUES(%s, %s)", (name, action,))
+    def registration(self, table_name, reader_id, name, role, present_date, present_time):
+        cursor.execute("INSERT INTO %s (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (table_name, reader_id, name, role, present_date, present_time,) )
         conn.commit()
-        print("Record inserted into DB table")
+
+        print("New member %s was added %s", name, table_name)
+
+    def addToSignInSheet(self, reader_id, name, role, action, present_date, present_time):
+        cursor.execute("INSERT INTO sign_in_sheet (id, name, role, action, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, name, role, action, present_date, present_time,) )
+
+        # cursor.execute("INSERT INTO Students(name, school) VALUES(%s, %s)", (name, action,))
+        conn.commit()
+        print("%s %s added to Sign in Sheet", name, action)
 
 
     def print(self):

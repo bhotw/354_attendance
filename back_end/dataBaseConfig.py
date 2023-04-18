@@ -1,6 +1,6 @@
 import psycopg2
 
-conn = psycopg2.connect(database="test",
+conn = psycopg2.connect(database="attendance_test",
                         host="127.0.0.1",
                         user="pitest",
                         password="pi_test",
@@ -8,6 +8,6 @@ conn = psycopg2.connect(database="test",
 
 cursor = conn.cursor()
 
-cursor.execute("SELECT * FROM students")
-
-print(cursor.fetchone())
+# cursor.execute("SELECT * FROM students")
+#
+# print(cursor.fetchone())
