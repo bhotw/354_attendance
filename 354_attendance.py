@@ -11,4 +11,4 @@ def status():
 
 @app.route("/")
 def hello_world():
-    return "<p> Hello, World! </p>"
+    return render_template('home.html')
