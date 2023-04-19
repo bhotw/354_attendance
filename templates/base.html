@@ -5,21 +5,25 @@
     <title>{% block title %} {% endblock %} - 354_Attendance </title>
     <style>
         nav a {
-            color: #d64161;
-            font-size: 3em;
+
+            background-color: #C2C83E;
             text-align: center;
+            color: #000000;
+            font-size: 3em;
             text-decoration: none;
+            padding: 5px;
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#">G-House 354</a>
-        <a href="#">Attendance</a>
+        <a href="{{ url_for('home')}}"> Home </a>
     </nav>
     <hr>
     <div class="content">
-        {% block content %} {% endblock %}
+        {% block content %}
+
+        {% endblock %}
     </div>
 </body>
 </html>
