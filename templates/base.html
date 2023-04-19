@@ -16,14 +16,17 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('home')}}"> Home </a>
-    </nav>
-    <hr>
-    <div class="content">
-        {% block content %}
+    <div style="text-align:center; margin: auto; color: #000000;">
+        <nav>
 
-        {% endblock %}
+            <a href="{{ url_for('home')}}"> Home </a>
+        </nav>
+        <hr>
+        <div class="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
     </div>
 </body>
 </html>
