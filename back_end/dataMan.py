@@ -11,7 +11,7 @@ class DataMan:
         storeed_name = cursor.execute("SELECT name FROM students")
 
         # this needs to be tested and see how the data comes out from the tables and stuff.
-        
+
 
     def isMember(self, reader_id, name):
 

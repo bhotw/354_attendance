@@ -1,13 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/home")
 def home():
-    return 'home'
+    return render_template('home.html')
 @app.route("/status")
 def status():
-    return 'status'
+    return render_template('status.html')
 
 @app.route("/")
 def hello_world():
