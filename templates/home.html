@@ -3,10 +3,12 @@
 {% block content %}
 
         <h3> Select action </h3>
-        <div class="row align-items-center"> Hi there </div>
-       <div class="align-middle" class="btn-group btn-group-lg" role="group" aria-label="Sign In and Sing Out">
-          <button type="button" class="btn btn-success">Sign In</button>
-          <button type="button" class="btn btn-danger">Sign Out</button>
+
+        <div class="position-absolute top-50 start-50 translate-middle">
+               <div class="align-middle" class="btn-group btn-group-lg col-6" role="group" aria-label="Sign In and Sing Out">
+                 <ul></ul> <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
+                  <button type="button" class="btn btn-danger" onclick="location.href = '/sign_out';">Sign Out</button>
+                </div>
         </div>
 
 {% endblock %}
