@@ -15,4 +15,4 @@ def hello_world():
     return render_template('home.html')
 
 if __name__ == "__main__":
-    app.run(Debug=True)
+    app.run(debug=True)
