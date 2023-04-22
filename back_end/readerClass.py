@@ -29,11 +29,7 @@ class ReaderClass:
         print("TAP to write new Data!")
         reader.write(data)
         print("Data writing is complete.")
-    def regidterNewMember(self):
-        name = input("Name: ")
-        role = input("Role: ")
 
-        data = 0
 
     def get_action(self, s):
         action = str()
@@ -52,32 +48,34 @@ class ReaderClass:
         minute = str(time.strftime('%M', time.localtime(time.time())))
         second = str(time.strftime('%S', time.localtime(time.time())))
 
-        current_time = hour + '.' + minute + '.' + second + " : " + month + '.' + day + '.' + year
+        current_time = hour + ':' + minute + ':' + second
+        current_date = month + '-' + day + '-' + year
 
-        return current_time
+        return current_date, current_time
 
     def greetins(self):
-        id, name = self.read()
-        greeting = name + " Welcome!!"
+        reader_id, reader_name = self.read()
+        greeting = reader_name + " Welcome!!"
         print(greeting)
 
     def bye(self):
-        id, name = self.read()
-        bye = name + " It was nice to see you today. Have a good one!!!"
+        reader_id, reader_name = self.read()
+        bye = reader_name + " It was nice to see you today. Have a good one!!!"
         print(bye)
 
-    def attendance(self, action):
-        attendance_statistics = {}
+    def attendance(self, act):
 
-        id, name = self.read()
-        present_time = self.get_time()
-        meta_data = [present_time + " " + self.get_action(action)]
-        attendance_statistics[name] = meta_data
+        reader_id, reader_name = self.read()
 
-        DataMan.addToTable(self, name, action, present_time)
+        if DataMan.isMember(reader_id, reader_name):
+            role = DataMan.getRole(reader_id, reader_name)
+            present_date, present_time = self.get_time()
+            action =  self.get_action(act)
 
-        # with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
-        #     [f.write('{0}\n'.format(attendance_statistics))]
+            DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+        else:
+            return "Id not Recognized. Try again"
+
 
     def showTable(self, howMany = "all"):
         if howMany == "one":
@@ -86,5 +84,20 @@ class ReaderClass:
             DataMan.printAll(self)
         else:
             print("Try: one or all")
+
+    def regidterNewMember(self):
+        name = input("Name: ")
+        role = input("Role: ")
+        if role == "mentor":
+            table_name = "mentors"
+        elif role == "student":
+            table_name = "students"
+
+        current_date, current_time = self.get_time()
+        self.write(name)
+
+        reader_id, reader_name = self.read()
+        DataMan.registration(table_name, reader_id, reader_name, role, current_date, current_time)
+
 
 
