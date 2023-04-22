@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+          <style>
+        .bottom-three {
+           margin-bottom: 1cm;
+        }
+        </style>
 
-        <h3> Select action </h3>
 
         <div class="position-absolute top-50 start-50 translate-middle">
+
+            <h1> Select action </h1>
+            <p class="bottom-three"> </p>
                <div class="align-middle" class="btn-group btn-group-lg col-6" role="group" aria-label="Sign In and Sing Out">
                   <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
                   <button type="button" class="btn btn-danger" onclick="location.href = '/sign_out';">Sign Out</button>
