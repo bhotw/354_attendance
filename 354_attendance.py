@@ -19,7 +19,9 @@ def sign_in():
 @app.route("/sign_out")
 def sign_out():
     return render_template('sign_out.html')
-
+@app.route("/get_info")
+def get_infor():
+    return render_template('get_info.html')
 @app.route("/register")
 def register():
     return render_template('register.html')
