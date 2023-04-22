@@ -18,16 +18,21 @@ class ReaderClass:
 
     def read(self):
         print("TAP to read Data!")
-        id, text = reader.read()
-        return id, text
+        reader_id, name = reader.read()
+        return reader_id, name
 
 
-    def write(self):
-        data = input('Programing new Data /n Full Name:')
+    def write(self, data):
+
+        # data = input('Programing new Data /n Full Name:')
+
         print("TAP to write new Data!")
         reader.write(data)
         print("Data writing is complete.")
     def regidterNewMember(self):
+        name = input("Name: ")
+        role = input("Role: ")
+
         data = 0
 
     def get_action(self, s):

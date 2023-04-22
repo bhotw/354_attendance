@@ -9,8 +9,19 @@ class DataMan:
 
     def getRole(self, reader_id, name):
         storeed_name = cursor.execute("SELECT name FROM students")
+        storeed_id = cursor.execute("SELECT reader_id FROM students")
+
+        if storeed_name == name and storeed_id == reader_id:
+            return "student"
+        else:
+            storeed_name = cursor.execute("SELECT name FROM mentors")
+            storeed_id = cursor.execute("SELECT reader_id FROM mentors")
+
+            if storeed_name == name and storeed_id == reader_id:
+                return "mentor"
 
         # this needs to be tested and see how the data comes out from the tables and stuff.
+        # the function is pretty much done but not tested.
 
 
     def isMember(self, reader_id, name):
