@@ -78,6 +78,7 @@ class ReaderClass:
 
 
     def showTable(self, howMany = "all"):
+
         if howMany == "one":
             DataMan.print(self)
         elif howMany == "all":
@@ -86,6 +87,7 @@ class ReaderClass:
             print("Try: one or all")
 
     def regidterNewMember(self):
+
         name = input("Name: ")
         role = input("Role: ")
         if role == "mentor":
