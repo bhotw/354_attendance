@@ -1,20 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+  <div class="position-absolute top-50 start-50 translate-middle">
+      <style>
+    .bottom-three {
+       margin-bottom: 0.5cm;
+    }
+    </style>
     <div class="row g-3 align-items-center">
       <div class="col-auto">
         <label for="fullname" class="form-control-lg">Full Name :</label>
+        <p class="bottom-three"> </p>
+        <label for="role" class="form-control-lg">Role :</label>
+        <p class="bottom-three"> </p>
+        <label for="email" class="form-control-lg">Email Address :</label>
+        <p class="bottom-three"> </p>
+        <label for="phone" class="form-control-lg">Phone Number :</label>
       </div>
       <div class="col-auto">
         <input id="fullname" class="form-control form-control-lg" type="text" placeholder="Full Name">
+        <p class="bottom-three"> </p>
+        <select class="form-select form-select-lg mb-3" >
+          <option selected>select menu</option>
+          <option value="mentor">Mentor</option>
+          <option value="student">Student</option>
+        </select>
+        <p class="bottom-three"> </p>
+        <input id="email" class="form-control form-control-lg" type="email" placeholder="name@example.com"  >
+        <p class="bottom-three"> </p>
+        <input id="phone" class="form-control form-control-lg" type="text" placeholder="000-000-0000"  >
+
+
+
       </div>
-        <div class="col-auto">
-        <label for="role" class="form-control-lg">Role :</label>
-      </div>
-      <div class="col-auto">
-        <input id="role" class="form-control form-control-lg" type="text" placeholder="Role"  >
+      <div class="row g-3 align-items-center">
+        <button type="button" class="btn btn-danger">Submit</button>
       </div>
 
     </div>
+  </div>
 
 {% endblock %}
