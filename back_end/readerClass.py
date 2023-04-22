@@ -24,8 +24,6 @@ class ReaderClass:
 
     def write(self, data):
 
-        # data = input('Programing new Data /n Full Name:')
-
         print("TAP to write new Data!")
         reader.write(data)
         print("Data writing is complete.")

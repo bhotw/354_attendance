@@ -3,7 +3,7 @@
 {% block content %}
           <style>
         .bottom-three {
-           margin-bottom: 1cm;
+           margin-bottom: 0.5cm;
         }
         </style>
 
@@ -12,10 +12,19 @@
 
             <h1> Select action </h1>
             <p class="bottom-three"> </p>
-               <div class="align-middle" class="btn-group btn-group-lg col-6" role="group" aria-label="Sign In and Sing Out">
-                  <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
-                  <button type="button" class="btn btn-danger" onclick="location.href = '/sign_out';">Sign Out</button>
-                </div>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
+            </div>
+            <p class="bottom-three"> </p>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-danger" onclick="location.href = '/sign_out';">Sign Out</button>
+            </div>
+            <p class="bottom-three"> </p>
+            <p class="bottom-three"> </p>
+            <p class="bottom-three"> </p>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-warning" onclick="location.href = '/get_info';">Get Info</button>
+            </div>
         </div>
 
 {% endblock %}
