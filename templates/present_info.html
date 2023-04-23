@@ -1,11 +1,23 @@
-{% extends 'base.html' %}
+<!--{% extends 'base.html' %}-->
 
-{% block content %}
+<!--{% block content %}-->
 
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <h1> Id Info. </h1>
+<!--    <div class="position-absolute top-50 start-50 translate-middle">-->
+<!--        <h1> Id Info. </h1>-->
+<!--        <h1> User Id: {{ reader_id }}</h1>-->
+<!--        <h1> User Name: {{ reader_name }}</h1>-->
+<!--    </div>-->
+
+<!--{% endblock %}-->
+
+<!doctype html>
+<html>
+  <body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+       <h1> Id Info. </h1>-->
         <h1> User Id: {{ reader_id }}</h1>
         <h1> User Name: {{ reader_name }}</h1>
     </div>
-
-{% endblock %}
+  </body>
+</html>
