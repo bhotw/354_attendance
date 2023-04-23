@@ -19,6 +19,8 @@ class ReaderClass:
     def read(self):
         print("TAP to read Data!")
         reader_id, name = reader.read()
+
+        print(reader_id, ": ", name)
         return reader_id, name
 
 
