@@ -28,9 +28,9 @@ def get_infor():
     if request.method == 'GET':
         def present_info():
                 template = 'get_info.html'
-                while True:
-                    reader_id, reader_name = ReaderClass.read("self")
-                    yield render_template(template, reader_id=reader_id, reader_name=reader_name )
+                yield render_template(template)
+                reader_id, reader_name = ReaderClass.read("self")
+                yield render_template(template, reader_id=reader_id, reader_name=reader_name )
         return Response(stream_with_context(present_info()))
 @app.route("/present_info")
 def present_info():
