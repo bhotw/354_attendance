@@ -29,7 +29,7 @@ def get_infor():
         def present_info():
                 yield render_template('get_info.html')
                 reader_id, reader_name = ReaderClass.read("self")
-                redirect('/present_info', reader_id=reader_id, reader_name=reader_name )
+                render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
         return Response(stream_with_context(present_info()))
 @app.route("/present_info")
 def present_info():
