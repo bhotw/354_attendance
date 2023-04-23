@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask import Response, stream_with_context
+from flask import Response, stream_with_context, redirect
 from back_end.readerClass import ReaderClass
 
 
@@ -29,7 +29,7 @@ def get_infor():
         def present_info():
                 yield render_template('get_info.html')
                 reader_id, reader_name = ReaderClass.read("self")
-                yield render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
+                redirect('/present_info', reader_id=reader_id, reader_name=reader_name )
         return Response(stream_with_context(present_info()))
 @app.route("/present_info")
 def present_info():
