@@ -5,11 +5,9 @@
 
     <div class="position-absolute top-50 start-50 translate-middle">
         <h1> TAP to get information about the member. </h1>
-        {% if reader_if != "non" %}
-            <div id = 'user_data' calss="user_data">
+        {% if reader_id != "non" %}
             <h1> User Id: {{ reader_id }}</h1>
             <h1> User Name: {{ reader_name }}</h1>
-            </div>
             <div class="row g-3 align-items-center">
                     <button type="button" class="btn btn-danger" onclick="location.href = '/present_info';">View</button>
                 </div>
