@@ -33,7 +33,7 @@ def get_infor():
         def present_info():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
-            return render_template('get_info.html', reader_id=reader_id, reader_name=reader_name )
+            yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name )
 
         return Response(stream_with_context(present_info()))
 
