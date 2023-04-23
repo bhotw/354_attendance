@@ -3,7 +3,15 @@
 {% block content %}
 
     <div class="position-absolute top-50 start-50 translate-middle">
-        <h1> TAP to get information about the member. </h1>
+
+        {% if reader_id != " " %}
+            <h1> Id Info. </h1>-->
+            <h1> User Id: {{ reader_id }}</h1>
+            <h1> User Name: {{ reader_name }}</h1>
+        {% else %}
+            <h1> TAP to get information about the member. </h1>
+
+
     </div>
 
 {% endblock %}
