@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import back_end.readerClass as reader
+from back_end.readerClass import ReaderClass
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def sign_out():
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
     if request.method == 'GET':
-        reader_id, reader_name = reader.read()
+        reader_id, reader_name = ReaderClass.read()
         return render_template('get_info.html', reader_id, reader_name )
 @app.route("/register")
 def register():
