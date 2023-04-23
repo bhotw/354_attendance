@@ -34,6 +34,7 @@ def get_infor():
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session['get_info']=data
+            yield render_template('get_info.html')
         return Response(stream_with_context(present_info()))
 
 @app.route("/present_info")
