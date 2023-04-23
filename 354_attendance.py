@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import back_end.readerClass as reader
 
 app = Flask(__name__)
 
@@ -18,10 +19,12 @@ def sign_in():
 
 @app.route("/sign_out")
 def sign_out():
+
     return render_template('sign_out.html')
 @app.route("/get_info")
 def get_infor():
-    return render_template('get_info.html')
+    reader_id, reader_name = reader.read()
+    return render_template('get_info.html', reader_id, reader_name )
 @app.route("/register")
 def register():
     return render_template('register.html')
