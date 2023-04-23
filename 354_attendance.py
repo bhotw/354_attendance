@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import back_end.readerClass as reader
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def home():
 def hello():
     return render_template('home.html')
 
-@app.route("/sign_in")
+@app.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
     return render_template('sign_in.html')
 
@@ -21,10 +21,11 @@ def sign_in():
 def sign_out():
 
     return render_template('sign_out.html')
-@app.route("/get_info")
+@app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
-    reader_id, reader_name = reader.read()
-    return render_template('get_info.html', reader_id, reader_name )
+    if request.method == 'GET':
+        reader_id, reader_name = reader.read()
+        return render_template('get_info.html', reader_id, reader_name )
 @app.route("/register")
 def register():
     return render_template('register.html')
