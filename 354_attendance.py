@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
+from flask import Response, stream_with_context
 from back_end.readerClass import ReaderClass
+
 
 app = flask.Flask(__name__)
 
@@ -23,10 +25,13 @@ def sign_out():
     return render_template('sign_out.html')
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
-    while True:
+    def present_info():
         if request.method == 'GET':
-            reader_id, reader_name = ReaderClass.read("self")
-            rendered = flask.render_template('get_info.html')
+            template = 'get_info.html'
+            while True:
+                reader_id, reader_name = ReaderClass.read("self")
+                yield render_template(template, reader_id=reader_id, reader_name=reader_name )
+    return Response(stream_with_context(present_info()))
 @app.route("/present_info")
 def present_info():
     if request.method == 'GET':
