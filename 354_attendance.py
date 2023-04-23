@@ -31,9 +31,11 @@ def get_infor():
     if request.method == 'GET':
         # return render_template('get_info.html')
         def present_info():
-                yield render_template('get_info.html')
-                reader_id, reader_name = ReaderClass.read("self")
-        return Response(stream_with_context(present_info())), redirect("/present_info")
+            yield render_template('get_info.html')
+            reader_id, reader_name = ReaderClass.read("self")
+        redirect("/present_info")
+
+        return Response(stream_with_context(present_info()))
 
 @app.route("/present_info")
 def present_info():
