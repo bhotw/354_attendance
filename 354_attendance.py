@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, session
 from back_end.readerClass import ReaderClass
+from flask.ext.session import Session
 
 
 app = Flask(__name__)
+SESSION_TYPE = 'redis'
+app.config.from_object(__name__)
+Session(app)
 
 
 @app.route("/home")
