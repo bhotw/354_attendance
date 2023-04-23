@@ -1,13 +1,11 @@
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, session
 from back_end.readerClass import ReaderClass
-from flask.ext.session import Session
+
 
 
 app = Flask(__name__)
-SESSION_TYPE = 'redis'
-app.config.from_object(__name__)
-Session(app)
+app.secret_key = "hello"
 
 
 @app.route("/home")
@@ -37,14 +35,14 @@ def get_infor():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
-            flask.session['get_info']=data
+            session['get_info']=data
             yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
 @app.route("/present_info")
 def present_info():
     if request.method == 'GET':
-        data = flask.session['get_info']
+        data = session['get_info']
         reader_id = data[0]
         reader_name = data[1]
         return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
