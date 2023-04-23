@@ -31,11 +31,12 @@ def get_infor():
                 reader_id, reader_name = ReaderClass.read("self")
                 yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name )
         return Response(stream_with_context(present_info()))
-@app.route("/present_info")
-def present_info():
-    if request.method == 'GET':
-        reader_id, reader_name = ReaderClass.read("self")
-        return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
+
+# @app.route("/present_info")
+# def present_info():
+#     if request.method == 'GET':
+#         reader_id, reader_name = ReaderClass.read("self")
+#         return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
 
 @app.route("/register")
 def register():
