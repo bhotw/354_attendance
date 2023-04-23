@@ -33,9 +33,9 @@ def sign_out():
 def get_infor():
     if request.method == 'GET':
 
-
+        reader_id, reader_name = ReaderClass.read("self")
         if turbo.can_stream():
-            reader_id, reader_name = ReaderClass.read("self")
+
             return turbo.stream(
                 turbo.append(render_template('get_info.html', reader_id = reader_id, reader_name = reader_name), target='todos'),
             )
