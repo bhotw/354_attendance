@@ -25,7 +25,7 @@ def sign_out():
 def get_infor():
     if request.method == 'GET':
         reader_id, reader_name = ReaderClass.read("self")
-        return render_template('get_info.html', reader_id, reader_name )
+        return render_template('get_info.html', reader_id=reader_id, reader_name=reader_name )
 @app.route("/register")
 def register():
     return render_template('register.html')
