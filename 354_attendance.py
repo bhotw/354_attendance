@@ -28,21 +28,13 @@ def stream_template(template_name, **context):
     app.update_template_context(context)
     t = app.jinja_env.get_template(template_name)
     rv = t.stream(context)
-    rv.enable_buffering(5)
+    # rv.enable_buffering(5)
     return rv
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
     if request.method == 'GET':
         reader_id, reader_name = ReaderClass.read("self")
-
         return app.response_class(stream_template('get_info.html', reader_id=reader_id, reader_name=reader_name))
-        # return render_template('get_info.html')
-        # def present_info():
-        #     yield render_template('get_info.html')
-        #     reader_id, reader_name = ReaderClass.read("self")
-        #     yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name )
-        #
-        # return Response(stream_with_context(present_info()))
 
 @app.route("/present_info")
 def present_info():
