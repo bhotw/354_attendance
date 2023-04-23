@@ -3,7 +3,7 @@ from flask import Response, stream_with_context
 from back_end.readerClass import ReaderClass
 
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 
 @app.route("/home")
