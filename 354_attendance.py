@@ -39,7 +39,7 @@ def get_infor():
             yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
-@app.route("/present_info")
+@app.route("/present_info", methods=['GET', 'POST'])
 def present_info():
     if request.method == 'GET':
         data = session["getinfo"]
