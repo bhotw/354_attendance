@@ -32,13 +32,12 @@ def sign_out():
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
     if request.method == 'GET':
-        reader_id, reader_name = ReaderClass.read("self")
-        return turbo.stream(
-            turbo.update(render_template('get_info.html'),
-                         target='user_data'),
-            turbo.update(render_template('present_info.html', reader_id=reader_id, reader_name=reader_name),
-                         target='user_data'),
-        )
+        # reader_id, reader_name = ReaderClass.read("self")
+        # return turbo.stream(
+        #     turbo.update(render_template('get_info.html'), target = 'user_data'),
+        #     turbo.update(render_template('present_info.html', reader_id=reader_id, reader_name=reader_name),
+        #                  target='user_data'),
+        # )
         # if turbo.can_stream():
         #     print("can stream")
         #     return turbo.stream(
@@ -48,13 +47,13 @@ def get_infor():
         #     print("can't stream")
         #     return render_template('get_info.html')
         # # return render_template('get_info.html')
-        # def present_info():
-        #     yield render_template('get_info.html')
-        #     reader_id, reader_name = ReaderClass.read("self")
-        #     data = [reader_id, reader_name]
-        #     session["getinfo"]=data
-        #     yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
-        # return Response(stream_with_context(present_info()))
+        def present_info():
+            yield render_template('get_info.html')
+            reader_id, reader_name = ReaderClass.read("self")
+            data = [reader_id, reader_name]
+            session["getinfo"]=data
+            yield render_template('present_info.html')
+        return Response(stream_with_context(present_info()))
 
 @app.route("/present_info", methods=['GET', 'POST'])
 def present_info():
