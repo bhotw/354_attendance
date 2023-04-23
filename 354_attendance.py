@@ -26,6 +26,7 @@ def sign_out():
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
     if request.method == 'GET':
+        return render_template('get_info.html')
         def present_info():
                 yield render_template('get_info.html')
                 reader_id, reader_name = ReaderClass.read("self")
