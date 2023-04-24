@@ -17,7 +17,7 @@ def home():
 
 @app.route("/")
 def hello():
-    return render_template('home.html')
+    return redirect('home.html')
 
 @app.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
@@ -53,7 +53,6 @@ def get_infor():
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session["getinfo"]=data
-            return redirect('present_info.html')
             yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
@@ -63,7 +62,7 @@ def present_info():
         data = session["getinfo"]
         reader_id = data[0]
         reader_name = data[1]
-        return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name )
+        return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
 
 @app.route("/register")
 def register():
