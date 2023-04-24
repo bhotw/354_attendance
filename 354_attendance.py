@@ -53,16 +53,16 @@ def get_infor():
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session["getinfo"]=data
-            yield render_template('empty.html', reader_id=reader_id, reader_name=reader_name)
+            yield render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
-@app.route("/present_info", methods=['GET', 'POST'])
-def present_info():
-    if request.method == 'GET':
-        data = session["getinfo"]
-        reader_id = data[0]
-        reader_name = data[1]
-        return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
+# @app.route("/present_info", methods=['GET', 'POST'])
+# def present_info():
+#     if request.method == 'GET':
+#         data = session["getinfo"]
+#         reader_id = data[0]
+#         reader_name = data[1]
+#         return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
 
 @app.route("/register")
 def register():
