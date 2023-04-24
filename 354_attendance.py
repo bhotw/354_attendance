@@ -17,7 +17,7 @@ def home():
 
 @app.route("/")
 def hello():
-    return redirect('home.html')
+    return redirect('/home')
 
 @app.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
