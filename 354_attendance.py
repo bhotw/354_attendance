@@ -50,7 +50,7 @@ def get_infor():
         render_template('get_info.html')
         def present_info():
             reader_id = "non"
-            yield render_template('get_info.html', reader_id=reader_id)
+            # yield render_template('get_info.html', reader_id=reader_id)
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session["getinfo"]=data
