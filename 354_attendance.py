@@ -47,6 +47,7 @@ def get_infor():
         #     print("can't stream")
         #     return render_template('get_info.html')
         # # return render_template('get_info.html')
+        render_template('get_info.html')
         def present_info():
             reader_id = "non"
             yield render_template('get_info.html', reader_id=reader_id)
