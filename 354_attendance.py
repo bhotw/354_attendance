@@ -53,6 +53,7 @@ def get_infor():
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session["getinfo"]=data
+            return render_template('present_info.html')
             yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
