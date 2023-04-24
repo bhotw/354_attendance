@@ -47,15 +47,13 @@ def get_infor():
         #     print("can't stream")
         #     return render_template('get_info.html')
         # # return render_template('get_info.html')
-        render_template('get_info.html')
+
         def present_info():
-            reader_id = "non"
-            # yield render_template('get_info.html', reader_id=reader_id)
+            yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
             session["getinfo"]=data
-            yield render_template('empty.html')
-            yield render_template('get_info.html', reader_id=reader_id, reader_name=reader_name)
+            yield render_template('empty.html', reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
 @app.route("/present_info", methods=['GET', 'POST'])
