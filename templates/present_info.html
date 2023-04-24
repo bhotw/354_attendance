@@ -1,11 +1,19 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
     <div class="position-absolute top-50 start-50 translate-middle">
-        <h1> Id Info. </h1>
         <h1> User Id: {{ reader_id }}</h1>
         <h1> User Name: {{ reader_name }}</h1>
+        <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-danger" onclick="location.href = '/present_info';">View</button>
+            </div>
+
     </div>
 
-{% endblock %}
+</body>
+</html>
