@@ -72,6 +72,10 @@ def register():
 def status():
     return render_template('status.html')
 
+@app.route("/admin")
+def admin():
+    return render_template('admin.html')
+
 
 
 if __name__ == "__main__":
