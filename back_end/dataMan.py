@@ -56,12 +56,16 @@ class DataMan:
         cursor.execute("Update total_hours set hours = %s where id = %s", (new_hours,reader_id))
         conn.commit()
 
+        message = "Total Hours Updated."
+        print(message)
+
     def addToHours(self, reader_id, reader_name, hours, present_date, present_time):
         cursor.execute("INSERT INTO hours(id, name, hour, date, time) VALUES(%s, %s, %s, %s)", (reader_id, reader_name, hours, present_date, present_time,))
         conn.commit()
         self.addToTotalHours(reader_id, hours)
 
-        message = ("")
+        message = "Added to hours table."
+        print(message)
 
 
     def print(self):
