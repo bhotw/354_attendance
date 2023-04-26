@@ -7,17 +7,17 @@ from back_end.dataBaseConfig import cursor, conn
 class DataMan:
     # def __init__(self):
 
-    def getRole(self, reader_id, name):
+    def getRole(self, reader_id, reader_name):
         stored_name = cursor.execute("SELECT name FROM students")
         stored_id = cursor.execute("SELECT reader_id FROM students")
 
-        if stored_name == name and stored_id == reader_id:
+        if stored_name == reader_name and stored_id == reader_id:
             return "student"
         else:
             stored_name = cursor.execute("SELECT name FROM mentors")
             stored_id = cursor.execute("SELECT reader_id FROM mentors")
 
-            if stored_name == name and stored_id == reader_id:
+            if stored_name == reader_name and stored_id == reader_id:
                 return "mentor"
 
         # this needs to be tested and see how the data comes out from the tables and stuff.
@@ -35,20 +35,33 @@ class DataMan:
 
 
 
-    def registration(self, table_name, reader_id, name, role, present_date, present_time):
-        cursor.execute("INSERT INTO %s (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (table_name, reader_id, name, role, present_date, present_time,) )
+    def registration(self, table_name, reader_id, reader_name, role, present_date, present_time):
+        cursor.execute("INSERT INTO %s (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (table_name, reader_id, reader_name, role, present_date, present_time,) )
         conn.commit()
 
-        message = ("New member %s was added %s", name, table_name)
+        message = ("New member %s was added %s", reader_name, table_name)
 
         print(message)
 
-    def addToSignInSheet(self, reader_id, name, role, action, present_date, present_time):
-        cursor.execute("INSERT INTO sign_in_sheet (id, name, role, action, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, name, role, action, present_date, present_time,) )
+    def addToSignInSheet(self, reader_id, reader_name, role, action, present_date, present_time):
+        cursor.execute("INSERT INTO sign_in_sheet (id, name, role, action, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, reader_name, role, action, present_date, present_time,) )
 
         # cursor.execute("INSERT INTO Students(name, school) VALUES(%s, %s)", (name, action,))
         conn.commit()
-        print("%s %s added to Sign in Sheet", name, action)
+        print("%s %s added to Sign in Sheet", reader_name, action)
+
+    def addToTotalHours(self, reader_id, hours):
+        old_hours = cursor.execute("SELECT hours FROM total_hours WHERE id=%s", (reader_id,))
+        new_hours = old_hours + hours
+        cursor.execute("Update total_hours set hours = %s where id = %s", (new_hours,reader_id))
+        conn.commit()
+
+    def addToHours(self, reader_id, reader_name, hours, present_date, present_time):
+        cursor.execute("INSERT INTO hours(id, name, hour, date, time) VALUES(%s, %s, %s, %s)", (reader_id, reader_name, hours, present_date, present_time,))
+        conn.commit()
+        self.addToTotalHours(reader_id, hours)
+
+        message = ("")
 
 
     def print(self):
