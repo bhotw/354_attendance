@@ -31,6 +31,27 @@ class DataMan:
         else:
             return False
 
+    def isSignedIn(self, reader_id, reader_name, present_date):
+
+        time = 0.0
+
+        # this function returns true when the member is signed in for the day
+
+
+
+    def getDayHours(self, reader_id, reader_name, present_date, present_time):
+
+        hours = 0
+
+        if self.isSignedIn(reader_id, reader_name, present_date):
+            logged_time = 0.0
+
+            hours = present_time - logged_time
+
+        return hours
+
+        # this will return the amount of hours they spent that day.
+
 
 
 
