@@ -27,6 +27,8 @@ class DataMan:
          
          sing_in_time = cursor.execute("SELECT time FROM sign_in_sheet WHERE id = %s AND date = %s", (reader_id, present_date))
 
+         return sing_in_time
+
 
     def isMember(self, reader_id, reader_name):
 
@@ -34,6 +36,7 @@ class DataMan:
             return True
         else:
             return False
+        
 
     def isSignedIn(self, reader_id, reader_name, present_date):
 
@@ -48,8 +51,8 @@ class DataMan:
         hours = 0
 
         if self.isSignedIn(reader_id, reader_name, present_date):
-            logged_time = 0.0
 
+            logged_time = self.getSignInTime(reader_id, reader_name, present_date)
             hours = present_time - logged_time
 
         return hours

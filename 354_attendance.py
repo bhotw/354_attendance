@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, session
-from turbo_flask import Turbo
+# from turbo_flask import Turbo
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
 
@@ -31,8 +31,8 @@ def sign_out():
     if request.mothod == 'GET':
         def present_info():
             yield render_template('sign_out.html')
-            Command.sign_out
-            message = "Sign out Success full, Byeeeeeee"
+            Command.sign_out()
+            message = 
             yield render_template('present.html', message)
             
 

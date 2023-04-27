@@ -20,12 +20,24 @@ class Command:
     def sign_out(self, ):
         action = "Sign Out"
         reader_id, reader_name = ReaderClass.read()
+
         if DataMan.isMember(reader_id, reader_name):
-            if DataMan.isSignedIn(self):
+            if DataMan.isSignedIn():
+
+                role = DataMan.getRole(reader_id, reader_name)
+                sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
+                present_date, present_time = ReaderClass.get_time()
+                DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+                DataMan.addToTotalHours(reader_id, hours)
+                return "Sign out Success full, Byeeeeeee"
+            
+            else:
+
                 role = DataMan.getRole(reader_id, reader_name)
                 present_date, present_time = ReaderClass.get_time()
+                DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+                return "You never Signed In. But your Sign Out was logged. byeeeeee"
 
-            DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
         else:
             return "Id not Recognized. Try again"
 
