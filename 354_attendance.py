@@ -24,8 +24,14 @@ def hello():
 def sign_in():
     return render_template('sign_in.html')
 
-@app.route("/sign_out")
+@app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
+
+    if request.mothod == 'GET':
+        def present_info():
+            yield render_template('sing_out.html')
+            reader_id, reader_name = ReaderClass.read("self")
+            
 
     return render_template('sign_out.html')
 
@@ -33,21 +39,6 @@ def sign_out():
 @app.route("/get_info", methods=['GET', 'POST'])
 def get_infor():
     if request.method == 'GET':
-        # reader_id, reader_name = ReaderClass.read("self")
-        # return turbo.stream(
-        #     turbo.update(render_template('get_info.html'), target = 'user_data'),
-        #     turbo.update(render_template('present_info.html', reader_id=reader_id, reader_name=reader_name),
-        #                  target='user_data'),
-        # )
-        # if turbo.can_stream():
-        #     print("can stream")
-        #     return turbo.stream(
-        #         turbo.append(render_template('get_info.html', reader_id = reader_id, reader_name = reader_name), target='user_data'),
-        #     )
-        # else:
-        #     print("can't stream")
-        #     return render_template('get_info.html')
-        # # return render_template('get_info.html')
 
         def present_info():
             yield render_template('get_info.html')

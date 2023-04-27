@@ -31,13 +31,13 @@ class ReaderClass:
         print("Data writing is complete.")
 
 
-    def get_action(self, s):
-        action = str()
-        if (s == "in"):
-            action = "Sign In"
-        elif (s == "out"):
-            action = "Sign Out"
-        return action
+    # def get_action(self, s):
+    #     action = str()
+    #     if (s == "in"):
+    #         action = "Sign In"
+    #     elif (s == "out"):
+    #         action = "Sign Out"
+    #     return action
 
     def get_time(self):
 
@@ -63,43 +63,4 @@ class ReaderClass:
         bye = reader_name + " It was nice to see you today. Have a good one!!!"
         print(bye)
 
-    def attendance(self, act):
-
-        reader_id, reader_name = self.read()
-
-        if DataMan.isMember(reader_id, reader_name):
-            role = DataMan.getRole(reader_id, reader_name)
-            present_date, present_time = self.get_time()
-            action =  self.get_action(act)
-
-            DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
-        else:
-            return "Id not Recognized. Try again"
-
-
-    def showTable(self, howMany = "all"):
-
-        if howMany == "one":
-            DataMan.print(self)
-        elif howMany == "all":
-            DataMan.printAll(self)
-        else:
-            print("Try: one or all")
-
-    def regidterNewMember(self):
-
-        name = input("Name: ")
-        role = input("Role: ")
-        if role == "mentor":
-            table_name = "mentors"
-        elif role == "student":
-            table_name = "students"
-
-        current_date, current_time = self.get_time()
-        self.write(name)
-
-        reader_id, reader_name = self.read()
-        DataMan.registration(table_name, reader_id, reader_name, role, current_date, current_time)
-
-
-
+ 

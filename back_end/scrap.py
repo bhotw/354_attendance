@@ -62,3 +62,21 @@
 #         with open('attendance_sheet.' + str(present_time) + '.csv', 'w') as f:
 #             [f.write('{0}  {1}\n'.format(name, attendance_statistics))]
 #
+
+
+
+        # reader_id, reader_name = ReaderClass.read("self")
+        # return turbo.stream(
+        #     turbo.update(render_template('get_info.html'), target = 'user_data'),
+        #     turbo.update(render_template('present_info.html', reader_id=reader_id, reader_name=reader_name),
+        #                  target='user_data'),
+        # )
+        # if turbo.can_stream():
+        #     print("can stream")
+        #     return turbo.stream(
+        #         turbo.append(render_template('get_info.html', reader_id = reader_id, reader_name = reader_name), target='user_data'),
+        #     )
+        # else:
+        #     print("can't stream")
+        #     return render_template('get_info.html')
+        # # return render_template('get_info.html')

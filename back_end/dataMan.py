@@ -23,6 +23,10 @@ class DataMan:
         # this needs to be tested and see how the data comes out from the tables and stuff.
         # the function is pretty much done but not tested.
 
+    def getSignInTime(self, reader_id, reader_name, present_date):
+         
+         sing_in_time = cursor.execute("SELECT time FROM sign_in_sheet WHERE id = %s AND date = %s", (reader_id, present_date))
+
 
     def isMember(self, reader_id, reader_name):
 
