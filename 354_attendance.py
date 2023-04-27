@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, session
 from turbo_flask import Turbo
@@ -6,7 +7,7 @@ from back_end.readerClass import ReaderClass
 
 
 app = Flask(__name__)
-turbo = Turbo(app)
+# turbo = Turbo(app)
 app.secret_key = "hello"
 
 
