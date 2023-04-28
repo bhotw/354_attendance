@@ -13,6 +13,7 @@ class Command:
             present_date, present_time = ReaderClass.get_time()
 
             DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+            return "Sing In Successful. Hi there how are you dong today."
         else:
             return "Id not Recognized. Try again"
         
@@ -25,18 +26,19 @@ class Command:
             if DataMan.isSignedIn():
 
                 role = DataMan.getRole(reader_id, reader_name)
-                sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
                 present_date, present_time = ReaderClass.get_time()
                 DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+
+                hours = DataMan.getDayHours(reader_id)
                 DataMan.addToTotalHours(reader_id, hours)
-                return "Sign out Success full, Byeeeeeee"
+                return "Sign out Successful, Byeeeeeee"
             
             else:
 
                 role = DataMan.getRole(reader_id, reader_name)
                 present_date, present_time = ReaderClass.get_time()
                 DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
-                return "You never Signed In. But your Sign Out was logged. byeeeeee"
+                return "You never Signed In. But your Sign Out was logged. Byeeeeee"
 
         else:
             return "Id not Recognized. Try again"

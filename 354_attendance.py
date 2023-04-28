@@ -1,15 +1,14 @@
 
 from flask import Flask, render_template, request
-from flask import Response, stream_with_context, redirect, session
-# from turbo_flask import Turbo
+from flask import Response, stream_with_context, redirect
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
 
 
 
+
 app = Flask(__name__)
-# turbo = Turbo(app)
-app.secret_key = "hello"
+
 
 
 @app.route("/home")
@@ -23,6 +22,11 @@ def hello():
 
 @app.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
+    if request.mothod == 'GET':
+        def present_info():
+            yield render_template('sign_in.html')
+            message = Command.sign_in()
+            yield render_template('sign_in.html', message)
     return render_template('sign_in.html')
 
 @app.route("/sign_out", methods=['GET', 'POST'])
@@ -31,13 +35,10 @@ def sign_out():
     if request.mothod == 'GET':
         def present_info():
             yield render_template('sign_out.html')
-            Command.sign_out()
-            message = 
+            message = Command.sign_out()
             yield render_template('present.html', message)
-            
 
-
-    return render_template('sign_out.html')
+        return render_template('sign_out.html')
 
 
 @app.route("/get_info", methods=['GET', 'POST'])
