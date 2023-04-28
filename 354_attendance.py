@@ -26,7 +26,7 @@ def sign_in():
         def present_info():
             yield render_template('sign_in.html')
             message = Command.sign_in()
-            yield render_template('sign_in.html', message)
+            yield render_template('sign_in.html', message=message)
     return render_template('sign_in.html')
 
 @app.route("/sign_out", methods=['GET', 'POST'])
@@ -36,7 +36,7 @@ def sign_out():
         def present_info():
             yield render_template('sign_out.html')
             message = Command.sign_out()
-            yield render_template('present.html', message)
+            yield render_template('present.html', message=message)
 
         return render_template('sign_out.html')
 
