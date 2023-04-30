@@ -48,7 +48,7 @@ def sign_out():
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
             time.sleep(2)
-            yield render_template('home.html')
+            render_template(' '), {"Refresh": "1; url=https://google.com"}
 
         return Response(stream_with_context(present_sign_out()))
 
