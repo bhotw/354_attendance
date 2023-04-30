@@ -44,7 +44,7 @@ class Command:
 
     def get_status(self, reader_id, reader_name):
 
-        present_date, present_time = ReaderClass.get_time()
+        present_date, present_time = ReaderClass.get_time(ReaderClass)
         sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
         if DataMan.isSignedIn(reader_id, reader_name, present_date):
             message = "Hi" + reader_name + "You have Signed in at " + sign_in_time
