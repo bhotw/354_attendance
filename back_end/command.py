@@ -51,7 +51,7 @@ class Command:
             sign_in_time = DataMan.getSignInTime("self",reader_id, reader_name)
             message = ["Active", reader_name, sign_in_time]
         else:
-            message = ["Not Active",reader_name,"You did not Sing In today yet. You have to SIGN IN."]
+            message = ["Not Active",reader_name, "You did not Sing In today yet. You have to SIGN IN."]
             print(message)
 
         return message
