@@ -68,7 +68,7 @@
         # reader_id, reader_name = ReaderClass.read("self")
         # return turbo.stream(
         #     turbo.update(render_template('get_info.html'), target = 'user_data'),
-        #     turbo.update(render_template('present_info.html', reader_id=reader_id, reader_name=reader_name),
+        #     turbo.update(render_template('present_message.html', reader_id=reader_id, reader_name=reader_name),
         #                  target='user_data'),
         # )
         # if turbo.can_stream():

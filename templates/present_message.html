@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+
+        {% if action == "sign_in" %}
+            <h3> {{ message }} </h3>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
+
+        {% elif action == "sign_out" %}
+            <h3> {{ message }} </h3>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
+
+        {% elif action == "info" %}
+            <h1> User Id: {{ reader_id }}</h1>
+            <h1> User Name: {{ reader_name }}</h1>
+            <div class="row g-3 align-items-center">
+                    <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
+                </div>
+        {% elif == ""status %}
+            <h2> {{ message }}</h2>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
+            </div>
+
+        {% endif%}
+
+    </div>
+
+</body>
+</html>

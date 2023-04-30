@@ -25,8 +25,10 @@ def sign_in():
     if request.method == 'GET':
         def present_info():
             yield render_template('sign_in.html')
-            message = Command.sign_in()
-            yield render_template('sign_in.html', message=message)
+            reader_id, reader_name = ReaderClass.read("self")
+            # message = Command.sign_in("self",reader_id,reader_name )
+            message = "Id: "+reader_id + "name:" + reader_name+"You have singed out at:" + ReaderClass.get_time("self")  # just for testing
+            yield render_template('present_message.html', action="sign_in", message=message)
         return render_template(present_info())
 
 @app.route("/sign_out", methods=['GET', 'POST'])
@@ -36,8 +38,9 @@ def sign_out():
         def present_info():
             yield render_template('sign_out.html')
             reader_id, reader_name = ReaderClass.read("self")
-            message = Command.sign_out(reader_id, reader_name)
-            yield render_template('present.html', message=message)
+            # message = Command.sign_out(reader_id, reader_name)
+            message = "Id: "+reader_id + "name:" + reader_name+"You have singed out at:" + ReaderClass.get_time("self")  # just for testing
+            yield render_template('present_message.html', action="sign_out", message=message)
 
         return render_template('sign_out.html')
 
@@ -50,7 +53,7 @@ def get_infor():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
-            yield render_template('present_info.html', action="info", reader_id=reader_id, reader_name=reader_name)
+            yield render_template('present_message.html', action="info", reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
 # @app.route("/present_info", methods=['GET', 'POST'])
@@ -59,7 +62,7 @@ def get_infor():
 #         data = session["getinfo"]
 #         reader_id = data[0]
 #         reader_name = data[1]
-#         return render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
+#         return render_template('present_message.html', reader_id=reader_id, reader_name=reader_name)
 
 @app.route("/register")
 def register():
@@ -73,7 +76,7 @@ def status():
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_status(" ",reader_id,reader_name)
             print("this is inside status",message)
-            yield render_template('present_info.html', action="status", message=message)
+            yield render_template('present_message.html', action="status", message=message)
 
         return Response(stream_with_context(present_status()))
     return render_template('status.html')
