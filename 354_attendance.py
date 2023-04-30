@@ -50,7 +50,7 @@ def get_infor():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
             data = [reader_id, reader_name]
-            yield render_template('present_info.html', reader_id=reader_id, reader_name=reader_name)
+            yield render_template('present_info.html', action="info", reader_id=reader_id, reader_name=reader_name)
         return Response(stream_with_context(present_info()))
 
 # @app.route("/present_info", methods=['GET', 'POST'])
