@@ -32,7 +32,7 @@ def sign_in():
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
             time.sleep(2)
-            yield render_template(redirect('/home'))
+            yield render_template('home.html')
         return Response(stream_with_context(present_sign_in()))
 
 @app.route("/sign_out", methods=['GET', 'POST'])
@@ -48,7 +48,7 @@ def sign_out():
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
             time.sleep(2)
-            yield render_template(redirect('/home'))
+            yield render_template('home.html')
 
         return Response(stream_with_context(present_sign_out()))
 
