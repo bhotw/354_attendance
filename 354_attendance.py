@@ -31,8 +31,10 @@ def sign_in():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
+            time.sleep(3)
+            yield render_template('sign_in.html')
         return Response(stream_with_context(present_sign_in()))
-    time.sleep(3)
+
     redirect(url_for('home'))
 
 @app.route("/sign_out", methods=['GET', 'POST'])
