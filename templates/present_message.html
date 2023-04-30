@@ -15,8 +15,8 @@
             <div class="row g-3 align-items-center">
                 <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
             </div>
-            {% time.sleep(2) %}
-            {% redirect(url_for('/home'))%}
+            {{time.sleep(2) }}
+            {{ redirect(url_for('/home')) }}
 
         {% elif action == "sign_out" %}
             <h3> Name: {{ message[0] }} </h3>
