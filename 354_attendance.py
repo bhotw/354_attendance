@@ -27,7 +27,7 @@ def sign_in():
             yield render_template('sign_in.html')
             message = Command.sign_in()
             yield render_template('sign_in.html', message=message)
-    return render_template('sign_in.html')
+        return render_template(present_info())
 
 @app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
