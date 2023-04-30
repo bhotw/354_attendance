@@ -35,7 +35,8 @@ def sign_out():
     if request.mothod == 'GET':
         def present_info():
             yield render_template('sign_out.html')
-            message = Command.sign_out()
+            reader_id, reader_name = ReaderClass.read("self")
+            message = Command.sign_out(reader_id, reader_name)
             yield render_template('present.html', message=message)
 
         return render_template('sign_out.html')
@@ -69,7 +70,8 @@ def status():
     if request.method == 'GET':
         def present_status():
             yield render_template('status.html')
-            message = Command.get_status()
+            reader_id, reader_name = ReaderClass.read("self")
+            message = Command.get_status(reader_id,reader_name)
             yield render_template('present_info.html', message=message)
 
         return Response(stream_with_context(present_status()))

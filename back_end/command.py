@@ -4,7 +4,7 @@ from back_end.dataMan import DataMan
 
 class Command:
 
-    def sign_in(self):
+    def sign_in(self,reader_id, reader_name):
         action = "Sign In"
         reader_id, reader_name = ReaderClass.read()
 
@@ -18,9 +18,8 @@ class Command:
             return "Id not Recognized. Try again"
         
         
-    def sign_out(self, ):
+    def sign_out(self,reader_id, reader_name ):
         action = "Sign Out"
-        reader_id, reader_name = ReaderClass.read()
 
         if DataMan.isMember(reader_id, reader_name):
             if DataMan.isSignedIn():
@@ -43,9 +42,8 @@ class Command:
         else:
             return "Id not Recognized. Try again"
 
-    def get_status(self):
+    def get_status(self, reader_id, reader_name):
 
-        reader_id, reader_name = ReaderClass.read()
         present_date, present_time = ReaderClass.get_time()
         sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
         if DataMan.isSignedIn(reader_id, reader_name, present_date):
