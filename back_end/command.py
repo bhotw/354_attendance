@@ -45,8 +45,8 @@ class Command:
     def get_status(self, reader_id, reader_name):
 
         present_date, present_time = ReaderClass.get_time(ReaderClass)
-        sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
         if DataMan.isSignedIn(reader_id, reader_name, present_date):
+            sign_in_time = DataMan.getSignInTime(reader_id, reader_name)
             message = "Hi" + reader_name + "You have Signed in at " + sign_in_time
         else:
             message = "You did not Sing In today yet. Try Sign in."
