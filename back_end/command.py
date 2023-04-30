@@ -6,7 +6,6 @@ class Command:
 
     def sign_in(self,reader_id, reader_name):
         action = "Sign In"
-        reader_id, reader_name = ReaderClass.read()
 
         if DataMan.isMember(reader_id, reader_name):
             role = DataMan.getRole(reader_id, reader_name)
@@ -56,7 +55,8 @@ class Command:
 
     def get_info(self, reader_id, reader_name):
 
-        role = DataMan.getRole("self", reader_id, reader_name)
+        #role = DataMan.getRole("self", reader_id, reader_name)  # this don't work yet coz the table don't exist.
+        role = "Smart"
         message = [reader_id, reader_name, role]
 
         return message
