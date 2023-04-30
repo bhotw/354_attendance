@@ -65,10 +65,10 @@ class Command:
         elif role == "student":
             table_name = "students"
 
-        current_date, current_time = self.get_time()
-        self.write(name)
+        current_date, current_time = ReaderClass.get_time()
+        ReaderClass.write(name)
 
-        reader_id, reader_name = self.read()
+        reader_id, reader_name = ReaderClass.read()
         DataMan.registration(table_name, reader_id, reader_name, role, current_date, current_time)
 
 
