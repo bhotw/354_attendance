@@ -66,6 +66,13 @@ def register():
 
 @app.route("/status")
 def status():
+    if request.method == 'GET':
+        def present_status():
+            yield render_template('status.html')
+            message = Command.get_status()
+            yield render_template('present_info.html', message=message)
+
+        return Response(stream_with_context(present_status()))
     return render_template('status.html')
 
 @app.route("/admin")
