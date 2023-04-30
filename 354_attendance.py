@@ -28,9 +28,9 @@ def sign_in():
             reader_id, reader_name = ReaderClass.read("self")
             # message = Command.sign_in("self",reader_id,reader_name )
             time = ReaderClass.get_time("self")
-            message = str(reader_name)+" You have singed IN at: " + str(time)  # just for testing
+            message = reader_name +" You have singed IN at: " + time  # just for testing
             yield render_template('present_message.html', action="sign_in", message=message)
-        return render_template(stream_with_context(present_sign_in()))
+        return Response(stream_with_context(present_sign_in()))
 
 @app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
@@ -41,10 +41,10 @@ def sign_out():
             reader_id, reader_name = ReaderClass.read("self")
             # message = Command.sign_out(reader_id, reader_name)
             time = ReaderClass.get_time("self")
-            message = str(reader_name)+" You have singed OUT at: " + str(time)  # just for testing
+            message = reader_name +" You have singed OUT at: " + time  # just for testing
             yield render_template('present_message.html', action="sign_out", message=message)
 
-        return render_template(stream_with_context(present_sign_out()))
+        return Response(stream_with_context(present_sign_out()))
 
 
 @app.route("/get_info", methods=['GET', 'POST'])
