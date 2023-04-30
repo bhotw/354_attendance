@@ -26,9 +26,7 @@ def sign_in():
         def present_sign_in():
             yield render_template('sign_in.html')
             reader_id, reader_name = ReaderClass.read("self")
-            # message = Command.sign_in("self",reader_id,reader_name )
-            time = ReaderClass.get_time("self")
-            message = str(reader_name) +" You have singed IN at: " + str(time)  # just for testing
+            message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
         return Response(stream_with_context(present_sign_in()))
 
@@ -39,9 +37,7 @@ def sign_out():
         def present_sign_out():
             yield render_template('sign_out.html')
             reader_id, reader_name = ReaderClass.read("self")
-            # message = Command.sign_out(reader_id, reader_name)
-            time = ReaderClass.get_time("self")
-            message = str(reader_name) +" You have singed OUT at: " + str(time)  # just for testing
+            message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
 
         return Response(stream_with_context(present_sign_out()))
@@ -54,7 +50,7 @@ def get_infor():
         def present_info():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
-            message = [reader_id, reader_name]
+            message = Command.get_info("self",reader_id,reader_name)
             yield render_template('present_message.html', action="info", message=message)
         return Response(stream_with_context(present_info()))
 
@@ -76,8 +72,7 @@ def status():
         def present_status():
             yield render_template('status.html')
             reader_id, reader_name = ReaderClass.read("self")
-            message = Command.get_status(" ",reader_id,reader_name)
-            print("this is inside status",message)
+            message = Command.get_status("self",reader_id,reader_name)
             yield render_template('present_message.html', action="status", message=message)
 
         return Response(stream_with_context(present_status()))

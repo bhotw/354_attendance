@@ -45,14 +45,19 @@ class Command:
     def get_status(self, reader_id, reader_name):
 
         present_date, present_time = ReaderClass.get_time("self")
-        print(present_date)
-        print(ReaderClass.get_time("self"))
         if DataMan.isSignedIn("self",reader_id, reader_name, present_date):
             sign_in_time = DataMan.getSignInTime("self",reader_id, reader_name)
             message = ["Active", reader_name, sign_in_time]
         else:
             message = ["Not Active",reader_name, "You did not Sing In today yet. You have to SIGN IN."]
             print(message)
+
+        return message
+
+    def get_info(self, reader_id, reader_name):
+
+        role = DataMan.getRole("self", reader_id, reader_name)
+        message = [reader_id, reader_name, role]
 
         return message
 
