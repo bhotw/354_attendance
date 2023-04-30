@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
+import time
 
 
 
@@ -26,8 +27,12 @@ def sign_in():
         def present_sign_in():
             yield render_template('sign_in.html')
             reader_id, reader_name = ReaderClass.read("self")
-            message = Command.sign_in("self",reader_id,reader_name)
+            present_date, present_time = ReaderClass.get_time("self")
+            message = [reader_name, "Sign in", present_time, present_date]
+            # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
+            time.sleep(2)
+            yield render_template(redirect('/home'))
         return Response(stream_with_context(present_sign_in()))
 
 @app.route("/sign_out", methods=['GET', 'POST'])
@@ -37,8 +42,13 @@ def sign_out():
         def present_sign_out():
             yield render_template('sign_out.html')
             reader_id, reader_name = ReaderClass.read("self")
-            message = Command.sign_out("self",reader_id,reader_name)
+
+            present_date, present_time = ReaderClass.get_time("self")
+            message = [reader_name, "Sign in", present_time, present_date]
+            # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
+            time.sleep(2)
+            yield render_template(redirect('/home'))
 
         return Response(stream_with_context(present_sign_out()))
 

@@ -7,12 +7,13 @@ class Command:
     def sign_in(self,reader_id, reader_name):
         action = "Sign In"
 
-        if DataMan.isMember(reader_id, reader_name):
-            role = DataMan.getRole(reader_id, reader_name)
-            present_date, present_time = ReaderClass.get_time()
+        if DataMan.isMember("self",reader_id, reader_name):
+            role = DataMan.getRole("self",reader_id, reader_name)
+            present_date, present_time = ReaderClass.get_time("self")
 
-            DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
-            return "Sing In Successful. Hi there how are you dong today."
+            DataMan.addToSignInSheet("self",reader_id, reader_name, role, action, present_date, present_time)
+            message = [reader_name, action, present_time, present_date]
+            return message
         else:
             return "Id not Recognized. Try again"
         
@@ -20,16 +21,18 @@ class Command:
     def sign_out(self,reader_id, reader_name ):
         action = "Sign Out"
 
-        if DataMan.isMember(reader_id, reader_name):
-            if DataMan.isSignedIn():
+        if DataMan.isMember("Self",reader_id, reader_name):
+            if DataMan.isSignedIn("self"):
 
-                role = DataMan.getRole(reader_id, reader_name)
-                present_date, present_time = ReaderClass.get_time()
-                DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
+                role = DataMan.getRole("self",reader_id, reader_name)
+                present_date, present_time = ReaderClass.get_time("self")
+                DataMan.addToSignInSheet("self",reader_id, reader_name, role, action, present_date, present_time)
 
-                hours = DataMan.getDayHours(reader_id)
-                DataMan.addToTotalHours(reader_id, hours)
-                return "Sign out Successful, Byeeeeeee"
+                hours = DataMan.getDayHours("self",reader_id)
+                DataMan.addToTotalHours("self",reader_id, hours)
+
+                message = [reader_name, action, present_time, present_date]
+                return message
             
             else:
 
