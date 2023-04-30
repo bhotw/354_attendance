@@ -20,8 +20,8 @@
             </div>
 
         {% elif action == "info" %}
-            <h1> User Id: {{ reader_id }}</h1>
-            <h1> User Name: {{ reader_name }}</h1>
+            <h1> User Id: {{ message[0] }}</h1>
+            <h1> User Name: {{ message[1] }}</h1>
             <div class="row g-3 align-items-center">
                     <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
                 </div>
