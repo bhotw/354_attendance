@@ -8,13 +8,19 @@
     <div class="position-absolute top-50 start-50 translate-middle">
 
         {% if action == "sign_in" %}
-            <h3> {{ message }} </h3>
+            <h3> Name: {{ message[0] }} </h3>
+            <h3> Action: {{ message[1] }} </h3>
+            <h3> Time: {{ message[2] }} </h3>
+            <h3> Date: {{ message[3] }} </h3>
             <div class="row g-3 align-items-center">
                 <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
             </div>
 
         {% elif action == "sign_out" %}
-            <h3> {{ message }} </h3>
+            <h3> Name: {{ message[0] }} </h3>
+            <h3> Action: {{ message[1] }} </h3>
+            <h3> Time: {{ message[2] }} </h3>
+            <h3> Date: {{ message[3] }} </h3>
             <div class="row g-3 align-items-center">
                 <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
             </div>
@@ -26,12 +32,25 @@
                     <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
                 </div>
         {% elif action == "status" %}
-            <h2> {{ message }}</h2>
-            <div class="row g-3 align-items-center">
-                <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
-            </div>
+            {% if message[0] == "Not Active" }
+                <h3> Name: {{ message[1] }} </h3>
+                <h3> Status: : {{ message[0] }} </h3>
+                <h3> Sign In time: {{ message[2] }} </h3>
+                <h3> {{ message[3] }}</h3>
+                <div class="row g-3 align-items-center">
+                    <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
+                </div>
+            {% else %}
+                <h3> Name: {{ message[0] }} </h3>
+                <h3> Status: : {{ message[1] }} </h3>
+                <h3> Sign In time: {{ message[2] }} </h3>
+                <div class="row g-3 align-items-center">
+                    <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
+                </div>
 
-        {% endif%}
+            {% endif %}
+
+        {% endif %}
 
     </div>
 
