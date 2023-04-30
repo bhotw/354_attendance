@@ -22,7 +22,7 @@ def hello():
 
 @app.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
-    if request.mothod == 'GET':
+    if request.method == 'GET':
         def present_info():
             yield render_template('sign_in.html')
             message = Command.sign_in()
@@ -32,7 +32,7 @@ def sign_in():
 @app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
 
-    if request.mothod == 'GET':
+    if request.method == 'GET':
         def present_info():
             yield render_template('sign_out.html')
             reader_id, reader_name = ReaderClass.read("self")
