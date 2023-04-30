@@ -72,6 +72,7 @@ def status():
             yield render_template('status.html')
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_status(" ",reader_id,reader_name)
+            print("this is inside status",message)
             yield render_template('present_info.html', action="status", message=message)
 
         return Response(stream_with_context(present_status()))
