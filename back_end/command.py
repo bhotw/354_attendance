@@ -52,6 +52,7 @@ class Command:
             message = "Hi" + reader_name + "You have Signed in at " + sign_in_time
         else:
             message = "You did not Sing In today yet. Try Sign in."
+            print(message)
 
         return message
 
