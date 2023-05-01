@@ -65,7 +65,7 @@ def get_infor():
             yield render_template('get_info.html')
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_info("self",reader_id,reader_name)
-            yield render_template('sing_in.html', action="info", message=message)
+            yield render_template('sign_in.html', action="info", message=message)
             time.sleep(30)
             yield render_template('home.html')
             ReaderClass.destroy("self")
