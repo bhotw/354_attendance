@@ -33,6 +33,7 @@ def sign_in():
             yield render_template('present_message.html', action="sign_in", message=message)
             time.sleep(3)
             yield render_template('home.html')
+            ReaderClass.destroy("self")
         return Response(stream_with_context(present_sign_in()))
 
     redirect(url_for('home'))
@@ -51,6 +52,7 @@ def sign_out():
             yield render_template('present_message.html', action="sign_out", message=message)
             time.sleep(3)
             yield render_template('home.html')
+            ReaderClass.destroy("self")
 
         return Response(stream_with_context(present_sign_out()))
 
@@ -66,6 +68,7 @@ def get_infor():
             yield render_template('present_message.html', action="info", message=message)
             time.sleep(30)
             yield render_template('home.html')
+            ReaderClass.destroy("self")
         return Response(stream_with_context(present_info()))
 
 # @app.route("/present_info", methods=['GET', 'POST'])
@@ -90,6 +93,7 @@ def status():
             yield render_template('present_message.html', action="status", message=message)
             time.sleep(10)
             yield render_template('home.html')
+            ReaderClass.destroy("self")
 
         return Response(stream_with_context(present_status()))
     return render_template('status.html')
