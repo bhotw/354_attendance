@@ -31,7 +31,7 @@ def sign_in():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
-            time.sleep(10)
+            time.sleep(3)
             yield render_template('home.html')
         return Response(stream_with_context(present_sign_in()))
 
@@ -49,6 +49,8 @@ def sign_out():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
+            time.sleep(3)
+            yield render_template('home.html')
 
         return Response(stream_with_context(present_sign_out()))
 
@@ -62,6 +64,8 @@ def get_infor():
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_info("self",reader_id,reader_name)
             yield render_template('present_message.html', action="info", message=message)
+            time.sleep(30)
+            yield render_template('home.html')
         return Response(stream_with_context(present_info()))
 
 # @app.route("/present_info", methods=['GET', 'POST'])
@@ -84,6 +88,8 @@ def status():
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_status("self",reader_id,reader_name)
             yield render_template('present_message.html', action="status", message=message)
+            time.sleep(10)
+            yield render_template('home.html')
 
         return Response(stream_with_context(present_status()))
     return render_template('status.html')
