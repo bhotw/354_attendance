@@ -32,7 +32,7 @@ def sign_in():
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
             time.sleep(3)
-            yield render_template('sign_in.html')
+            yield render_template('home.html')
         return Response(stream_with_context(present_sign_in()))
 
     redirect(url_for('home'))
@@ -49,8 +49,6 @@ def sign_out():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
-            time.sleep(2)
-            render_template(' '), {"Refresh": "1; url=https://google.com"}
 
         return Response(stream_with_context(present_sign_out()))
 
