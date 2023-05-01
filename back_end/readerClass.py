@@ -19,7 +19,6 @@ class ReaderClass:
     def read(self):
         print("TAP to read Data!")
         reader_id, name = reader.read()
-        self.destroy()
 
         print(reader_id, ": ", name)
         return reader_id, name
@@ -29,7 +28,6 @@ class ReaderClass:
 
         print("TAP to write new Data!")
         reader.write(data)
-        self.destroy()
         print("Data writing is complete.")
 
 
