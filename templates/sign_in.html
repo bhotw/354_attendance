@@ -8,7 +8,18 @@
       </style>
 
     <div class="text-center"  >
-        <p class="bottom-three"></p>
-        <h2> TAP to Sign IN. </h2>
+        {% if action == "sign_in" %}
+            <p class="bottom-three"></p>
+            <h3> Name: {{ message[0] }} </h3>
+            <h3> Action: {{ message[1] }} </h3>
+            <h3> Time: {{ message[2] }} </h3>
+            <h3> Date: {{ message[3] }} </h3>
+            <div class="row g-3 align-items-center">
+                <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
+        {% else %}
+            <p class="bottom-three"></p>
+            <h2> TAP to Sign IN. </h2>
+        {% endif %}
     </div>
 {% endblock %}

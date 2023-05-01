@@ -30,7 +30,7 @@ def sign_in():
             present_date, present_time = ReaderClass.get_time("self")
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
-            yield render_template('present_message.html', action="sign_in", message=message)
+            yield render_template('sign_in.html', action="sign_in", message=message)
             time.sleep(3)
             yield render_template('home.html')
             ReaderClass.destroy("self")
