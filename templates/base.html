@@ -10,6 +10,19 @@
         body {
            background: #000000;
         }
+        .dimScreen
+        {
+            position:fixed;
+            padding:0;
+            margin:0;
+
+            top:0;
+            left:0;
+
+            width: 100%;
+            height: 100%;
+            background:rgba(255,255,255,0.5);
+        }
     </style>
     </head>
 
@@ -41,16 +54,8 @@
             </div>
         </nav>
     </div>
-              <style>
-        .bottom-three {
-           margin-bottom: 0.5cm;
-        }
-        .top {
-          padding-top: 5cm;
-        }
-        </style>
 
-    <div class="position-absolute top-50 start-50 translate-middle" >
+    <div class="position-absolute top-50 start-50 translate-middle dimScreen" >
             <div class="content ">
 
                {% block content %}
