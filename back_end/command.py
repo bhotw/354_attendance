@@ -8,14 +8,18 @@ class Command:
         action = "Sign In"
 
         if DataMan.isMember("self",reader_id, reader_name):
-            role = DataMan.getRole("self",reader_id, reader_name)
-            present_date, present_time = ReaderClass.get_time("self")
+            if not DataMan.isSignedIn("self"):
+                role = DataMan.getRole("self",reader_id, reader_name)
+                present_date, present_time = ReaderClass.get_time("self")
 
-            DataMan.addToSignInSheet("self",reader_id, reader_name, role, action, present_date, present_time)
-            message = [reader_name, action, present_time, present_date]
-            return message
+                DataMan.addToSignInSheet("self",reader_id, reader_name, role, action, present_date, present_time)
+                message = [reader_name, action, present_time, present_date]
+            else:
+                message = self.get_status(reader_id, reader_name)
         else:
-            return "Id not Recognized. Try again"
+            message = "Id not Recognized. Try again"
+
+        return message
         
         
     def sign_out(self,reader_id, reader_name ):
@@ -32,17 +36,19 @@ class Command:
                 DataMan.addToTotalHours("self",reader_id, hours)
 
                 message = [reader_name, action, present_time, present_date]
-                return message
             
             else:
 
-                role = DataMan.getRole(reader_id, reader_name)
-                present_date, present_time = ReaderClass.get_time()
+                role = DataMan.getRole("self",reader_id, reader_name)
+                present_date, present_time = ReaderClass.get_time("self")
                 DataMan.addToSignInSheet(reader_id, reader_name, role, action, present_date, present_time)
-                return "You never Signed In. But your Sign Out was logged. Byeeeeee"
+
+                message = [reader_name, action, present_time, present_date, "You did not Signed In Today. But your Sign Out was logged." ]
 
         else:
-            return "Id not Recognized. Try again"
+            message = "Id not Recognized. Try again"
+
+        return message
 
     def get_status(self, reader_id, reader_name):
 
@@ -58,8 +64,8 @@ class Command:
 
     def get_info(self, reader_id, reader_name):
 
-        #role = DataMan.getRole("self", reader_id, reader_name)  # this don't work yet coz the table don't exist.
-        role = "Smart"
+        role = DataMan.getRole("self", reader_id, reader_name)  # this don't work yet coz the table don't exist.
+        #role = "Smart"
         message = [reader_id, reader_name, role]
 
         return message
@@ -69,14 +75,14 @@ class Command:
 
     def regidterNewMember(self, name, role, ):
 
-        name = input("Name: ")
-        role = input("Role: ")
+        # name = input("Name: ")
+        # role = input("Role: ")
         if role == "mentor":
             table_name = "mentors"
         elif role == "student":
             table_name = "students"
 
-        current_date, current_time = ReaderClass.get_time()
+        current_date, current_time = ReaderClass.get_time("self")
         ReaderClass.write(name)
 
         reader_id, reader_name = ReaderClass.read()
