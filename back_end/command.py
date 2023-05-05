@@ -83,10 +83,15 @@ class Command:
             table_name = "students"
 
         current_date, current_time = ReaderClass.get_time("self")
-        ReaderClass.write(name)
+        mentor_id, mentor_name = ReaderClass.read("self")
+        if DataMan.getRole("self", mentor_id, mentor_name) == "mentor":
+            ReaderClass.write(name)
 
-        reader_id, reader_name = ReaderClass.read()
-        DataMan.registration(table_name, reader_id, reader_name, role, current_date, current_time)
+            reader_id, reader_name = ReaderClass.read()
+            DataMan.registration(table_name, reader_id, reader_name, role, mentor_name, current_date, current_time)
+
+        else:
+            message = "Not a Mentor. Ask a mentor for help!"
 
 
 
