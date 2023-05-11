@@ -7,35 +7,45 @@
         }
         </style>
 
+<div>
 
 
+		<h1> Select action </h1>
         <div class="p-5 text-bg-primary text-center" >
-            <h1> Select action </h1>
+			<div class="container-fluid">
 
-            <div class="container-fluid">
+				<div class="row align-items-center">
 
+					<div class="col-sm-6 text-center">
+						<button class="btn btn-success btn-lg btn-block p-5" onclick="location.href = '/sign_in';">Sign In</button>
+					</div>
+
+					<div class="col-sm-6 text-center">
+						<button class="btn btn-danger btn-lg btn-block p-5" onclick="location.href = '/sign_out';">Sign Out</button>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	<div class="p-5 text-bg-primary text-center" >
 		<div class="row align-items-center">
 
 			<div class="col-sm-6 text-center">
-				<button class="btn btn-success btn-lg btn-block p-5" onclick="location.href = '/sign_in';">Sign In</button>
+				<button class="btn btn-sm btn-danger btn-block p-2" onclick="location.href = '/status';">Get Status</button>
 			</div>
 
 			<div class="col-sm-6 text-center">
-				<button class="btn btn-danger btn-lg btn-block p-5" onclick="location.href = '/sign_out';">Sign Out</button>
+				<button class="btn btn-sm btn-warning btn-block p-2" onclick="location.href = '/get_info';">Get Info</button>
 			</div>
 
 		</div>
+	</div>
+</div>
 
-		<div class="row align-items-center">
-			<div class="col-sm-6 text-center">
-                <button class="btn btn-sm btn-danger btn-block p-2" onclick="location.href = '/status';">Get Status</button>
-            </div>
-			<div class="col-sm-6 text-center">
-                <button class="btn btn-sm btn-warning btn-block p-2" onclick="location.href = '/get_info';">Get Info</button>
-            </div>
-		</div>
-
-	</div><!-- container-fluid -->
+			<!-- container-fluid -->
 <!--            <div class="row g-3 align-items-center">-->
 <!--                <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>-->
 <!--            </div>-->
