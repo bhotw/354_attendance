@@ -81,8 +81,8 @@ def get_info():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form("fullname")
-        role = request.form("role")
+        name = request.form["fullname"]
+        role = request.form["role"]
         # def present_register():
         #     yield render_template('register.html')
         #     name = request.form("fullname")
