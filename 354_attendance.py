@@ -31,7 +31,7 @@ def sign_in():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
-            time.sleep(3)
+            time.sleep(30)
             yield render_template('home.html')
             ReaderClass.destroy("self")
         return Response(stream_with_context(present_sign_in()))
@@ -49,7 +49,7 @@ def sign_out():
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
-            time.sleep(3)
+            time.sleep(30)
             yield render_template('home.html')
             ReaderClass.destroy("self")
 
@@ -70,13 +70,7 @@ def get_info():
             ReaderClass.destroy("self")
         return Response(stream_with_context(present_info()))
 
-# @app.route("/present_info", methods=['GET', 'POST'])
-# def present_info():
-#     if request.method == 'GET':
-#         data = session["getinfo"]
-#         reader_id = data[0]
-#         reader_name = data[1]
-#         return render_template('present_message.html', reader_id=reader_id, reader_name=reader_name)
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -104,7 +98,7 @@ def status():
             reader_id, reader_name = ReaderClass.read("self")
             message = Command.get_status("self",reader_id,reader_name)
             yield render_template('present_message.html', action="status", message=message)
-            time.sleep(10)
+            time.sleep(30)
             yield render_template('home.html')
             ReaderClass.destroy("self")
 
