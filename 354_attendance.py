@@ -90,7 +90,7 @@ def register():
             yield render_template('present_message.html', message=message)
 
 
-    return Response(stream_with_context(present_register()))
+        return Response(stream_with_context(present_register()))
 
 @app.route("/status")
 def status():
