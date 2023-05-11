@@ -3,6 +3,7 @@
 import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
+from dataMan import cursor, conn
 
 # from dataMan import DataMan as DataMan
 from back_end.dataMan import DataMan
@@ -31,6 +32,9 @@ class ReaderClass:
         print("Data writing is complete.")
 
 
+
+
+
     # def get_action(self, s):
     #     action = str()
     #     if (s == "in"):
@@ -52,6 +56,26 @@ class ReaderClass:
         current_date = month + '-' + day + '-' + year
 
         return current_date, current_time
+
+
+    def manual_registration(self):
+        name = input("Name: ")
+        role = input("Role: ")
+
+        if role == "student":
+            self.write(name)
+            print("TAP again to complete registration")
+            present_date, present_time = self.get_time()
+            reader_id, reader_name = self.read()
+            cursor.execute("INSERT INTO students (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, reader_name, role, present_date, present_time,))
+            conn.commit()
+        elif role == "mentor":
+            self.write(name)
+            print("TAP again to complete registration")
+            present_date, present_time = self.get_time()
+            reader_id, reader_name = self.read()
+            cursor.execute("INSERT INTO mentors (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, reader_name, role, present_date, present_time,))
+            conn.commit()
 
     def greetins(self):
         reader_id, reader_name = self.read()

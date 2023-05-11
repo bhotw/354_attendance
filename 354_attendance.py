@@ -57,7 +57,7 @@ def sign_out():
 
 
 @app.route("/get_info", methods=['GET', 'POST'])
-def get_infor():
+def get_info():
     if request.method == 'GET':
 
         def present_info():
@@ -78,8 +78,13 @@ def get_infor():
 #         reader_name = data[1]
 #         return render_template('present_message.html', reader_id=reader_id, reader_name=reader_name)
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        name = request.form.get("name")
+        role = request.form.get("role")
+        print (name, role)
+
     return render_template('register.html')
 
 @app.route("/status")
