@@ -114,6 +114,11 @@ def status():
 @app.route("/admin")
 def admin():
     return render_template('admin.html')
+@app.route("/clear", methods=['GET'])
+def clear():
+    if request.method == 'GET':
+        ReaderClass.destroy("self")
+        return render_template(url_for('home'))
 
 
 
