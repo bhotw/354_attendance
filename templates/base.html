@@ -20,6 +20,15 @@
             height: 100%;
             background:#B9BC88;
         }
+        .center
+        {
+          border: 5px solid;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 10px;
+        }
     </style>
     </head>
 
@@ -62,7 +71,7 @@
 
 
 </div>
-    <div class="align-center">
+    <div class="center">
         {% block registration %}
 
         {% endblock %}
