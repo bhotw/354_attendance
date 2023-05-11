@@ -11,18 +11,19 @@
 
         <div class="align-middle p-5 text-bg-primary" >
             <h1> Select action </h1>
+
             <div class="container-fluid">
 
 		<div class="row">
 
 			<!-- Left Button Column -->
 			<div class="col-sm-6 text-center">
-				<button class="btn btn-primary btn-lg">Sign In</button>
+				<button class="btn btn-success btn-lg p-4" onclick="location.href = '/sign_in';">Sign In</button>
 			</div>
 
 			<!-- Right Button Column -->
 			<div class="col-sm-6 text-center">
-				<button class="btn btn-primary btn-lg">Sign Out</button>
+				<button class="btn btn-danger btn-lg p-4" onclick="location.href = '/sign_out';">Sign Out</button>
 			</div>
 
 		</div><!-- row -->
@@ -43,7 +44,7 @@
 <!--            <div class="row g-3 align-items-center">-->
 <!--                <button type="button" class="btn btn-warning" onclick="location.href = '/get_info';">Get Info</button>-->
 <!--            </div>-->
-        </div>
+
 
 
 {% endblock %}
