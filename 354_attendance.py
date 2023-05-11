@@ -36,7 +36,6 @@ def sign_in():
             ReaderClass.destroy("self")
         return Response(stream_with_context(present_sign_in()))
 
-    redirect(url_for('home'))
 
 @app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
