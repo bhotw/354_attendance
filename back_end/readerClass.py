@@ -16,6 +16,7 @@ class ReaderClass:
     #     self
     def destroy(self):
         GPIO.cleanup()
+        print("reader clean")
 
     def read(self):
         print("TAP to read Data!")
