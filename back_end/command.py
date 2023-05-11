@@ -64,8 +64,8 @@ class Command:
 
     def get_info(self, reader_id, reader_name):
 
-        role = DataMan.getRole("self", reader_id, reader_name)  # this don't work yet coz the table don't exist.
-        #role = "Smart"
+        # role = DataMan.getRole("self", reader_id, reader_name)  # this don't work yet coz the table don't exist.
+        role = "Smart"
         message = [reader_id, reader_name, role]
 
         return message
