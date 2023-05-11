@@ -94,7 +94,7 @@ def register():
         # return Response(stream_with_context(present_register()))
         print (name, " ", role)
 
-        return render_template('register.html')
+    return render_template('register.html')
 
 @app.route("/status")
 def status():
