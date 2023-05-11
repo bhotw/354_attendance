@@ -26,8 +26,9 @@
             <h3> Name: {{ message[1] }}</h3>
             <h3> Role: {{ message[2] }}</h3>
             <div class="row g-3 align-items-center mt-4">
-                    <button class="btn btn-sm p-4 btn-danger" onclick="location.href = '/home';">Done</button>
-                </div>
+                <button class="btn btn-sm p-4 btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
+
         {% elif action == "status" %}
             {% if message[0] == "Not Active" %}
                 <h3> Name: {{ message[1] }} </h3>
@@ -36,6 +37,7 @@
                 <div class="row g-3 align-items-center mt-4">
                     <button class="btn btn-sm p-4 btn-success" onclick="location.href = '/sign_in';">Sign In</button>
                 </div>
+
             {% else %}
                 <h3> Name: {{ message[1] }} </h3>
                 <div class="row g-3 align-items-center mt-4">
@@ -43,6 +45,12 @@
                 </div>
 
             {% endif %}
+
+        {% else %}
+            <h3> {{ message[1] }} </h3>
+            <div class="row g-3 align-items-center mt-4">
+                <button class="btn btn-sm p-4 btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
 
         {% endif %}
 
