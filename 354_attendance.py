@@ -118,7 +118,7 @@ def admin():
 def clear():
     if request.method == 'GET':
         ReaderClass.destroy("self")
-        return render_template(url_for('home'))
+        return render_template(url_for('/home'))
 
 
 
