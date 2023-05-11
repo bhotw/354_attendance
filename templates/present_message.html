@@ -8,7 +8,7 @@
             <h3> Action: {{ message[1] }} </h3>
             <h3> Time: {{ message[2] }} </h3>
             <h3> Date: {{ message[3] }} </h3>
-            <div class="row g-3 align-items-center">
+            <div class="row g-3 align-items-center mt-4">
                 <button class="btn btn-sm btn-block p-4 btn-danger" onclick="location.href = '/home';">Done</button>
             </div>
 
@@ -27,7 +27,7 @@
             <h3> Id: {{ message[0] }}</h3>
             <h3> Name: {{ message[1] }}</h3>
             <h3> Role: {{ message[2] }}</h3>
-            <div class="row g-3 align-items-center">
+            <div class="row g-3 align-items-center mt-4">
                     <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
                 </div>
         {% elif action == "status" %}
@@ -35,7 +35,7 @@
                 <h3> Name: {{ message[1] }} </h3>
                 <h3> Status:{{ message[0] }} </h3>
                 <p> {{ message[2] }} </p>
-                <div class="row g-3 align-items-center">
+                <div class="row g-3 align-items-center mt-4">
                     <button type="button" class="btn btn-success" onclick="location.href = '/sign_in';">Sign In</button>
                 </div>
             {% else %}
@@ -43,7 +43,7 @@
                 <h3> Status:{{ message[0] }} </h3>
                 <h3> Sign In time: {{ message[2] }} </h3>
 
-                <div class="row g-3 align-items-center">
+                <div class="row g-3 align-items-center mt-4">
                     <button type="button" class="btn btn-danger" onclick="location.href = '/home';">Done</button>
                 </div>
 
