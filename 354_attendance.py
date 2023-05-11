@@ -81,16 +81,20 @@ def get_info():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        def present_register():
-            yield render_template('register.html')
-            name = request.form("fullname")
-            role = request.form("role")
-            message = name + " " + role
-            print(message)
-            yield render_template('present_message.html', message=message)
+        name = request.form("fullname")
+        role = request.form("role")
+        # def present_register():
+        #     yield render_template('register.html')
+        #     name = request.form("fullname")
+        #     role = request.form("role")
+        #     message = name + " " + role
+        #     print(message)
+        #     yield render_template('present_message.html', message=message)
 
+        # return Response(stream_with_context(present_register()))
+        print (name, " ", role)
 
-        return Response(stream_with_context(present_register()))
+        return render_template('register.html')
 
 @app.route("/status")
 def status():
