@@ -83,9 +83,10 @@ def register():
     if request.method == 'POST':
         def present_register():
             yield render_template('register.html')
-            name = request.form.get("fullname")
-            role = request.form.get("role")
+            name = request.form("fullname")
+            role = request.form("role")
             message = name + " " + role
+            print(message)
             yield render_template('present_message.html', message=message)
 
 
