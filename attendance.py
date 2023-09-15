@@ -1,14 +1,20 @@
 
+import os
+from flask_sqlalchem import SQLAlchemy
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, url_for
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
 import time
-
-
-
+from config import SQLALCHEMY_DATABASE_URL, SECRE_KEY
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URL'] = SQLALCHEMY_DATABASE_URL
+app.config['SECRE_KEY'] = SECRE_KEY
+
+db = SQLAlchemy(app)
+
 
 
 
@@ -106,9 +112,12 @@ def status():
         return Response(stream_with_context(present_status()))
     return render_template('status.html')
 
+
 @app.route("/admin")
 def admin():
     return render_template('admin.html')
+
+
 @app.route("/clear", methods=['GET'])
 def clear():
     if request.method == 'GET':
@@ -117,5 +126,3 @@ def clear():
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True)

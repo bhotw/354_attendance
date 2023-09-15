@@ -1,4 +1,4 @@
-from Flask import db
+from attendance import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
