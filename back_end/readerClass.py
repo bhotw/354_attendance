@@ -3,12 +3,15 @@
 import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
-from back_end.dataMan import cursor, conn
+from back_end.dataMan import cursor, conn                        
 
 # from dataMan import DataMan as DataMan
 from back_end.dataMan import DataMan
 
 reader = SimpleMFRC522()
+GPIO.setwarnings(False)
+
+
 
 
 class ReaderClass:
