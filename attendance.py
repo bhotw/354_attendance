@@ -8,6 +8,10 @@ from back_end.command import Command
 import time
 from config import SQLALCHEMY_DATABASE_URL, SECRE_KEY
 
+from back_end.controllers.registration import Registration
+from back_end.models import User
+
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URL'] = SQLALCHEMY_DATABASE_URL
@@ -81,6 +85,14 @@ def get_info():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    form = Registration()
+    card_id = ReaderClass.read()
+    if form.validate_on_submit():
+        user = User(id=card_id, name=form.name, role=form.role)
+
+
+
+
     if request.method == 'POST':
         name = request.form["fullname"]
         role = request.form["role"]

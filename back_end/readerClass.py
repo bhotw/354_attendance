@@ -37,16 +37,6 @@ class ReaderClass:
 
 
 
-
-
-    # def get_action(self, s):
-    #     action = str()
-    #     if (s == "in"):
-    #         action = "Sign In"
-    #     elif (s == "out"):
-    #         action = "Sign Out"
-    #     return action
-
     def get_time(self):
 
         year = str(time.strftime('%Y', time.localtime(time.time())))
