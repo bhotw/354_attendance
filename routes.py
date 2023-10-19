@@ -1,5 +1,5 @@
 from attendance import app, db
-from flask_sqlalchem import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, url_for
