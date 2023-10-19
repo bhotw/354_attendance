@@ -1,4 +1,5 @@
 
+from curses import flash
 import os
 from flask_sqlalchem import SQLAlchemy
 from flask import Flask, render_template, request
@@ -88,26 +89,35 @@ def register():
     form = Registration()
     card_id = ReaderClass.read()
     if form.validate_on_submit():
-        user = User(id=card_id, name=form.name, role=form.role)
+        user = User(id=card_id, name=form.name, role=form.role, email=form.email, phone=form.phone, emergency_contact=form.emergency_contact, emergency_phone=form.emergency_phone, parent_email=form.parent_email)
+        
+        db.session.add(user)
+        db.session.commit()
+
+        flash('New Member has been added to the team!!!')
+        return redirect(url_for('home'))
+    return render_template('register.html', title='Registation', form=form)
 
 
 
+#  this is the old code we shall see if the new code works. Only then we 
+#   we can get rid of the old code. I know they are all on github and on
+#   other branch but I still want to keep them here for the time bring. 
+    # if request.method == 'POST':
+    #     name = request.form["fullname"]
+    #     role = request.form["role"]
+    #     # def present_register():
+    #     #     yield render_template('register.html')
+    #     #     name = request.form("fullname")
+    #     #     role = request.form("role")
+    #     #     message = name + " " + role
+    #     #     print(message)
+    #     #     yield render_template('present_message.html', message=message)
 
-    if request.method == 'POST':
-        name = request.form["fullname"]
-        role = request.form["role"]
-        # def present_register():
-        #     yield render_template('register.html')
-        #     name = request.form("fullname")
-        #     role = request.form("role")
-        #     message = name + " " + role
-        #     print(message)
-        #     yield render_template('present_message.html', message=message)
+    #     # return Response(stream_with_context(present_register()))
+    #     print (name, " ", role)
 
-        # return Response(stream_with_context(present_register()))
-        print (name, " ", role)
-
-    return render_template('register.html')
+    # return render_template('register.html')
 
 @app.route("/status")
 def status():

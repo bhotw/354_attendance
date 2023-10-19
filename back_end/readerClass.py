@@ -71,14 +71,14 @@ class ReaderClass:
             cursor.execute("INSERT INTO mentors (id, name, role, date, time) VALUES(%s, %s, %s, %s, %s)", (reader_id, reader_name, role, present_date, present_time,))
             conn.commit()
 
-    def greetins(self):
-        reader_id, reader_name = self.read()
-        greeting = reader_name + " Welcome!!"
-        print(greeting)
+    # def greetins(self):
+    #     reader_id, reader_name = self.read()
+    #     greeting = reader_name + " Welcome!!"
+    #     print(greeting)
 
-    def bye(self):
-        reader_id, reader_name = self.read()
-        bye = reader_name + " It was nice to see you today. Have a good one!!!"
-        print(bye)
+    # def bye(self):
+    #     reader_id, reader_name = self.read()
+    #     bye = reader_name + " It was nice to see you today. Have a good one!!!"
+    #     print(bye)
 
  
