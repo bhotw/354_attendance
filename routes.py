@@ -1,4 +1,4 @@
-from attendance import app, db
+from attendance import db
 from flask_sqlalchemy import SQLAlchemy
 from flask import Blueprint
 
