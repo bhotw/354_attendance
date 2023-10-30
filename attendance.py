@@ -1,5 +1,5 @@
 from flask import Flask
-from config import SQLALCHEMY_DATABASE_URL, SECRE_KEY
+# from config import SQLALCHEMY_DATABASE_URL, SECRE_KEY
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 load_dotenv()
