@@ -132,6 +132,6 @@ def admin():
 def clear():
     if request.method == 'GET':
         ReaderClass.destroy("self")
-        return redirect(url_for('home'))
+        return redirect(url_for('my_blueprint.home'))
 
 

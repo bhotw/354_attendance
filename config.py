@@ -5,5 +5,5 @@ SQLALCHEMY_TRACK_MODIFICATION = False
 
 SECRE_KEY = os.getenv('SECRE_KEY')
 
-this is a test
+
 
