@@ -11,8 +11,9 @@ from back_end.controllers.registration import Registration
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URL'] = SQLALCHEMY_DATABASE_URL
-app.config['SECRE_KEY'] = SECRE_KEY
+app.config.from_object('config')
+# app.config['SQLALCHEMY_DATABASE_URL'] = SQLALCHEMY_DATABASE_URL
+# app.config['SECRE_KEY'] = SECRE_KEY
 
 db = SQLAlchemy(app)
 
