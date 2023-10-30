@@ -1,6 +1,5 @@
 from flask import Flask
-import routes
-
+from routes import my_blueprint
 from config import SQLALCHEMY_DATABASE_URI, SECRE_KEY
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
@@ -12,7 +11,7 @@ from back_end.controllers.registration import Registration
 
 
 app = Flask(__name__)
-app.register_blueprint(routes)
+app.register_blueprint(my_blueprint)
 
 
 # app.config.from_object('config')

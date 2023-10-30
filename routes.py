@@ -1,5 +1,6 @@
 from attendance import app, db
 from flask_sqlalchemy import SQLAlchemy
+from flask import Blueprint
 
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, url_for
@@ -9,17 +10,18 @@ from back_end.command import Command
 import time
 
 
+my_blueprint = Blueprint('my_blueprint', __name__)
 
-@app.route("/home")
+@my_blueprint.route("/home")
 def home():
     return render_template('home.html')
 
 
-@app.route("/")
+@my_blueprint.route("/")
 def hello():
     return redirect('/home')
 
-@app.route("/sign_in", methods=['GET', 'POST'])
+@my_blueprint.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
     if request.method == 'GET':
         def present_sign_in():
@@ -35,7 +37,7 @@ def sign_in():
         return Response(stream_with_context(present_sign_in()))
 
 
-@app.route("/sign_out", methods=['GET', 'POST'])
+@my_blueprint.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
 
     if request.method == 'GET':
@@ -54,7 +56,7 @@ def sign_out():
         return Response(stream_with_context(present_sign_out()))
 
 
-@app.route("/get_info", methods=['GET', 'POST'])
+@my_blueprint.route("/get_info", methods=['GET', 'POST'])
 def get_info():
     if request.method == 'GET':
 
@@ -70,7 +72,7 @@ def get_info():
 
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@my_blueprint.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
     card_id = ReaderClass.read()
@@ -105,7 +107,7 @@ def register():
 
     # return render_template('register.html')
 
-@app.route("/status")
+@my_blueprint.route("/status")
 def status():
     if request.method == 'GET':
         def present_status():
@@ -121,12 +123,12 @@ def status():
     return render_template('status.html')
 
 
-@app.route("/admin")
+@my_blueprint.route("/admin")
 def admin():
     return render_template('admin.html')
 
 
-@app.route("/clear", methods=['GET'])
+@my_blueprint.route("/clear", methods=['GET'])
 def clear():
     if request.method == 'GET':
         ReaderClass.destroy("self")
