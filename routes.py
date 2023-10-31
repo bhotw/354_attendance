@@ -7,6 +7,7 @@ from flask import Response, stream_with_context, redirect, url_for
 
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
+from back_end.controllers.registration import Registration
 import time
 
 
