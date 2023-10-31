@@ -16,8 +16,7 @@ app.register_blueprint(my_blueprint)
 
 # app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
-# app.config['SQLALCHEMY_DATABASE_URL'] = SQLALCHEMY_DATABASE_URL
-# app.config['SECRE_KEY'] = SECRE_KEY
+app.config['SECRE_KEY'] = SECRE_KEY
 
 db = SQLAlchemy(app)
 
