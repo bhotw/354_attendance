@@ -1,6 +1,8 @@
 
-from attendance import app
+from attendance import create_app
 import os
+
+app = create_app()
 
 if __name__ == "__main__":
     host = os.environ.get('354_ATTENDANCE', '0.0.0.0')

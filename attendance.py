@@ -9,18 +9,22 @@ load_dotenv()
 
 from back_end.controllers.registration import Registration
 
-
-
-
-app = Flask(__name__)
-app.register_blueprint(my_blueprint)
-
-
-# app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
-app.config['SECRET_KEY'] = SECRET_KEY
-
-csrf = CSRFProtect(app)
-
 db = SQLAlchemy(app)
+
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(my_blueprint)
+
+
+    # app.config.from_object('config')
+    app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
+    app.config['SECRET_KEY'] = SECRET_KEY
+
+    csrf = CSRFProtect(app)
+
+    db.init_app(app)
+
+    return app
+
+
 
