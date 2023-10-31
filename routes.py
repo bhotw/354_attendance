@@ -23,7 +23,6 @@ def home():
 @my_blueprint.route("/")
 def hello():
     return redirect('/home')
-
 @my_blueprint.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
     if request.method == 'GET':
@@ -31,6 +30,12 @@ def sign_in():
             yield render_template('sign_in.html')
             reader_id, reader_name = reader.read()
             present_date, present_time = reader.get_time()
+
+            sign_in = Attendance(id=reader_id, date=present_date, sign_in_time=present_time)
+
+            db.session.add(sign_in)
+            db.session.commit()
+
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
