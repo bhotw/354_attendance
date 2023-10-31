@@ -13,6 +13,7 @@ import time
 
 
 my_blueprint = Blueprint('my_blueprint', __name__)
+reader = ReaderClass()
 
 @my_blueprint.route("/home")
 def home():
@@ -28,8 +29,8 @@ def sign_in():
     if request.method == 'GET':
         def present_sign_in():
             yield render_template('sign_in.html')
-            reader_id, reader_name = ReaderClass.read("self")
-            present_date, present_time = ReaderClass.get_time("self")
+            reader_id, reader_name = reader.read()
+            present_date, present_time = reader.get_time()
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_in("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_in", message=message)
@@ -45,9 +46,9 @@ def sign_out():
     if request.method == 'GET':
         def present_sign_out():
             yield render_template('sign_out.html')
-            reader_id, reader_name = ReaderClass.read("self")
+            reader_id, reader_name = reader.read()
 
-            present_date, present_time = ReaderClass.get_time("self")
+            present_date, present_time = reader.get_time()
             message = [reader_name, "Sign in", present_time, present_date]
             # message = Command.sign_out("self",reader_id,reader_name)
             yield render_template('present_message.html', action="sign_out", message=message)
@@ -57,19 +58,19 @@ def sign_out():
 
         return Response(stream_with_context(present_sign_out()))
 
-
+command = Command()
 @my_blueprint.route("/get_info", methods=['GET', 'POST'])
 def get_info():
     if request.method == 'GET':
 
         def present_info():
             yield render_template('get_info.html')
-            reader_id, reader_name = ReaderClass.read("self")
-            message = Command.get_info("self",reader_id,reader_name)
+            reader_id, reader_name = reader.read()
+            message = command.get_info(reader_id,reader_name)
             yield render_template('present_message.html', action="info", message=message)
             time.sleep(30)
             yield render_template('home.html')
-            ReaderClass.destroy("self")
+            reader.destroy()
         return Response(stream_with_context(present_info()))
 
 
@@ -77,7 +78,7 @@ def get_info():
 @my_blueprint.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
-    card_id = ReaderClass.read()
+    card_id = reader.read()
     if form.validate_on_submit():
         user = User(id=card_id, name=form.name, role=form.role, email=form.email, phone=form.phone, emergency_contact=form.emergency_contact, emergency_phone=form.emergency_phone, parent_email=form.parent_email)
         
@@ -114,12 +115,12 @@ def status():
     if request.method == 'GET':
         def present_status():
             yield render_template('status.html')
-            reader_id, reader_name = ReaderClass.read("self")
-            message = Command.get_status("self",reader_id,reader_name)
+            reader_id, reader_name = reader.read()
+            message = command.get_status(reader_id,reader_name)
             yield render_template('present_message.html', action="status", message=message)
             time.sleep(30)
             yield render_template('home.html')
-            ReaderClass.destroy("self")
+            reader.destroy()
 
         return Response(stream_with_context(present_status()))
     return render_template('status.html')
@@ -133,7 +134,7 @@ def admin():
 @my_blueprint.route("/clear", methods=['GET'])
 def clear():
     if request.method == 'GET':
-        ReaderClass.destroy("self")
+        reader.destroy()
         return redirect(url_for('my_blueprint.home'))
 
 
