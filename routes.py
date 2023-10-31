@@ -1,3 +1,4 @@
+from _curses import flash
 
 from flask_sqlalchemy import SQLAlchemy
 from flask import Blueprint
@@ -5,9 +6,11 @@ from flask import Blueprint
 from flask import Flask, render_template, request
 from flask import Response, stream_with_context, redirect, url_for
 
+from attendance import db
 from back_end.readerClass import ReaderClass
 from back_end.command import Command
 from back_end.controllers.registration import Registration
+from back_end.models import User
 import time
 
 
