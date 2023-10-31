@@ -8,7 +8,7 @@ load_dotenv()
 
 
 from back_end.controllers.registration import Registration
-from back_end.models import Attendance
+
 
 
 
