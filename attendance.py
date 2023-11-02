@@ -23,7 +23,6 @@ app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 reader = ReaderClass()
-command = Command()
 
 
 @app.route("/home")
@@ -102,31 +101,12 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        flash('New Member has been added to the team!!!')
         return redirect(url_for('home'))
     return render_template('register.html', title='Registation', form=form)
 
 
-#  this is the old code we shall see if the new code works. Only then we
-#   we can get rid of the old code. I know they are all on github and on
-#   other branch but I still want to keep them here for the time bring.
-# if request.method == 'POST':
-#     name = request.form["fullname"]
-#     role = request.form["role"]
-#     # def present_register():
-#     #     yield render_template('register.html')
-#     #     name = request.form("fullname")
-#     #     role = request.form("role")
-#     #     message = name + " " + role
-#     #     print(message)
-#     #     yield render_template('present_message.html', message=message)
 
-#     # return Response(stream_with_context(present_register()))
-#     print (name, " ", role)
-
-# return render_template('register.html')
-
-@attendance_bp.route("/status")
+@app.route("/status")
 def status():
     if request.method == 'GET':
         def present_status():
@@ -142,12 +122,12 @@ def status():
     return render_template('status.html')
 
 
-@attendance_bp.route("/admin")
+@app.route("/admin")
 def admin():
     return render_template('admin.html')
 
 
-@attendance_bp.route("/clear", methods=['GET'])
+@app.route("/clear", methods=['GET'])
 def clear():
     if request.method == 'GET':
         reader.destroy()
