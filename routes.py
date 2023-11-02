@@ -14,18 +14,18 @@ from back_end.models import Attendance, User, db
 import time
 
 
-my_blueprint = Blueprint('my_blueprint', __name__)
+attendance_bp = Blueprint('my_blueprint', __name__)
 reader = ReaderClass()
 
-@my_blueprint.route("/home")
+@attendance_bp.route("/home")
 def home():
     return render_template('home.html')
 
 
-@my_blueprint.route("/")
+@attendance_bp.route("/")
 def hello():
     return redirect('/home')
-@my_blueprint.route("/sign_in", methods=['GET', 'POST'])
+@attendance_bp.route("/sign_in", methods=['GET', 'POST'])
 def sign_in():
     if request.method == 'GET':
         def present_sign_in():
@@ -47,7 +47,7 @@ def sign_in():
         return Response(stream_with_context(present_sign_in()))
 
 
-@my_blueprint.route("/sign_out", methods=['GET', 'POST'])
+@attendance_bp.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
 
     if request.method == 'GET':
@@ -66,7 +66,7 @@ def sign_out():
         return Response(stream_with_context(present_sign_out()))
 
 command = Command()
-@my_blueprint.route("/get_info", methods=['GET', 'POST'])
+@attendance_bp.route("/get_info", methods=['GET', 'POST'])
 def get_info():
     if request.method == 'GET':
 
@@ -82,7 +82,7 @@ def get_info():
 
 
 
-@my_blueprint.route("/register", methods=['GET', 'POST'])
+@attendance_bp.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
     card_id = reader.read()
@@ -117,7 +117,7 @@ def register():
 
     # return render_template('register.html')
 
-@my_blueprint.route("/status")
+@attendance_bp.route("/status")
 def status():
     if request.method == 'GET':
         def present_status():
@@ -133,12 +133,12 @@ def status():
     return render_template('status.html')
 
 
-@my_blueprint.route("/admin")
+@attendance_bp.route("/admin")
 def admin():
     return render_template('admin.html')
 
 
-@my_blueprint.route("/clear", methods=['GET'])
+@attendance_bp.route("/clear", methods=['GET'])
 def clear():
     if request.method == 'GET':
         reader.destroy()

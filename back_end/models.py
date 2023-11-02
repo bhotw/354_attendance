@@ -1,5 +1,6 @@
 from attendance import db
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -12,7 +13,8 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
-    
+
+
 class Attendance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
@@ -22,7 +24,8 @@ class Attendance(db.Model):
 
     def __repr__(self):
         return f'<Attendance ID {self.id} on {self.date}>'
-    
+
+
 class WorkshopHours(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
