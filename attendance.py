@@ -7,13 +7,10 @@ import time
 
 # Import your custom modules and classes
 from back_end.readerClass import ReaderClass
-from back_end.command import Command
-from back_end.controllers.registration import Registration,
+from back_end.controllers.registration import Registration
 from back_end.controllers.sign_in import sign_in
-from back_end.models import Attendance, User
-from routes import attendance_bp
+from back_end.models import User
 from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
-from _curses import flash  # Are you sure you need this import?
 
 
 load_dotenv()
