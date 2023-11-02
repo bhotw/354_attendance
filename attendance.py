@@ -10,6 +10,7 @@ from back_end.controllers.registration import Registration
 from back_end.controllers.sign_in import sign_in
 from back_end.controllers.is_member import is_member
 from back_end.controllers.get_status import get_status
+from back_end.controllers.get_register import get_register
 from back_end.models import User
 from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
 
@@ -112,19 +113,24 @@ def get_info():
         return Response(stream_with_context(present_info()))
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route("/register", methods=['POST'])
 def register():
     form = Registration()
     card_id = reader.read()
+
     if form.validate_on_submit():
-        user = User(id=card_id, name=form.name, role=form.role, email=form.email, phone=form.phone,
-                    emergency_contact=form.emergency_contact, emergency_phone=form.emergency_phone,
-                    parent_email=form.parent_email)
+        name = form.name
+        role = form.role
+        email = form.email
+        phone = form.phone
+        emergency_contact = form.emergency_contact
+        emergency_phone = form.emergency_phone
+        parent_email = form.parent_email
 
-        db.session.add(user)
-        db.session.commit()
+        # Call the get_register function to add the new member
+        result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
+        yield render_template('present_message.html', action="info", message=result)
 
-        return redirect(url_for('home'))
     return render_template('register.html', title='Registration', form=form)
 
 
