@@ -10,8 +10,6 @@ GPIO.setwarnings(False)
 
 
 class ReaderClass:
-    # def __init__(self):
-    #     self
     def destroy(self):
         GPIO.cleanup()
         print("reader clean")
@@ -23,14 +21,11 @@ class ReaderClass:
         print(reader_id, ": ", name)
         return reader_id, name
 
-
     def write(self, data):
 
         print("TAP to write new Data!")
         reader.write(data)
         print("Data writing is complete.")
-
-
 
     def get_time(self):
 

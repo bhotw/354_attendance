@@ -9,6 +9,7 @@ def get_info(id, name):
 
         if user_info and total_hours:
             user_data = {
+                'id': user_info.id,
                 'name': user_info.name,
                 'role': user_info.role,
                 'total_hours': total_hours.total_hours
