@@ -55,6 +55,7 @@ def sign_in():
                 message = "You are not a member. Please contact a mentor for assistance."
                 yield render_template('present_message.html', action="sign_in", message=message)
 
+            reader.destroy()
             time.sleep(30)
             yield render_template('home.html')
             reader.destroy()
