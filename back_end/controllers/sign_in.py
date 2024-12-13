@@ -1,9 +1,10 @@
 from datetime import datetime
-from back_end.models import Attendance
+
 # from attendance import db
 
 
 def sign_in(id, date, sign_in_time):
+    from back_end.models import Attendance
     try:
         date = datetime.strftime(date, '%Y-%m-%d')
         sign_in_time = datetime.strftime(sign_in_time, '%H:%M:%S')
