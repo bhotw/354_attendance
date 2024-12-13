@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from back_end.database import db
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 import time
@@ -20,9 +20,9 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
 app.config['SECRET_KEY'] = SECRET_KEY
+db.init_app(app)
 
 csrf = CSRFProtect(app)
-db = SQLAlchemy(app)
 reader = ReaderClass()
 
 

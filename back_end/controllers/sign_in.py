@@ -1,6 +1,6 @@
 from datetime import datetime
 
-# from attendance import db
+from back_end.database import db
 
 
 def sign_in(id, date, sign_in_time):
@@ -11,10 +11,10 @@ def sign_in(id, date, sign_in_time):
 
         new_record = Attendance(id=id, date=date, sign_in_time=sign_in_time)
 
-        # db.session.add(new_record)
-        # db.commit()
-        #
-        # message = "Sign In Successful!!!"
+        db.session.add(new_record)
+        db.commit()
+
+        message = "Sign In Successful!!!"
 
         return new_record
     except Exception as e:

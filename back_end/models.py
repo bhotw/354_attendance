@@ -1,4 +1,4 @@
-from attendance import db
+from back_end.database import db
 
 
 class User(db.Model):
