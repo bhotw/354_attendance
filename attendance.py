@@ -47,8 +47,10 @@ def sign_in():
             if is_a_member:
                 # Add the attendance record to the database
                 result = sign_in(id=reader_id, date=present_date, sign_in_time=present_time)
+                db.session.add(result)
+                db.commit()
                 # message = [reader_name, "Sign in", present_time, present_date]
-                yield render_template('present_message.html', action="sign_in", message=result)
+                yield render_template('present_message.html', action="sign_in", message="Sign In Successful!!!")
             else:
                 message = "You are not a member. Please contact a mentor for assistance."
                 yield render_template('present_message.html', action="sign_in", message=message)
