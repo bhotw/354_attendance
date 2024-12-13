@@ -4,7 +4,7 @@ import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
-
+GPIO.setup(pin_rst, GPIO.OUT)
 reader = SimpleMFRC522()
 GPIO.setwarnings(False)
 
