@@ -1,12 +1,20 @@
-from django.contrib.auth.decorators import login_required
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from functools import wraps
+from werkzeug.security import check_password_hash
 from back_end.models import User, Attendance
 from back_end.database import db
 from datetime import datetime
 
 admin_bp = Blueprint('admin', __name__, template_folder='templates', url_prefix='/admin')
 
-# Admin Home Route
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'admin_logged_in' not in session:
+            return redirect(url_for('admin.admin_login'))
+        return f(*args, **kwargs)
+    return decorated_function
 @admin_bp.route('/')
 def admin_home():
     return render_template('admin_base.html')

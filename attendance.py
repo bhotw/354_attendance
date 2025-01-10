@@ -28,6 +28,9 @@ app.config['SECRET_KEY'] = SECRET_KEY
 db.init_app(app)
 
 app.register_blueprint(admin_bp)
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+
 
 csrf = CSRFProtect(app)
 reader = ReaderClass()
