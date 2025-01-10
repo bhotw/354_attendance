@@ -1,7 +1,5 @@
 from _curses import flash
-
 from back_end.admin.routes import admin_bp
-
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
 from back_end.database import db
 from flask_wtf.csrf import CSRFProtect
@@ -20,7 +18,6 @@ from back_end.models import User, Attendance, WorkshopHours
 from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
 
 load_dotenv()
-
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
@@ -192,9 +189,9 @@ def status():
         return Response(stream_with_context(present_status()))
 
 
-@app.route("/admin")
-def admin():
-    return render_template('admin.html')
+# @app.route("/admin")
+# def admin():
+#     return render_template('admin.html')
 
 
 @app.route("/clear", methods=['GET'])

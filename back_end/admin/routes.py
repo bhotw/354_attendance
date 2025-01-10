@@ -15,7 +15,15 @@ def login_required(f):
             return redirect(url_for('admin.admin_login'))
         return f(*args, **kwargs)
     return decorated_function
+@admin_bp.route('/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        # Handle login logic
+        session['admin_logged_in'] = True
+        return redirect(url_for('admin.admin_home'))  # Redirect to the home page of the admin dashboard
+    return render_template('admin_login.html')
 @admin_bp.route('/')
+@login_required
 def admin_home():
     return render_template('admin_base.html')
 
