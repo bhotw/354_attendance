@@ -60,7 +60,7 @@ def sign_in():
                 yield render_template('present_message.html', action="sign_in", message="Sign In Successful!!!")
             else:
                 message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', action="sign_in", message=message)
+                yield render_template('present_message.html', message=message)
 
             reader.destroy()
             time.sleep(30)
@@ -130,7 +130,7 @@ def get_info():
 
         return Response(stream_with_context(present_info()))
 
-@app.route("/register", methods=[ 'POST'])
+@app.route("/register", methods=[ 'GET','POST'])
 def register():
     form = Registration()
 

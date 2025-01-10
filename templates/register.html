@@ -7,7 +7,7 @@
         <p>Only a mentor should register new members.</p>
     </div>
 
-    <form method="post" class="mt-4">
+    <form method="POST" action="{{ url_for('register') }}" class="mt-4">
         {{ form.hidden_tag() }}
         <div class="row g-3">
             <div class="col-md-6">
