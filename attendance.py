@@ -1,6 +1,6 @@
 from _curses import flash
 
-from admin.routes import admin_bp
+from back_end.admin.routes import admin_bp
 
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
 from back_end.database import db
