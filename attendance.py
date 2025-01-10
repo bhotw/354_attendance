@@ -124,15 +124,6 @@ def get_info():
 
         return Response(stream_with_context(present_info()))
 
-
-from flask import render_template, request, redirect, url_for, flash
-from back_end.readerClass import reader  # Ensure reader is properly imported
-from back_end.controllers.get_register import get_register
-from back_end.models import db
-from back_end.forms.registration import Registration
-from attendance import app
-
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
