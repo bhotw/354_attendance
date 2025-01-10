@@ -1,3 +1,7 @@
+from _curses import flash
+
+from admin.routes import admin_bp
+
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
 from back_end.database import db
 from flask_wtf.csrf import CSRFProtect
@@ -12,7 +16,7 @@ from back_end.controllers.is_member import is_member
 from back_end.controllers.mentor_authorization import mentor_authorization
 from back_end.controllers.get_status import get_status
 from back_end.controllers.get_register import get_register
-from back_end.models import User
+from back_end.models import User, Attendance, WorkshopHours
 from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
 
 load_dotenv()
@@ -22,6 +26,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
 app.config['SECRET_KEY'] = SECRET_KEY
 db.init_app(app)
+
+app.register_blueprint(admin_bp)
 
 csrf = CSRFProtect(app)
 reader = ReaderClass()
@@ -130,6 +136,7 @@ def register():
 
     if request.method == 'POST' and form.validate_on_submit():
         # Read card ID
+        yield render_template('present_message.html', message="Tap a NEW card.")
         card_id = reader.read()
 
         # Form data retrieval

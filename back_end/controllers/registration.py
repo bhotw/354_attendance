@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, validators, SelectField
 import phonenumbers
 
 from wtforms import StringField, SubmitField
@@ -17,10 +17,10 @@ def validate_phone(form, field):
 
 class Registration(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    role = StringField('Role', validators=[DataRequired()])
+    role = SelectField('Role', choices=[('Student', 'Student'), ('Mentor', 'Mentor')], validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     phone = StringField('Phone', validators=[DataRequired(), validate_phone])
-    emergency_contact = StringField("Emergeny contact", validators=[DataRequired()])
+    emergency_contact = StringField("Emergency contact", validators=[DataRequired()])
     emergency_phone = StringField('Emergency Phone', validators=[DataRequired(), validate_phone])
     parent_email = StringField("Parent's email", validators=[DataRequired(), Email()])
     submit = SubmitField("Register")
