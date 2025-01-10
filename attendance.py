@@ -61,7 +61,7 @@ def sign_in():
             else:
                 message = "You are not a member. Please contact a mentor for assistance."
                 print(message)
-                yield render_template('present_message.html', actime =" ", message=message)
+                yield render_template('present_message.html', actime ="m", message=message)
 
             reader.destroy()
             time.sleep(30)
@@ -80,7 +80,7 @@ def sign_out():
 
             mentor_auth = mentor_authorization(reader_id)
             print(mentor_auth)
-            if mentor_auth:
+            if mentor_auth == True:
                 yield render_template('present_message.html', action="sign_out", message="TAP To Sign Out")
                 reader_id, reader_name = reader.read()
                 present_date, present_time = reader.get_time()
@@ -88,14 +88,14 @@ def sign_out():
 
                 if is_a_member:
                     # Call the sign_out function to handle the sign-out process
-                    result = sign_out(id=reader_id, date=present_date, sign_out_time=present_time)
+                    result = sign_out(reader_id=reader_id, date=present_date, sign_out_time=present_time)
 
                     yield render_template('present_message.html', action="sign_out", message=result)
                 else:
                     # Handle the case when the person is not a member
                     message = "You are not a member. Please contact a mentor for assistance."
                     print(message)
-                    yield render_template('present_message.html', action=" ", message=message)
+                    yield render_template('present_message.html', action="m", message=message)
 
                 time.sleep(30)
                 yield render_template('home.html')
@@ -118,14 +118,14 @@ def get_info():
 
             if is_a_member:
                 # Call the get_info function to retrieve user information
-                result = get_info(id=reader_id, name=reader_name)
+                result = get_info(reader_id=reader_id, name=reader_name)
 
                 yield render_template('present_message.html', action="info", message=result)
             else:
                 # Handle the case when the person is not a member
                 message = "You are not a member. Please contact a mentor for assistance."
                 print(message)
-                yield render_template('present_message.html', action=" ", message=message)
+                yield render_template('present_message.html', action="m", message=message)
 
             time.sleep(30)
             yield render_template('home.html')
@@ -141,26 +141,26 @@ def register():
         # Read card ID
         yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
         card_id = reader.read()
-    #
-    #     # Form data retrieval
-    #     name = form.name.data
-    #     role = form.role.data
-    #     email = form.email.data
-    #     phone = form.phone.data
-    #     emergency_contact = form.emergency_contact.data
-    #     emergency_phone = form.emergency_phone.data
-    #     parent_email = form.parent_email.data
-    #
-    #     # Call the function to register the member
-    #     result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
-    #
-    #     if result == "User registered successfully":
-    #         flash("New member has been registered successfully!", "success")
-    #         return redirect(url_for('home'))
-    #     else:
-    #         flash("Registration failed. Please try again.", "error")
-    #
-    # # Render the form template for GET or validation failure
+
+        # Form data retrieval
+        name = form.name.data
+        role = form.role.data
+        email = form.email.data
+        phone = form.phone.data
+        emergency_contact = form.emergency_contact.data
+        emergency_phone = form.emergency_phone.data
+        parent_email = form.parent_email.data
+
+        # Call the function to register the member
+        result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
+
+        if result == "User registered successfully":
+            flash("New member has been registered successfully!", "success")
+            return redirect(url_for('home'))
+        else:
+            flash("Registration failed. Please try again.", "error")
+
+    # Render the form template for GET or validation failure
     return render_template('register.html', title='Registration', form=form)
 
 

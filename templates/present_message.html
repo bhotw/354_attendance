@@ -45,7 +45,11 @@
                 </div>
 
             {% endif %}
-
+        {% elif action == "m" %}
+            <h3> {{ message[1] }} </h3>
+            <div class="row g-3 align-items-center mt-4">
+                <button class="btn btn-sm p-4 btn-danger" onclick="location.href = '/home';">Done</button>
+            </div>
         {% else %}
             <h3> {{ message[1] }} </h3>
             <div class="row g-3 align-items-center mt-4">
