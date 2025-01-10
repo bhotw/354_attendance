@@ -64,7 +64,7 @@ def sign_in():
         return Response(stream_with_context(present_sign_in()))
 
 
-@app.route("/sign_in", methods=['GET', 'POST'])
+@app.route("/sign_out", methods=['GET', 'POST'])
 def sign_out():
     if request.method == 'GET':
         def present_sign_out():
@@ -159,7 +159,7 @@ def status():
 
             if is_member:
                 # Call the get_status function to retrieve the user's status
-                result = get_status(reader_id, reader_name)
+                result = get_status(reader_id)
 
                 yield render_template('present_message.html', action="status", message=result)
             else:
