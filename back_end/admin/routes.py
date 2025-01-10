@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash
 from back_end.models import User, Attendance
 from back_end.database import db
 from datetime import datetime
+from back_end.admin.models import AdminUser
 
 admin_bp = Blueprint('admin', __name__, template_folder='templates', url_prefix='/admin')
 
@@ -18,9 +19,23 @@ def login_required(f):
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        # Handle login logic
-        session['admin_logged_in'] = True
-        return redirect(url_for('admin.admin_home'))  # Redirect to the home page of the admin dashboard
+        # Retrieve the data from the form
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Check if the admin exists in the database (you could use your own model for Admin)
+        admin = AdminUser.query.filter_by(email=email).first()
+
+        if admin and check_password_hash(admin.password, password):  # Password is securely checked
+            # Successful login: set session and redirect to admin dashboard
+            session['admin_logged_in'] = True
+            session['admin_email'] = admin.email  # Optionally store the admin's username in the session
+            flash("Login successful!", "success")
+            return redirect(url_for('admin.admin_home'))  # Redirect to the home page of the admin dashboard
+        else:
+            # Invalid credentials
+            flash("Invalid username or password. Please try again.", "error")
+            return redirect(url_for('admin.admin_login'))  # Redirect back to login page for retry
     return render_template('admin_login.html')
 @admin_bp.route('/')
 @login_required
