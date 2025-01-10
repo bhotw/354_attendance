@@ -60,6 +60,7 @@ def sign_in():
                 yield render_template('present_message.html', action="sign_in", message="Sign In Successful!!!")
             else:
                 message = "You are not a member. Please contact a mentor for assistance."
+                print(message)
                 yield render_template('present_message.html', actime =" ", message=message)
 
             reader.destroy()
@@ -93,6 +94,7 @@ def sign_out():
                 else:
                     # Handle the case when the person is not a member
                     message = "You are not a member. Please contact a mentor for assistance."
+                    print(message)
                     yield render_template('present_message.html', action=" ", message=message)
 
                 time.sleep(30)
@@ -122,6 +124,7 @@ def get_info():
             else:
                 # Handle the case when the person is not a member
                 message = "You are not a member. Please contact a mentor for assistance."
+                print(message)
                 yield render_template('present_message.html', action=" ", message=message)
 
             time.sleep(30)
@@ -132,32 +135,32 @@ def get_info():
 
 @app.route("/register", methods=[ 'GET','POST'])
 def register():
-    form = Registration()
-
-    if request.method == 'POST' and form.validate_on_submit():
-        # Read card ID
-        yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
-        card_id = reader.read()
-
-        # Form data retrieval
-        name = form.name.data
-        role = form.role.data
-        email = form.email.data
-        phone = form.phone.data
-        emergency_contact = form.emergency_contact.data
-        emergency_phone = form.emergency_phone.data
-        parent_email = form.parent_email.data
-
-        # Call the function to register the member
-        result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
-
-        if result == "User registered successfully":
-            flash("New member has been registered successfully!", "success")
-            return redirect(url_for('home'))
-        else:
-            flash("Registration failed. Please try again.", "error")
-
-    # Render the form template for GET or validation failure
+    # form = Registration()
+    #
+    # if request.method == 'POST' and form.validate_on_submit():
+    #     # Read card ID
+    #     yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
+    #     card_id = reader.read()
+    #
+    #     # Form data retrieval
+    #     name = form.name.data
+    #     role = form.role.data
+    #     email = form.email.data
+    #     phone = form.phone.data
+    #     emergency_contact = form.emergency_contact.data
+    #     emergency_phone = form.emergency_phone.data
+    #     parent_email = form.parent_email.data
+    #
+    #     # Call the function to register the member
+    #     result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
+    #
+    #     if result == "User registered successfully":
+    #         flash("New member has been registered successfully!", "success")
+    #         return redirect(url_for('home'))
+    #     else:
+    #         flash("Registration failed. Please try again.", "error")
+    #
+    # # Render the form template for GET or validation failure
     return render_template('register.html', title='Registration', form=form)
 
 
