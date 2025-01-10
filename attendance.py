@@ -9,6 +9,7 @@ from back_end.readerClass import ReaderClass
 from back_end.controllers.registration import Registration
 from back_end.controllers.sign_in import sign_in
 from back_end.controllers.is_member import is_member
+from back_end.controllers.mentor_authorization import mentor_authorization
 from back_end.controllers.get_status import get_status
 from back_end.controllers.get_register import get_register
 from back_end.models import User
@@ -68,23 +69,29 @@ def sign_out():
         def present_sign_out():
             yield render_template('sign_out.html')
             reader_id, reader_name = reader.read()
-            present_date, present_time = reader.get_time()
 
-            is_a_member = is_member(reader_id, reader_name)
+            mentor_auth = mentor_authorization(reader_id)
+            if mentor_auth:
+                yield render_template('present_message.html', action="sign_out", message="TAP To Sign Out")
+                reader_id, reader_name = reader.read()
+                present_date, present_time = reader.get_time()
+                is_a_member = is_member(reader_id, reader_name)
 
-            if is_a_member:
-                # Call the sign_out function to handle the sign-out process
-                result = sign_out(id=reader_id, date=present_date, sign_out_time=present_time)
+                if is_a_member:
+                    # Call the sign_out function to handle the sign-out process
+                    result = sign_out(id=reader_id, date=present_date, sign_out_time=present_time)
 
-                yield render_template('present_message.html', action="sign_out", message=result)
+                    yield render_template('present_message.html', action="sign_out", message=result)
+                else:
+                    # Handle the case when the person is not a member
+                    message = "You are not a member. Please contact a mentor for assistance."
+                    yield render_template('present_message.html', action="sign_out", message=message)
+
+                time.sleep(30)
+                yield render_template('home.html')
+                reader.destroy()
             else:
-                # Handle the case when the person is not a member
-                message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', action="sign_out", message=message)
-
-            time.sleep(30)
-            yield render_template('home.html')
-            reader.destroy()
+                yield render_template('sign_out.html')
 
         return Response(stream_with_context(present_sign_out()))
 
@@ -119,6 +126,7 @@ def get_info():
 @app.route("/register", methods=['POST'])
 def register():
     form = Registration()
+    yield render_template('present_message.html', action="info", message="Tap a NEW card.")
     card_id = reader.read()
 
     if form.validate_on_submit():

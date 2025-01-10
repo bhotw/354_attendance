@@ -3,14 +3,14 @@ from back_end.models import Attendance, WorkshopHours
 from attendance import db
 
 
-def sign_out(id, name):
+def sign_out(reader_id, name):
     try:
         # Get today's date
         today_date = datetime.now().date()
         current_time = datetime.now().time()
 
         # Check if the user signed in today
-        sign_in_record = Attendance.query.filter_by(id=id, date=today_date).first()
+        sign_in_record = Attendance.query.filter_by(id=reader_id, date=today_date).first()
 
         if sign_in_record:
             sign_in_time = sign_in_record.sign_in_time
@@ -24,7 +24,7 @@ def sign_out(id, name):
 
             db.session.commit()
 
-            workshop_hours = WorkshopHours.query.filter_by(id=id).first()
+            workshop_hours = WorkshopHours.query.filter_by(id=reader_id).first()
 
             if workshop_hours:
                 workshop_hours.total_hours += hours_worked
@@ -40,7 +40,7 @@ def sign_out(id, name):
                 return "WorkshopHours record not found for this user."
 
         else:
-            new_sign_out_record = Attendance(id=id, date=today_date, sign_out_time=current_time)
+            new_sign_out_record = Attendance(id=reader_id, date=today_date, sign_out_time=current_time)
             db.session.add(new_sign_out_record)
             db.session.commit()
             return "User did not sign in today. A sign-out record has been created."
