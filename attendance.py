@@ -72,6 +72,7 @@ def sign_out():
             reader_id, reader_name = reader.read()
 
             mentor_auth = mentor_authorization(reader_id)
+            print(mentor_auth)
             if mentor_auth:
                 yield render_template('present_message.html', action="sign_out", message="TAP To Sign Out")
                 reader_id, reader_name = reader.read()
