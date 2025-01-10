@@ -53,14 +53,14 @@ def sign_in():
             is_a_member = is_member(reader_id, reader_name)
             if is_a_member:
                 # Add the attendance record to the database
-                result = sign_in(id=reader_id, date=present_date, sign_in_time=present_time)
+                result = sign_in(reader_id=reader_id, date=present_date, sign_in_time=present_time)
                 db.session.add(result)
                 db.commit()
                 # message = [reader_name, "Sign in", present_time, present_date]
                 yield render_template('present_message.html', action="sign_in", message="Sign In Successful!!!")
             else:
                 message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', message=message)
+                yield render_template('present_message.html', actime =" ", message=message)
 
             reader.destroy()
             time.sleep(30)
@@ -93,7 +93,7 @@ def sign_out():
                 else:
                     # Handle the case when the person is not a member
                     message = "You are not a member. Please contact a mentor for assistance."
-                    yield render_template('present_message.html', action="sign_out", message=message)
+                    yield render_template('present_message.html', action=" ", message=message)
 
                 time.sleep(30)
                 yield render_template('home.html')
@@ -122,7 +122,7 @@ def get_info():
             else:
                 # Handle the case when the person is not a member
                 message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', action="info", message=message)
+                yield render_template('present_message.html', action=" ", message=message)
 
             time.sleep(30)
             yield render_template('home.html')
@@ -136,7 +136,7 @@ def register():
 
     if request.method == 'POST' and form.validate_on_submit():
         # Read card ID
-        yield render_template('present_message.html', message="Tap a NEW card.")
+        yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
         card_id = reader.read()
 
         # Form data retrieval
@@ -180,7 +180,7 @@ def status():
             else:
                 # Handle the case when the person is not a member
                 message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', action="status", message=message)
+                yield render_template('present_message.html', action=" ", message=message)
 
             time.sleep(30)
             yield render_template('home.html')
