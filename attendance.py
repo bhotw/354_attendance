@@ -135,12 +135,12 @@ def get_info():
 
 @app.route("/register", methods=[ 'GET','POST'])
 def register():
-    # form = Registration()
-    #
-    # if request.method == 'POST' and form.validate_on_submit():
-    #     # Read card ID
-    #     yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
-    #     card_id = reader.read()
+    form = Registration()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # Read card ID
+        yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
+        card_id = reader.read()
     #
     #     # Form data retrieval
     #     name = form.name.data
