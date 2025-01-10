@@ -25,8 +25,8 @@ app.config['SECRET_KEY'] = SECRET_KEY
 db.init_app(app)
 
 app.register_blueprint(admin_bp)
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_TYPE'] = 'filesystem'
+# app.config['SESSION_PERMANENT'] = False
+# app.config['SESSION_TYPE'] = 'filesystem'
 
 
 csrf = CSRFProtect(app)
@@ -101,7 +101,9 @@ def sign_out():
                 yield render_template('home.html')
                 reader.destroy()
             else:
-                yield render_template('sign_out.html')
+                yield render_template('present_message.html', message="Not a mentor!")
+                time.sleep(3)
+                yield render_template('home.html')
 
         return Response(stream_with_context(present_sign_out()))
 
@@ -139,7 +141,7 @@ def register():
 
     if request.method == 'POST' and form.validate_on_submit():
         # Read card ID
-        yield render_template('present_message.html', action=" ", message="Tap a NEW card.")
+        yield render_template('present_message.html', action="m", message="Tap a NEW card.")
         card_id = reader.read()
 
         # Form data retrieval
@@ -183,7 +185,7 @@ def status():
             else:
                 # Handle the case when the person is not a member
                 message = "You are not a member. Please contact a mentor for assistance."
-                yield render_template('present_message.html', action=" ", message=message)
+                yield render_template('present_message.html',  message=message)
 
             time.sleep(30)
             yield render_template('home.html')
