@@ -130,7 +130,7 @@ def get_info():
 
         return Response(stream_with_context(present_info()))
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route("/register", methods=[ 'POST'])
 def register():
     form = Registration()
 
