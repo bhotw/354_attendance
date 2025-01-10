@@ -64,6 +64,7 @@ def sign_in():
         return Response(stream_with_context(present_sign_in()))
 
 
+@app.route("/sign_in", methods=['GET', 'POST'])
 def sign_out():
     if request.method == 'GET':
         def present_sign_out():
@@ -123,7 +124,7 @@ def get_info():
         return Response(stream_with_context(present_info()))
 
 
-@app.route("/register", methods=['POST'])
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
     yield render_template('present_message.html', action="info", message="Tap a NEW card.")
