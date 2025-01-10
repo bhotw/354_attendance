@@ -125,25 +125,41 @@ def get_info():
         return Response(stream_with_context(present_info()))
 
 
+from flask import render_template, request, redirect, url_for, flash
+from back_end.readerClass import reader  # Ensure reader is properly imported
+from back_end.controllers.get_register import get_register
+from back_end.models import db
+from back_end.forms.registration import Registration
+from attendance import app
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = Registration()
-    yield render_template('present_message.html', action="info", message="Tap a NEW card.")
-    card_id = reader.read()
 
-    if form.validate_on_submit():
-        name = form.name
-        role = form.role
-        email = form.email
-        phone = form.phone
-        emergency_contact = form.emergency_contact
-        emergency_phone = form.emergency_phone
-        parent_email = form.parent_email
+    if request.method == 'POST' and form.validate_on_submit():
+        # Read card ID
+        card_id = reader.read()
 
-        # Call the get_register function to add the new member
+        # Form data retrieval
+        name = form.name.data
+        role = form.role.data
+        email = form.email.data
+        phone = form.phone.data
+        emergency_contact = form.emergency_contact.data
+        emergency_phone = form.emergency_phone.data
+        parent_email = form.parent_email.data
+
+        # Call the function to register the member
         result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
-        yield render_template('present_message.html', action="info", message=result)
 
+        if result == "User registered successfully":
+            flash("New member has been registered successfully!", "success")
+            return redirect(url_for('home'))
+        else:
+            flash("Registration failed. Please try again.", "error")
+
+    # Render the form template for GET or validation failure
     return render_template('register.html', title='Registration', form=form)
 
 

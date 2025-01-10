@@ -1,61 +1,69 @@
 {% extends 'base.html' %}
 
-{% block registration %}
-
-
-
-    <div class="row g-3 align-items-center ">
-        <style>
-      .bottom-three {
-         margin-bottom: 0.5cm;
-      }
-      </style>
-
-        <div class="text-center mt-5">
-          <H1> Registration </H1>
-          <p> Only a mentor should register new member.</p>
-        </div>
-<form method="post" class="mt-10rem">
-    {{ form.hidden_tag() }}
-      <div  class="form-group ">
-        <div clas="container" class="d-flex justify-content-center">
-          <div class="col-auto">
-            <label name="fullname" class="form-control-lg" >Full Name :</label>
-            <p class="bottom-three"> </p>
-            <label name="role" class="form-control-lg" >Role :</label>
-            <p class="bottom-three"> </p>
-            <label name="email" class="form-control-lg" >Email Address :</label>
-            <p class="bottom-three"> </p>
-            <label name="phone" class="form-control-lg" >Phone Number :</label>
-            <p class="bottom-three"> </p>
-            <label name="emergency_1" class="form-control-lg" >Parent :</label>
-            <p class="bottom-three"> </p>
-            <label name="emergency_phone" class="form-control-lg" >Parent Number :</label>
-          </div>
-          <div class="col-auto">
-            <input name="fullname" class="form-control form-control-lg" type="text" placeholder="Full Name" required>
-            <p class="bottom-three"> </p>
-            <select name = "role" class="form-select form-select-lg mb-3" required>
-              <option selected>select menu</option>
-              <option value="mentor">Mentor</option>
-              <option value="student">Student</option>
-            </select>
-            <p class="bottom-three"> </p>
-            <input name="email" class="form-control form-control-lg" type="email" placeholder="name@example.com" required >
-            <p class="bottom-three"> </p>
-            <input name="phone" class="form-control form-control-lg" type="text" placeholder="000-000-0000" required >
-            <p class="bottom-three"> </p>
-            <input name="emergency_1" class="form-control form-control-lg" type="text6" placeholder="name" required >
-            <p class="bottom-three"> </p>
-            <input name="emergency_phone" class="form-control form-control-lg" type="text" placeholder="000-000-0000" required >
-            <p class="bottom-three"> </p>
-          </div>
-          </div>
-          <div clas="container" class="d-flex justify-content-center mb-5">
-            <button type="submit" class="btn btn-danger ">Submit</button>
-          </div>
-        </div>
-</form>
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Registration</h1>
+        <p>Only a mentor should register new members.</p>
     </div>
 
+    <form method="post" class="mt-4">
+        {{ form.hidden_tag() }}
+        <div class="row g-3">
+            <div class="col-md-6">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control") }}
+                {% for error in form.name.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.role.label(class="form-label") }}
+                {{ form.role(class="form-select") }}
+                {% for error in form.role.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control") }}
+                {% for error in form.email.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.phone.label(class="form-label") }}
+                {{ form.phone(class="form-control") }}
+                {% for error in form.phone.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.emergency_contact.label(class="form-label") }}
+                {{ form.emergency_contact(class="form-control") }}
+                {% for error in form.emergency_contact.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.emergency_phone.label(class="form-label") }}
+                {{ form.emergency_phone(class="form-control") }}
+                {% for error in form.emergency_phone.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {{ form.parent_email.label(class="form-label") }}
+                {{ form.parent_email(class="form-control") }}
+                {% for error in form.parent_email.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
