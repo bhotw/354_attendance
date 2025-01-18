@@ -1,13 +1,13 @@
-from _curses import flash
+# from _curses import flash
 from back_end.admin.routes import admin_bp
-from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
+from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for, flash
 from back_end.database import db
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 import time
 
 # Import your custom modules and classes
-from back_end.readerClass import ReaderClass
+# from back_end.readerClass import ReaderClass
 from back_end.controllers.registration import Registration
 from back_end.controllers.sign_in import sign_in
 from back_end.controllers.is_member import is_member
@@ -30,7 +30,7 @@ app.register_blueprint(admin_bp)
 
 
 csrf = CSRFProtect(app)
-reader = ReaderClass()
+# reader = ReaderClass()
 
 
 @app.route("/home")
@@ -134,17 +134,18 @@ def get_info():
             reader.destroy()
 
         return Response(stream_with_context(present_info()))
-
+import random
 @app.route("/register", methods=[ 'GET','POST'])
 def register():
     form = Registration()
 
     if request.method == 'POST' and form.validate_on_submit():
         # Read card ID
-        yield render_template('present_message.html', action="m", message="Tap a NEW card.")
-        card_id = reader.read()
+        # yield render_template('present_message.html', action="m", message="Tap a NEW card.")
+        # card_id = reader.read()
 
         # Form data retrieval
+        card_id = random.randint(1000000000, 9999999999)
         name = form.name.data
         role = form.role.data
         email = form.email.data
@@ -155,6 +156,7 @@ def register():
 
         # Call the function to register the member
         result = get_register(card_id, name, role, email, phone, emergency_contact, emergency_phone, parent_email)
+
 
         if result == "User registered successfully":
             flash("New member has been registered successfully!", "success")
