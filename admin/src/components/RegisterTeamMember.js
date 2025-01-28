@@ -1,7 +1,7 @@
 // src/components/RegisterTeamMember.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, navigate } from "react-router-dom";
 import "./RegisterTeamMember.css";
 
 const RegisterTeamMember = () => {
@@ -27,25 +27,43 @@ const RegisterTeamMember = () => {
   });
 
   // Handler for input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+
+      // Allow spaces in name and emergency contact name
+      if (name === "name" || name === "emergency_contact_name") {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value, // Don't trim spaces for these fields
+        }));
+      } else {
+        // Ensure phone fields are always strings and trim whitespace for other fields
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: name.includes("phone") ? String(value) : value.trim(),
+        }));
+      }
+    };
+
 
   // Handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token"); // Get the admin's token
+      console.log(`Type of token: ${typeof token}`);
+      console.log(token)
+       if (!token) {
+        alert("No valid token found. Please log in again.");
+        return;
+      }
       const response = await axios.post(
-        "http://localhost:5000/api/register-team-member",
+        "http://localhost:5000/api/register_team_member",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Pass the token in the request header
+          "Content-Type": "application/json",
+           "Authorization": `Bearer ${token}`, // Pass the token in the request header
           },
         }
       );
@@ -96,8 +114,8 @@ return (
             required
           >
             <option value="">Select role</option>
-            <option value="admin">Admin</option>
-            <option value="team_member">Team Member</option>
+            <option value="mentor">Mentor</option>
+            <option value="student">Student</option>
           </select>
         </div>
 
@@ -135,7 +153,8 @@ return (
 
         {/* Emergency Contact Name */}
         <div className="form-group">
-          <label htmlFor="emergency_contact_name">Emergency Contact Name</label>
+          <label htmlFor="emergency_contact_name">Emergency Contact Name<span className="required">*</span>
+           </label>
           <input
             type="text"
             id="emergency_contact_name"
@@ -149,7 +168,7 @@ return (
         {/* Emergency Contact Phone */}
         <div className="form-group">
           <label htmlFor="emergency_contact_phone">
-            Emergency Contact Phone
+            Emergency Contact Phone <span className="required">*</span>
           </label>
           <input
             type="tel"
@@ -163,7 +182,8 @@ return (
 
         {/* Parents' Email */}
         <div className="form-group">
-          <label htmlFor="parents_email">Parents' Email</label>
+          <label htmlFor="parents_email">Parents Email <span className="required">*</span>
+          </label>
           <input
             type="email"
             id="parents_email"

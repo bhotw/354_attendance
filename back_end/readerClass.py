@@ -1,11 +1,13 @@
 
 
-import time
-import RPi.GPIO as GPIO
-from mfrc522 import SimpleMFRC522
+# import time
+# import RPi.GPIO as GPIO
+# from mfrc522 import SimpleMFRC522
+#
+# GPIO.setwarnings(False)
+# reader = SimpleMFRC522()
 
-GPIO.setwarnings(False)
-reader = SimpleMFRC522()
+
 
 
 
@@ -13,6 +15,9 @@ class ReaderClass:
     def destroy(self):
         GPIO.cleanup()
         print("reader clean")
+
+    def read_id(self):
+        reader_id = reader.read()
 
     def read(self):
         print("TAP to read Data!")

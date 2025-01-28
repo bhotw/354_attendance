@@ -1,5 +1,6 @@
 # models/admin_user.py
 from extensions import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class AdminUser(db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
@@ -7,5 +8,12 @@ class AdminUser(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)  # Store hashed passwords
     email = db.Column(db.String(120), unique=True, nullable=False)
 
-    def __repr__(self):
-        return f'<AdminUser {self.username}>'
+
+
+    def set_password(self, password):
+        """Hashes and sets the password."""
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        """Checks the password against the stored hash."""
+        return check_password_hash(self.password_hash, password)

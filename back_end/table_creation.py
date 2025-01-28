@@ -1,10 +1,9 @@
-from flask import Flask
-from flask_cors import CORS
-from flask_migrate import Migrate
+
 from extensions import db
 from models.user import User
 from models.attendance import Attendance
 from app import app
+from sqlalchemy import inspect
 
 
 with app.app_context():

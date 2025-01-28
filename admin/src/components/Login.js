@@ -12,20 +12,23 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        username,
-        password,
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
-      if (response.data.status === "success") {
+
+      const data = await response.json();
+      if (data.status === "success") {
+        localStorage.setItem("token", data.token);
+        console.log(`Type of token: ${typeof data.token}`);
         localStorage.setItem("isAuthenticated", "true");
-        localStorage.setItem("token", response.data.token); // Store the token
         navigate("/dashboard");
       } else {
-        alert("Invalid credentials");
+        alert(data.message);
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed");
     }
   };
 

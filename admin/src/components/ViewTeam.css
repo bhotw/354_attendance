@@ -1,0 +1,112 @@
+/* Ensure the view-team-container takes full height, minus margin */
+.view-team-container {
+  max-width: 100%;
+  margin: 0 auto; /* Remove top and bottom margin */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-height: calc(100vh - 80px); /* Use full screen height minus padding/margin */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Anchor content to the top */
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px; /* Increase title size for better visibility */
+}
+
+.team-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed; /* Ensure even column distribution */
+}
+
+.team-table th,
+.team-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  word-wrap: break-word; /* Prevent overflow in cells */
+}
+
+.team-table th {
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+}
+
+input {
+  width: 90%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.edit-btn,
+.save-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-btn:hover {
+  background: #0056b3;
+}
+
+.save-btn {
+  background: #28a745;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
+
+/* Make table responsive on smaller screens */
+@media screen and (max-width: 768px) {
+  .team-table {
+    display: block;
+    overflow-x: auto; /* Allow horizontal scroll */
+    white-space: nowrap; /* Prevent text from breaking */
+  }
+
+  .team-table th,
+  .team-table td {
+    font-size: 14px;
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .edit-btn,
+  .save-btn {
+    padding: 4px 8px; /* Adjust button size for small screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .view-team-container {
+    padding: 15px; /* Reduce padding */
+  }
+
+  .team-table th,
+  .team-table td {
+    font-size: 12px; /* Further reduce font size */
+    padding: 8px; /* Further reduce padding */
+  }
+
+  h1 {
+    font-size: 24px; /* Adjust title font size for small screens */
+  }
+
+  .edit-btn,
+  .save-btn {
+    padding: 4px 6px; /* Further adjust button size */
+  }
+}
