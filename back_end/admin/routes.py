@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from functools import wraps
 from werkzeug.security import check_password_hash
 from back_end.models import User, Attendance
-from back_end.database import db
+from back_end.extensions import db
 from datetime import datetime
 from back_end.admin.models import AdminUser
 from flask_wtf import FlaskForm

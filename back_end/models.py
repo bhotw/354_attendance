@@ -1,4 +1,4 @@
-from back_end.database import db
+from back_end.extensions import db
 
 
 class User(db.Model):

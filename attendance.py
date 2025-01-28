@@ -1,7 +1,7 @@
 # from _curses import flash
 from back_end.admin.routes import admin_bp
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for, flash
-from back_end.database import db
+from back_end.extensions import db
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 import time
@@ -15,7 +15,7 @@ from back_end.controllers.mentor_authorization import mentor_authorization
 from back_end.controllers.get_status import get_status
 from back_end.controllers.get_register import get_register
 from back_end.models import User, Attendance, WorkshopHours
-from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
+from back_end.config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
 
 load_dotenv()
 app = Flask(__name__)

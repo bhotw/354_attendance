@@ -1,5 +1,5 @@
 from attendance import app
-from back_end.database import db
+from back_end.extensions import db
 from back_end.models import *
 from back_end.admin.models import *
 from sqlalchemy import inspect

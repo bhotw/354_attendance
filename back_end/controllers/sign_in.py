@@ -1,5 +1,5 @@
 from datetime import datetime
-from back_end.database import db
+from back_end.extensions import db
 
 
 def sign_in(reader_id, date, sign_in_time):
