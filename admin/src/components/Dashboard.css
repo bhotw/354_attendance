@@ -1,15 +1,24 @@
 /* src/components/Dashboard.css */
-body {
+* {
+  max-width: 100%;
   margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
   background: #f4f4f9;
   color: #333;
+  height: 100%; /* Ensures the body takes full height of the viewport */
 }
 
 .dashboard-container {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
+  margin-top: 0; /* Ensure it’s aligned at the top */
+  height: 100%; /* This ensures it fills the full height of the viewport */
 }
 
 .dashboard-container h1 {
@@ -21,9 +30,9 @@ body {
 
 .dashboard-flex {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
-  gap: 1.5rem; /* Space between cards */
-  justify-content: center; /* Center cards horizontally */
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 .dashboard-card {
@@ -34,9 +43,9 @@ body {
   text-decoration: none;
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 calc(33.333% - 3rem); /* Flexible width for 3 cards per row */
-  max-width: calc(33.333% - 3rem); /* Maximum width for 3 cards per row */
-  min-width: 250px; /* Minimum width for smaller screens */
+  flex: 1 1 calc(33.333% - 3rem);
+  max-width: calc(33.333% - 3rem);
+  min-width: 250px;
 }
 
 .dashboard-card:hover {
@@ -59,14 +68,14 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .dashboard-card {
-    flex: 1 1 calc(50% - 1.5rem); /* 2 cards per row on medium screens */
+    flex: 1 1 calc(50% - 1.5rem);
     max-width: calc(50% - 1.5rem);
   }
 }
 
 @media (max-width: 480px) {
   .dashboard-card {
-    flex: 1 1 100%; /* 1 card per row on small screens */
+    flex: 1 1 100%;
     max-width: 100%;
   }
 }

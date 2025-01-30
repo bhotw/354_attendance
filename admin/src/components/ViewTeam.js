@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, navigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import "./ViewTeam.css";
 
@@ -48,11 +49,14 @@ const ViewTeam = () => {
   };
 
   return (
+  <div>
+  <Navbar />
     <div className="view-team-container">
       <h1>Team Members</h1>
       <table className="team-table">
         <thead>
           <tr>
+            <th>ID Card</th>
             <th>Name</th>
             <th>Role</th>
             <th>Email</th>
@@ -67,6 +71,14 @@ const ViewTeam = () => {
             <tr key={user.id}>
               {editingUser === user.id ? (
                 <>
+                  <td>
+                    <input
+                      type="text"
+                      name="card_id"
+                      value={formData.card_id}
+                      onChange={handleChange}
+                    />
+                  </td>
                   <td>
                     <input
                       type="text"
@@ -123,6 +135,7 @@ const ViewTeam = () => {
                 </>
               ) : (
                 <>
+                  <td>{user.card_id}</td>
                   <td>{user.name}</td>
                   <td>{user.role}</td>
                   <td>{user.email}</td>
@@ -140,6 +153,7 @@ const ViewTeam = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

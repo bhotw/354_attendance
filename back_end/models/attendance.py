@@ -3,7 +3,7 @@ from extensions import db
 from datetime import datetime
 
 class Attendance(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, unique=True, primary_key=True)
     date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     sign_in_time = db.Column(db.Time, nullable=True)
     sign_out_time = db.Column(db.Time, nullable=True)

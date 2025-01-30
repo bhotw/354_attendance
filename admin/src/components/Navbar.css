@@ -1,0 +1,75 @@
+/* src/components/Navbar.css */
+.navbar {
+    max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border-radius: 10px;
+}
+
+
+.navbar-left {
+  font-size: 20px;
+}
+
+.navbar-logo {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.dropdown {
+  position: relative;
+  margin-left: 20px;
+}
+
+.dropdown-toggle {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  padding: 10px 0;
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-item:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

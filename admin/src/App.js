@@ -8,7 +8,10 @@ import AddAdminUser from "./components/AddAdminUser";
 import AddAttendance from "./components/AddAttendance";
 import UpdateAttendance from "./components/UpdateAttendance";
 import ViewAttendance from "./components/ViewAttendance";
-import ViewTeam from"./components/ViewTeam";
+import ViewTeam from "./components/ViewTeam";
+import Attendance from "./components/Attendance";
+import ViewAdminUsers from "./components/ViewAdminUsers";
+
 
 // Protected Route Component
 const PrivateRoute = ({ children }) => {
@@ -20,10 +23,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Attendance/>} />
+        <Route path="/admin" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register-team-member" element={<RegisterTeamMember />} />
         <Route path="/add-admin-user" element={<AddAdminUser />} />
+        <Route path="/view-admin-user" element={<ViewAdminUsers />} />
         <Route path="/add-attendance" element={<AddAttendance />} />
         <Route path="/viewteam" element={<ViewTeam />} />
         <Route path="/update-attendance" element={<UpdateAttendance />} />

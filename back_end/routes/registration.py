@@ -47,11 +47,11 @@ def register_team_member():
         if existing_user:
             return jsonify({'status': 'error', 'message': 'Email already registered'}), 400
 
-        read_id = random.randint(1000000000, 9999999999)
+        new_card_id = random.randint(1000000000, 9999999999)
 
         # Create a new User object
         new_user = User(
-            id=read_id,
+            card_id=new_card_id,
             name=name,
             role=role,
             email=email,

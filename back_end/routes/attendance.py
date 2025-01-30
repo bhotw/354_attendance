@@ -90,7 +90,7 @@ def sign_out():
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
     data = request.get_json()
-    user_rfid_card_id = data.get('user_rfid_card_id')
+
     mentor_rfid_card_id = data.get('mentor_rfid_card_id')
 
     if not user_rfid_card_id:
@@ -118,6 +118,7 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
 
     # Verify user
+    user_rfid_card_id = data.get('user_rfid_card_id')
     user = User.query.filter_by(rfid_card_id=user_rfid_card_id).first()
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404

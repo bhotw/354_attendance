@@ -1,0 +1,58 @@
+/* src/components/AddAdminUser.css */
+.add-admin-container {
+  width: 100%;
+ /* Slightly larger width for better spacing */
+  margin: 0px auto; /* Added top margin to ensure space from the navbar */
+  margin-top: 35px;
+  padding: 10px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better spacing */
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.submit-button:hover {
+  background-color: #45a049;
+}
+
+.message {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}

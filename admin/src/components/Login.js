@@ -21,8 +21,7 @@ const Login = () => {
       const data = await response.json();
       if (data.status === "success") {
         localStorage.setItem("token", data.token);
-        console.log(`Type of token: ${typeof data.token}`);
-        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("username", data.user.username);
         navigate("/dashboard");
       } else {
         alert(data.message);

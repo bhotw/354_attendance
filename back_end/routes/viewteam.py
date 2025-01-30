@@ -14,6 +14,7 @@ def get_team_members():
         team_list = [
             {
                 "id": user.id,
+                "card_id": user.card_id,
                 "name": user.name,
                 "role": user.role,
                 "email": user.email,
@@ -42,6 +43,7 @@ def update_team_member(user_id):
         data = request.get_json()
 
         # Update only provided fields
+        user.card_id = data.get("card_id", user.card_id)
         user.name = data.get("name", user.name)
         user.role = data.get("role", user.role)
         user.email = data.get("email", user.email)

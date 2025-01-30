@@ -1,0 +1,134 @@
+/* Full-page layout */
+/* Prevent scrolling */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Disable scrolling */
+}
+
+/* Ensure the .page container takes the full height */
+.page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff9c4;
+  padding: 10px;
+}
+
+
+/* Navigation Bar */
+.navbar {
+  width: calc(100% - 25px); /* Reduces the width by 10px (5px on each side) */
+  position: fixed;
+  top: 10px;
+  left: 10px; /* Adds 5px padding on the left */
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  height: 65px;
+}
+
+.nav-button {
+  background: #6a11cb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.nav-button:hover {
+  background: #530ba3;
+}
+
+/* Content Container (Fixed size, content changes) */
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 600px;
+  height: 300px; /* Fixed height to prevent shrinking */
+  margin-top: 60px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Grid (Only visible when message is empty) */
+.button-grid {
+  margin-top: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Buttons */
+.btn {
+
+  width: 45%;
+  height: 130px;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button colors */
+.sign-in { background: green; color: white; }
+.sign-out { background: red; color: white; }
+.status { background: orange; color: white; }
+.bulk-signout { background: blue; color: white; }
+
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Message Box (Same size as button grid) */
+.message-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.message-box h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+  .content-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 600px) {
+  .button-grid {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

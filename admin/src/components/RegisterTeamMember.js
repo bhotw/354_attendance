@@ -1,5 +1,6 @@
 // src/components/RegisterTeamMember.js
 import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useNavigate, navigate } from "react-router-dom";
 import "./RegisterTeamMember.css";
@@ -11,7 +12,7 @@ const RegisterTeamMember = () => {
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (!isAuthenticated) {
-      navigate("/"); // Redirect to login if not authenticated
+      navigate("/login"); // Redirect to login if not authenticated
     }
   }, [navigate]);
 
@@ -25,6 +26,9 @@ const RegisterTeamMember = () => {
     emergency_contact_phone: "",
     parents_email: "",
   });
+
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handler for input changes
     const handleChange = (e) => {
@@ -51,12 +55,13 @@ const RegisterTeamMember = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token"); // Get the admin's token
-      console.log(`Type of token: ${typeof token}`);
-      console.log(token)
        if (!token) {
         alert("No valid token found. Please log in again.");
         return;
       }
+      setMessage("Please Tap a new card for the new member.")
+      setIsLoading(true);
+
       const response = await axios.post(
         "http://localhost:5000/api/register_team_member",
         formData,
@@ -78,9 +83,11 @@ const RegisterTeamMember = () => {
       alert("Failed to register team member.");
     }
   };
-
+//const username = localStorage.getItem("username");
   // Inside your return statement
 return (
+    <div>
+    <Navbar/>
   <div className="registration-container">
     <div className="registration-box">
       <h2>Register Team Member</h2>
@@ -199,6 +206,7 @@ return (
         </button>
       </form>
     </div>
+  </div>
   </div>
 );
 };
