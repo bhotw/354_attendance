@@ -10,7 +10,7 @@ class Attendance(db.Model):
     days_hours = db.Column(db.Float, nullable=True)  # Total hours worked
 
     # Foreign key to User
-    user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     def __repr__(self):
         return f'<Attendance ID {self.id} on {self.date}>'

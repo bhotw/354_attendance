@@ -37,10 +37,7 @@ const Dashboard = () => {
             <h2>Add Attendance</h2>
             <p>Manually add attendance records for team members.</p>
           </Link>
-          <Link to="/update-attendance" className="dashboard-card">
-            <h2>Update Attendance</h2>
-            <p>Edit or update existing attendance records.</p>
-          </Link>
+
           <Link to="/view-attendance" className="dashboard-card">
             <h2>View Attendance</h2>
             <p>View all attendance records in a detailed sheet.</p>

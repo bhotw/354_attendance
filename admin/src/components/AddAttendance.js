@@ -1,39 +1,111 @@
-// src/components/AddAttendance.js
-import React, { useState } from "react";
+//components/AddAttendance.js
+import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import api from "../axiosInstance";
+import './AddAdminUser.css';
+
 
 const AddAttendance = () => {
-  const [member, setMember] = useState("");
+  const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState("");
+  const [date, setDate] = useState("");
   const [signInTime, setSignInTime] = useState("");
   const [signOutTime, setSignOutTime] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic to save attendance (e.g., API call)
-    console.log("Attendance Added:", { member, signInTime, signOutTime });
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await api.get("/api/manual/users", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass the token in the headers
+        }
+        });
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setMessage("");  // Clear any previous messages
+
+  const attendanceData = {
+    user_id: selectedUserId,
+    date,
+    sign_in_time: signInTime,
+    sign_out_time: signOutTime,
   };
 
+  try {
+    const token = localStorage.getItem("token");
+    const response = await api.post(
+      "/api/manual/add_attendance",
+      attendanceData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass the token in the headers
+        },
+      }
+    );
+
+    // If the attendance is added successfully
+    setMessage("✅ Attendance record added successfully!");
+  } catch (error) {
+    // Handle error by checking the error message returned from the backend
+    if (error.response && error.response.data && error.response.data.message) {
+      setMessage(error.response.data.message); // Display message from backend if available
+    } else {
+      setMessage("❌ Failed to add attendance.");
+    }
+    console.error("Error submitting attendance:", error);
+  }
+};
+
   return (
-    <div>
+  <div>
+  <Navbar/>
+    <div className="add-attendance-container">
       <h2>Add Attendance</h2>
+      {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Member Name"
-          value={member}
-          onChange={(e) => setMember(e.target.value)}
-        />
-        <input
-          type="datetime-local"
-          value={signInTime}
-          onChange={(e) => setSignInTime(e.target.value)}
-        />
-        <input
-          type="datetime-local"
-          value={signOutTime}
-          onChange={(e) => setSignOutTime(e.target.value)}
-        />
-        <button type="submit">Add Attendance</button>
+        <div className="form-group">
+          <label>User:</label>
+          <select value={selectedUserId} onChange={(e) => setSelectedUserId(e.target.value)} required>
+            <option value="">Select a user</option>
+            {users.map((user) => (
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Date:</label>
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+        </div>
+
+        <div className="form-group">
+          <label>Sign In Time:</label>
+          <input type="time" value={signInTime} onChange={(e) => setSignInTime(e.target.value)} />
+        </div>
+
+        <div className="form-group">
+          <label>Sign Out Time:</label>
+          <input type="time" value={signOutTime} onChange={(e) => setSignOutTime(e.target.value)} />
+        </div>
+
+        <button className="submit-button" type="submit">Submit</button>
       </form>
+    </div>
     </div>
   );
 };

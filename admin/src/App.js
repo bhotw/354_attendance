@@ -6,7 +6,6 @@ import Dashboard from "./components/Dashboard";
 import RegisterTeamMember from "./components/RegisterTeamMember";
 import AddAdminUser from "./components/AddAdminUser";
 import AddAttendance from "./components/AddAttendance";
-import UpdateAttendance from "./components/UpdateAttendance";
 import ViewAttendance from "./components/ViewAttendance";
 import ViewTeam from "./components/ViewTeam";
 import Attendance from "./components/Attendance";
@@ -32,7 +31,6 @@ function App() {
         <Route path="/view-admin-user" element={<ViewAdminUsers />} />
         <Route path="/add-attendance" element={<AddAttendance />} />
         <Route path="/viewteam" element={<ViewTeam />} />
-        <Route path="/update-attendance" element={<UpdateAttendance />} />
         <Route path="/view-attendance" element={<ViewAttendance />} />
       </Routes>
     </Router>
