@@ -7,7 +7,7 @@ class Attendance(db.Model):
     date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     sign_in_time = db.Column(db.Time, nullable=True)
     sign_out_time = db.Column(db.Time, nullable=True)
-    days_hours = db.Column(db.Float, nullable=True)  # Total hours worked
+    days_hours = db.Column(db.Float, nullable=True)
 
     # Foreign key to User
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

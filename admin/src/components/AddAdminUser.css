@@ -1,8 +1,7 @@
 /* src/components/AddAdminUser.css */
 .add-admin-container {
   width: 100%;
- /* Slightly larger width for better spacing */
-  margin: 0px auto; /* Added top margin to ensure space from the navbar */
+  margin: 0px auto;
   margin-top: 35px;
   padding: 10px;
   background: #f7f7f7;
@@ -28,7 +27,7 @@ label {
 
 input {
   width: 100%;
-  padding: 12px; /* Increased padding for better spacing */
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;

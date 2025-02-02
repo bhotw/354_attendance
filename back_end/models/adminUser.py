@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class AdminUser(db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(255), nullable=False)  # Store hashed passwords
+    password_hash = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
 

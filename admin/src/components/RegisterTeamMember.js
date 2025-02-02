@@ -8,18 +8,18 @@ import "./RegisterTeamMember.css";
 const RegisterTeamMember = () => {
   const navigate = useNavigate();
 
-  // Check if admin is logged in
+
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (!isAuthenticated) {
-      navigate("/login"); // Redirect to login if not authenticated
+      navigate("/login");
     }
   }, [navigate]);
 
-  // Initialize form data with fields matching the User model
+
   const [formData, setFormData] = useState({
     name: "",
-    role: "Student", // Default role as "team_member"
+    role: "Student",
     email: "",
     phone_number: "",
     emergency_contact_name: "",
@@ -30,18 +30,18 @@ const RegisterTeamMember = () => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Handler for input changes
+
     const handleChange = (e) => {
       const { name, value } = e.target;
 
-      // Allow spaces in name and emergency contact name
+
       if (name === "name" || name === "emergency_contact_name") {
         setFormData((prevData) => ({
           ...prevData,
-          [name]: value, // Don't trim spaces for these fields
+          [name]: value,
         }));
       } else {
-        // Ensure phone fields are always strings and trim whitespace for other fields
+
         setFormData((prevData) => ({
           ...prevData,
           [name]: name.includes("phone") ? String(value) : value.trim(),
@@ -50,11 +50,11 @@ const RegisterTeamMember = () => {
     };
 
 
-  // Handler for form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token"); // Get the admin's token
+      const token = localStorage.getItem("token");
        if (!token) {
         alert("No valid token found. Please log in again.");
         return;
@@ -68,7 +68,7 @@ const RegisterTeamMember = () => {
         {
           headers: {
           "Content-Type": "application/json",
-           "Authorization": `Bearer ${token}`, // Pass the token in the request header
+           "Authorization": `Bearer ${token}`,
           },
         }
       );
@@ -83,8 +83,7 @@ const RegisterTeamMember = () => {
       alert("Failed to register team member.");
     }
   };
-//const username = localStorage.getItem("username");
-  // Inside your return statement
+
 return (
     <div>
     <Navbar/>

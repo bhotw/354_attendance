@@ -10,11 +10,10 @@ const AddAdminUser = () => {
     useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login"); // Redirect to login if not authenticated
+      navigate("/login");
     }
   }, [navigate]);
 
-  // State to handle form inputs
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -24,7 +23,6 @@ const AddAdminUser = () => {
 
   const [message, setMessage] = useState("");
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,7 +31,7 @@ const AddAdminUser = () => {
     }));
   };
 
-  // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
@@ -42,7 +40,7 @@ const AddAdminUser = () => {
     }
 
     try {
-      const token = localStorage.getItem("token"); // Admin token for authorization
+      const token = localStorage.getItem("token");
 
       if (!token) {
         alert("No valid token found. Please log in again.");

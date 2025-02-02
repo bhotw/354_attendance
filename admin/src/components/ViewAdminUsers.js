@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import "./ViewAdminUsers.css";  // Create a separate CSS file for styling
+import "./ViewAdminUsers.css";
 
 const ViewAdminUsers = () => {
   const [adminUsers, setAdminUsers] = useState([]);

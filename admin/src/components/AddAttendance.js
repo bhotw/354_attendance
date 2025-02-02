@@ -21,7 +21,7 @@ const AddAttendance = () => {
         const token = localStorage.getItem("token");
         const response = await api.get("/api/manual/users", {
         headers: {
-          Authorization: `Bearer ${token}`, // Pass the token in the headers
+          Authorization: `Bearer ${token}`,
         }
         });
         setUsers(response.data);
@@ -35,7 +35,7 @@ const AddAttendance = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  setMessage("");  // Clear any previous messages
+  setMessage("");
 
   const attendanceData = {
     user_id: selectedUserId,
@@ -51,17 +51,15 @@ const AddAttendance = () => {
       attendanceData,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // Pass the token in the headers
+          Authorization: `Bearer ${token}`,
         },
       }
     );
 
-    // If the attendance is added successfully
     setMessage("✅ Attendance record added successfully!");
   } catch (error) {
-    // Handle error by checking the error message returned from the backend
     if (error.response && error.response.data && error.response.data.message) {
-      setMessage(error.response.data.message); // Display message from backend if available
+      setMessage(error.response.data.message);
     } else {
       setMessage("❌ Failed to add attendance.");
     }

@@ -8,14 +8,14 @@ const ViewAttendance = () => {
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({ sign_in_time: "", sign_out_time: "" });
 
-  // Fetch attendance records
+
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const token = localStorage.getItem("token"); // Get token from localStorage
+        const token = localStorage.getItem("token");
         const response = await api.get("/api/view/view_attendance", {
           headers: {
-            Authorization: `Bearer ${token}`, // Pass the token in the headers
+            Authorization: `Bearer ${token}`,
           },
         });
         setAttendance(response.data);
@@ -27,18 +27,18 @@ const ViewAttendance = () => {
     fetchAttendance();
   }, []);
 
-  // Handle edit button click
+
   const handleEdit = (id, sign_in_time, sign_out_time) => {
     setEditingId(id);
     setEditData({ sign_in_time, sign_out_time });
   };
 
-  // Handle input changes
+
   const handleInputChange = (e) => {
     setEditData({ ...editData, [e.target.name]: e.target.value });
   };
 
-  // Save updated attendance record
+
   const handleSave = async (id) => {
     try {
       const token = localStorage.getItem("token"); // Get token from localStorage

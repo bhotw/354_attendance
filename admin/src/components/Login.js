@@ -1,13 +1,13 @@
 // src/components/Login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios
-import "./Login.css"; // Import the CSS file
+import axios from "axios";
+import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Define navigate function
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();

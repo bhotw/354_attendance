@@ -3,27 +3,27 @@
   max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  margin-top: 60px; /* Adjust top margin */
+  margin-top: 60px;
   padding: 10px;
   background: white;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  min-height: calc(100vh - 110px); /* Full screen height minus padding/margin */
+  min-height: calc(100vh - 110px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Anchor content to the top */
+  justify-content: flex-start;
 }
 
 h1 {
   color: #333;
-  font-size: 28px; /* Increase title size for better visibility */
+  font-size: 28px;
 }
 
 .admin-users-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Ensure even column distribution */
+  table-layout: fixed;
 }
 
 .admin-users-table th,
@@ -31,7 +31,7 @@ h1 {
   padding: 12px;
   border: 2px solid #ddd;
   text-align: center;
-  word-wrap: break-word; /* Prevent overflow in cells */
+  word-wrap: break-word;
 }
 
 .admin-users-table th {
@@ -47,34 +47,34 @@ h1 {
 @media screen and (max-width: 768px) {
   .admin-users-table {
     display: block;
-    overflow-x: auto; /* Allow horizontal scroll */
-    white-space: nowrap; /* Prevent text from breaking */
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   .admin-users-table th,
   .admin-users-table td {
     font-size: 14px;
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .view-admin-users-container {
-    padding: 15px; /* Reduce padding */
+    padding: 15px;
   }
 
   .admin-users-table th,
   .admin-users-table td {
-    font-size: 12px; /* Further reduce font size */
-    padding: 8px; /* Further reduce padding */
+    font-size: 12px;
+    padding: 8px;
   }
 
   h1 {
-    font-size: 24px; /* Adjust title font size for small screens */
+    font-size: 24px;
   }
 }
 @media (max-width: 768px) {
   .page-container {
-    padding: 15px; /* Reduce padding for smaller screens */
+    padding: 15px;
   }
 }

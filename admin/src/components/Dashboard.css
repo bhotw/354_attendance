@@ -10,15 +10,15 @@ body {
   font-family: Arial, sans-serif;
   background: #f4f4f9;
   color: #333;
-  height: 100%; /* Ensures the body takes full height of the viewport */
+  height: 100%;
 }
 
 .dashboard-container {
   padding: 2rem;
   max-width: 100%;
   margin: 0 auto;
-  margin-top: 0; /* Ensure it’s aligned at the top */
-  height: 100%; /* This ensures it fills the full height of the viewport */
+  margin-top: 0;
+  height: 100%;
 }
 
 .dashboard-container h1 {
@@ -65,7 +65,7 @@ body {
   line-height: 1.5;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .dashboard-card {
     flex: 1 1 calc(50% - 1.5rem);

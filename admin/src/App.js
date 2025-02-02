@@ -12,11 +12,7 @@ import Attendance from "./components/Attendance";
 import ViewAdminUsers from "./components/ViewAdminUsers";
 
 
-// Protected Route Component
-const PrivateRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" />;
-};
+
 
 function App() {
   return (

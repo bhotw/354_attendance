@@ -3,10 +3,10 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* Disable scrolling */
+  overflow: hidden;
 }
 
-/* Ensure the .page container takes the full height */
+
 .page {
   height: 100vh;
   width: 100vw;
@@ -19,12 +19,12 @@ html, body {
 }
 
 
-/* Navigation Bar */
+
 .navbar {
-  width: calc(100% - 25px); /* Reduces the width by 10px (5px on each side) */
+  width: calc(100% - 25px);
   position: fixed;
   top: 10px;
-  left: 10px; /* Adds 5px padding on the left */
+  left: 10px;
   background: #333;
   color: white;
   display: flex;
@@ -49,21 +49,21 @@ html, body {
   background: #530ba3;
 }
 
-/* Content Container (Fixed size, content changes) */
+
 .content-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
   max-width: 600px;
-  height: 300px; /* Fixed height to prevent shrinking */
+  height: 300px;
   margin-top: 60px;
   background: white;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Button Grid (Only visible when message is empty) */
+
 .button-grid {
   margin-top: 35px;
   display: flex;
@@ -74,7 +74,7 @@ html, body {
   height: 100%;
 }
 
-/* Buttons */
+
 .btn {
 
   width: 45%;
@@ -90,7 +90,7 @@ html, body {
   justify-content: center;
 }
 
-/* Button colors */
+
 .sign-in { background: green; color: white; }
 .sign-out { background: red; color: white; }
 .status { background: orange; color: white; }
@@ -101,7 +101,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Message Box (Same size as button grid) */
+
 .message-box {
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@ html, body {
   text-align: center;
 }
 
-/* Responsive Design */
+
 @media (max-width: 800px) {
   .content-container {
     width: 95%;

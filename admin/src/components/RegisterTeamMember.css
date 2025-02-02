@@ -1,6 +1,6 @@
 /* src/components/RegisterTeamMember.css */
 
-/* Reset and basic styles */
+
 * {
   box-sizing: border-box;
 }
@@ -11,7 +11,7 @@ body {
   margin: 0;
 }
 
-/* Container centering */
+
 .registration-container {
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@ body {
   padding: 40px 20px;
 }
 
-/* Registration box styling */
+
 .registration-box {
   background-color: #ffffff;
   padding: 30px;
@@ -35,16 +35,16 @@ body {
   color: #333333;
 }
 
-/* Form styling */
+
 form {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-/* Form group styling */
+
 .form-group {
-  flex: 1 1 300px; /* Grow, shrink, basis */
+  flex: 1 1 300px;
   display: flex;
   flex-direction: column;
 }
@@ -79,7 +79,7 @@ form {
   outline: none;
 }
 
-/* Submit button styling */
+
 .submit-button {
   width: 100%;
   background-color: #3f51b5;
@@ -97,7 +97,7 @@ form {
   background-color: #303f9f;
 }
 
-/* Responsive design */
+
 @media (max-width: 600px) {
   .form-group {
     flex: 1 1 100%;

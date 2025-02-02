@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Attendance.css";
 
 const Attendance = () => {
-  const [message, setMessage] = useState(""); // State to hold the message
+  const [message, setMessage] = useState("");
 
   const handleAction = (action) => {
     if (action === "signIn") {
@@ -14,19 +14,18 @@ const Attendance = () => {
     } else if (action === "bulkSignOut") {
       setMessage("Bulk sign-out in progress...");
     } else {
-      setMessage(""); // Reset to buttons if no action
+      setMessage("");
     }
   };
 
   return (
     <div className="page">
-      {/* Navigation Bar */}
       <div className="navbar">
         <button className="nav-button home" onClick={() => setMessage("")}>G-House 354 </button>
         <button className="nav-button admin"onClick={() => setMessage("")}>Home</button>
       </div>
 
-      {/* Button Container (Always same size) */}
+
       <div className="button-container">
         {message ? (
           <div className="message-box">

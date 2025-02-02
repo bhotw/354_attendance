@@ -5,7 +5,7 @@ class User(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     card_id = db.Column(db.BigInteger, unique=True)
     name = db.Column(db.String(100), nullable=False)
-    role = db.Column(db.String(50), nullable=False)  # e.g., "admin", "team_member"
+    role = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     emergency_contact_name = db.Column(db.String(100), nullable=True)
