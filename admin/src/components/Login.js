@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import api from "../axiosInstance";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
