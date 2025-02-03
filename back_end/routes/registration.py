@@ -47,7 +47,12 @@ def register_team_member():
         if existing_user:
             return jsonify({'status': 'error', 'message': 'Email already registered'}), 400
 
-        new_card_id = random.randint(1000000000, 9999999999)
+        new_card_id = int(input("Enter a card id 9253596703:"))
+        existing_card = User.query.filter_by(card_id=new_card_id).first()
+        print(existing_card)
+        if existing_card:
+            print('Card id already registered')
+            return jsonify({'status': 'card', 'message': 'Card id already registered. Submit again and try a new card.'}), 201
 
         # Create a new User object
         new_user = User(

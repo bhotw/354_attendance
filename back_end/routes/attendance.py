@@ -23,14 +23,16 @@ BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=40)
 
 @attendance_bp.route('/sign-in', methods=['POST'])
 def sign_in():
-    data = request.get_json()
-    card_id, card_name = reader.read()
 
-    if not rfid_card_id:
+    # card_id, card_name = reader.read()
+    card_id= input("Enter user id 9253596703:")
+    card_name = input("Enter user name test one:")
+
+    if not card_id:
         return jsonify({'status': 'error', 'message': 'RFID card ID is required'}), 400
 
     # Find the user with the given RFID card ID
-    user = User.query.filter_by(id=card_id).first()
+    user = User.query.filter_by(card_id=card_id).first()
 
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404
@@ -40,7 +42,7 @@ def sign_in():
     existing_record = Attendance.query.filter_by(user_id=user.id, date=today).first()
 
     if existing_record:
-        return jsonify({'status': 'error', 'message': 'Already signed in today'}), 400
+        return jsonify({'status': 'Message', 'message': 'Already signed in today'}), 400
 
     # Create a new attendance record with sign-in time
     now = datetime.now()
@@ -62,23 +64,25 @@ def sign_in():
 ### Sign-Out Route ###
 @attendance_bp.route('/sign-out', methods=['POST'])
 def sign_out():
-    data = request.get_json()
-    mentor_card_id = reader.read_id()
+    # mentor_card_id = reader.read_id()
+    mentor_card_id = int(input("Enter Mentor id 9253596703:"))
 
-    if not mentor_rfid_card_id:
+
+    if not mentor_card_id:
         return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
 
     # Verify mentor
-    mentor = User.query.filter_by(id=mentor_card_id, role='mentor').first()
+    mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
     if not mentor:
         return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
-    card_id, name = reader.read()
-    if not user_rfid_card_id:
+    # card_id, name = reader.read()
+    card_id, card_name = 9253596703, "test one"
+    if not card_id:
         return jsonify({'status': 'error', 'message': 'User RFID card ID is required'}), 400
 
     # Verify user
-    user = User.query.filter_by(id=card_id).first()
+    user = User.query.filter_by(card_id=card_id).first()
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404
 
@@ -89,12 +93,13 @@ def sign_out():
 ### Bulk Sign-Out Route ###
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
-    data = request.get_json()
 
-    mentor_rfid_card_id = data.get('mentor_rfid_card_id')
+    # mentor_card_id = reader.read_id()
+    mentor_card_id = 9253596703
 
-    if not user_rfid_card_id:
-        return jsonify({'status': 'error', 'message': 'User RFID card ID is required'}), 400
+    mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
+    if not mentor:
+        return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
     now = datetime.now()
     with bulk_sign_out_state['lock']:
@@ -105,11 +110,11 @@ def bulk_sign_out():
             mentor_verified = True
         else:
             # Need mentor authorization
-            if not mentor_rfid_card_id:
+            if not mentor_card_id:
                 return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
 
             # Verify mentor
-            mentor = User.query.filter_by(rfid_card_id=mentor_rfid_card_id, role='mentor').first()
+            mentor = User.query.filter_by(rfid_card_id=mentor_card_id, role='mentor').first()
             if not mentor:
                 return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
@@ -118,8 +123,9 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
 
     # Verify user
-    user_rfid_card_id = data.get('user_rfid_card_id')
-    user = User.query.filter_by(rfid_card_id=user_rfid_card_id).first()
+    # user_card_id, card_name = reader.read()
+
+    user = User.query.filter_by(card_id=user_card_id).first()
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404
 

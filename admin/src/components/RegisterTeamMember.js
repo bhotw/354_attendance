@@ -74,12 +74,15 @@ const RegisterTeamMember = () => {
       if (response.data.status === "success") {
         alert("Team member registered successfully!");
         navigate("/dashboard");
-      } else {
-        alert("Failed to register team member.");
+      } else if (response.data.status === "card"){
+        alert(response.data.message);
+      }
+       else {
+        alert(response.data.message);
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Failed to register team member.");
+      alert(error.response.data.msg);
     }
   };
 
@@ -89,6 +92,7 @@ return (
   <div className="registration-container">
     <div className="registration-box">
       <h2>Register Team Member</h2>
+      {message && <div className="message-box"><h3>{message}</h3></div>}
       <form onSubmit={handleSubmit}>
         {/* Name */}
         <div className="form-group">
