@@ -1,11 +1,11 @@
 
 
-# import time
-# import RPi.GPIO as GPIO
-# from mfrc522 import SimpleMFRC522
-#
-# GPIO.setwarnings(False)
-# reader = SimpleMFRC522()
+import time
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+GPIO.setwarnings(False)
+reader = SimpleMFRC522()
 
 
 
@@ -32,6 +32,7 @@ class ReaderClass:
         reader.write(data)
         print("Data writing is complete.")
 
+~~
     def get_time(self):
 
         year = str(time.strftime('%Y', time.localtime(time.time())))

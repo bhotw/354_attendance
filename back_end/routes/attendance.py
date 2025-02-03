@@ -24,9 +24,7 @@ BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=40)
 @attendance_bp.route('/sign-in', methods=['POST'])
 def sign_in():
 
-    # card_id, card_name = reader.read()
-    card_id= input("Enter user id 9253596703:")
-    card_name = input("Enter user name test one:")
+    card_id = reader.read_id()
 
     if not card_id:
         return jsonify({'status': 'error', 'message': 'RFID card ID is required'}), 400
@@ -64,8 +62,7 @@ def sign_in():
 ### Sign-Out Route ###
 @attendance_bp.route('/sign-out', methods=['POST'])
 def sign_out():
-    # mentor_card_id = reader.read_id()
-    mentor_card_id = int(input("Enter Mentor id 9253596703:"))
+    mentor_card_id = reader.read_id()
 
 
     if not mentor_card_id:
@@ -76,8 +73,8 @@ def sign_out():
     if not mentor:
         return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
-    # card_id, name = reader.read()
-    card_id, card_name = 9253596703, "test one"
+    card_id = reader.read_id()
+
     if not card_id:
         return jsonify({'status': 'error', 'message': 'User RFID card ID is required'}), 400
 
@@ -94,8 +91,8 @@ def sign_out():
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
 
-    # mentor_card_id = reader.read_id()
-    mentor_card_id = 9253596703
+    mentor_card_id = reader.read_id()
+
 
     mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
     if not mentor:
@@ -123,7 +120,7 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
 
     # Verify user
-    # user_card_id, card_name = reader.read()
+    user_card_id = reader.read_id()
 
     user = User.query.filter_by(card_id=user_card_id).first()
     if not user:
