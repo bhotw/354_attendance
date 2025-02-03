@@ -18,7 +18,7 @@ class ReaderClass:
 
     def read_id(self):
         reader_id = reader.read()
-	print("reader_id: ", reader_id) 
+	    print("reader_id: ", reader_id)
 
     def read(self):
         print("TAP to read Data!")
