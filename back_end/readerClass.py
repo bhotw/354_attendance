@@ -18,6 +18,7 @@ class ReaderClass:
 
     def read_id(self):
         reader_id = reader.read()
+	print("reader_id: ", reader_id) 
 
     def read(self):
         print("TAP to read Data!")
@@ -32,7 +33,7 @@ class ReaderClass:
         reader.write(data)
         print("Data writing is complete.")
 
-~~
+
     def get_time(self):
 
         year = str(time.strftime('%Y', time.localtime(time.time())))

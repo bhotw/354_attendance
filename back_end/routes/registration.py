@@ -48,6 +48,7 @@ def register_team_member():
             return jsonify({'status': 'error', 'message': 'Email already registered'}), 400
 
         new_card_id = reader.read_id()
+        print("new_card_id: ", new_card_id)
         existing_card = User.query.filter_by(card_id=new_card_id).first()
 
         if existing_card:
