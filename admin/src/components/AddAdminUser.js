@@ -1,9 +1,9 @@
 // src/components/AddAdminUser.js
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './AddAdminUser.css';
+import api from "../axiosInstance";
 
 const AddAdminUser = () => {
     const navigate = useNavigate();
@@ -47,8 +47,8 @@ const AddAdminUser = () => {
         return;
       }
 
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/add_admin_user",
+      const response = await api.post(
+        "/api/admin/add_admin_user",
         formData,
         {
           headers: {

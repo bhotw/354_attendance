@@ -54,9 +54,6 @@ const Navbar = () => {
               <Link to="/add-attendance" className="dropdown-item">
                 Add Attendance
               </Link>
-              <Link to="/update-attendance" className="dropdown-item">
-                Update Attendance
-              </Link>
             </div>
           )}
         </div>

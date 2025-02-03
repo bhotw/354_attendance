@@ -1,8 +1,8 @@
 // src/components/Login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./Login.css";
+import api from "../axiosInstance";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,20 +12,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+        const response = await api.post("/api/auth/login", { username, password });
 
-      const data = await response.json();
-      if (data.status === "success") {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.user.username);
-        navigate("/dashboard");
-      } else {
-        alert(data.message);
-      }
+        if (response.data.status === "success"){
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("username", response.data.user.username);
+            console.log(response.data);
+            navigate("/dashboard");
+        } else {
+            alert(response.data.message);
+        }
     } catch (error) {
       console.error("Login error:", error);
     }

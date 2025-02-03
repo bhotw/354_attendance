@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "axios";
+import api from "../axiosInstance";
 import "./ViewTeam.css";
 
 const ViewTeam = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTeamMembers();
@@ -16,7 +17,10 @@ const ViewTeam = () => {
   const fetchTeamMembers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/team/viewteam", {
+      if (!token) {
+        navigate("/login");
+        }
+      const response = await api.get("/api/team/viewteam", {
         headers: { "Authorization": `Bearer ${token}` },
       });
       setTeamMembers(response.data.team_members);
@@ -37,7 +41,7 @@ const ViewTeam = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/team/viewteam/${editingUser}`, formData, {
+      await api.put(`/api/team/viewteam/${editingUser}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

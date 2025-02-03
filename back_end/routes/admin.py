@@ -4,31 +4,32 @@ from datetime import datetime
 from extensions import db
 from models.attendance import Attendance
 from models.user import User
+from flask_jwt_extended import jwt_required
 
 admin_bp = Blueprint('admin', __name__)
 
 # Middleware to authenticate token
-def authenticate_token(func):
-    def wrapper(*args, **kwargs):
-        token = request.headers.get('Authorization')
-        if not token:
-            return jsonify({"message": "Access denied"}), 401
-
-        try:
-            decoded = jwt.decode(token, 'your-secret-key', algorithms=["HS256"])
-            request.user_id = decoded['user_id']
-        except jwt.ExpiredSignatureError:
-            return jsonify({"message": "Token has expired"}), 403
-        except jwt.InvalidTokenError:
-            return jsonify({"message": "Invalid token"}), 403
-
-        return func(*args, **kwargs)
-
-    wrapper.__name__ = func.__name__
-    return wrapper
+# def authenticate_token(func):
+#     def wrapper(*args, **kwargs):
+#         token = request.headers.get('Authorization')
+#         if not token:
+#             return jsonify({"message": "Access denied"}), 401
+#
+#         try:
+#             decoded = jwt.decode(token, 'your-secret-key', algorithms=["HS256"])
+#             request.user_id = decoded['user_id']
+#         except jwt.ExpiredSignatureError:
+#             return jsonify({"message": "Token has expired"}), 403
+#         except jwt.InvalidTokenError:
+#             return jsonify({"message": "Invalid token"}), 403
+#
+#         return func(*args, **kwargs)
+#
+#     wrapper.__name__ = func.__name__
+#     return wrapper
 
 @admin_bp.route('/viewattendance', methods=['GET'])
-@authenticate_token
+@jwt_required()
 def view_attendance():
     user_id = request.user_id
     attendances = Attendance.query.filter_by(user_id=user_id).all()
@@ -46,7 +47,7 @@ def view_attendance():
     return jsonify(attendance_list)
 
 @admin_bp.route('/mark-attendance', methods=['POST'])
-@authenticate_token
+@jwt_required()
 def mark_attendance():
     user_id = request.user_id
     data = request.get_json()

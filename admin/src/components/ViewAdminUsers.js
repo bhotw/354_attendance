@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "axios";
+import api from "../axiosInstance";
 import "./ViewAdminUsers.css";
 
 const ViewAdminUsers = () => {
   const [adminUsers, setAdminUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchAdminUsers = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          alert("No valid token found. Please log in.");
-          return;
+            navigate("/login");
         }
-
-        const response = await axios.get("http://localhost:5000/api/admin/view_admin_users", {
+        const response = await api.get("api/admin/view_admin_users", {
           headers: {
             "Authorization": `Bearer ${token}`,
           },
@@ -29,7 +29,6 @@ const ViewAdminUsers = () => {
         }
       } catch (error) {
         console.error("Error fetching admin users:", error);
-        alert("Error fetching admin users.");
       } finally {
         setLoading(false);
       }

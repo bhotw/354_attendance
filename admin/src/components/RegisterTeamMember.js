@@ -1,7 +1,7 @@
 // src/components/RegisterTeamMember.js
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios";
+import api from "../axiosInstance";
 import { useNavigate, navigate } from "react-router-dom";
 import "./RegisterTeamMember.css";
 
@@ -10,8 +10,8 @@ const RegisterTeamMember = () => {
 
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAuthenticated");
-    if (!isAuthenticated) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/login");
     }
   }, [navigate]);
@@ -62,12 +62,11 @@ const RegisterTeamMember = () => {
       setMessage("Please Tap a new card for the new member.")
       setIsLoading(true);
 
-      const response = await axios.post(
-        "http://localhost:5000/api/register_team_member",
+      const response = await api.post(
+        "api/register_team_member",
         formData,
         {
           headers: {
-          "Content-Type": "application/json",
            "Authorization": `Bearer ${token}`,
           },
         }

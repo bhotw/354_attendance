@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, navigate } from "react-router-dom";
 import api from "../axiosInstance";
 import "../components/ViewAttendance.css";
 import Navbar from "../components/Navbar";
@@ -7,12 +8,16 @@ const ViewAttendance = () => {
   const [attendance, setAttendance] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({ sign_in_time: "", sign_out_time: "" });
+  const navigate = useNavigate();
 
 
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
         const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login")
+        }
         const response = await api.get("/api/view/view_attendance", {
           headers: {
             Authorization: `Bearer ${token}`,

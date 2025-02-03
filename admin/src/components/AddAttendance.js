@@ -1,8 +1,7 @@
 //components/AddAttendance.js
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, navigate } from "react-router-dom";
 import api from "../axiosInstance";
 import './AddAdminUser.css';
 
@@ -14,11 +13,15 @@ const AddAttendance = () => {
   const [signInTime, setSignInTime] = useState("");
   const [signOutTime, setSignOutTime] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
+        if(!token){
+            navigate("/login");
+        }
         const response = await api.get("/api/manual/users", {
         headers: {
           Authorization: `Bearer ${token}`,
