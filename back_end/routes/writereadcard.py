@@ -54,7 +54,7 @@ def read_card():
 def read_user():
     try:
         card_id = reader.read_id()
-
+        reader.destroy()
         if not card_id:
             return jsonify({"status": "error", "message": "Need a valid card id."}), 400
         user = User.query.filter_by(card_id=card_id)
@@ -64,4 +64,5 @@ def read_user():
         return jsonify(user)
 
     except Exception as e:
+        print(e)
         return jsonify({"status": "error", "message": str(e)}), 500
