@@ -86,6 +86,9 @@ const Navbar = () => {
               <Link to="/readcard" className="dropdown-item">
                 Read Card
               </Link>
+              <Link to="/readusercard" className="dropdown-item">
+                Read User Card
+              </Link>
               <Link to="/addcard" className="dropdown-item">
                 Add Card
               </Link>
