@@ -17,22 +17,20 @@ class ReaderClass:
         print("reader clean")
 
     def read_id(self):
+        print("Tap a Card!")
         reader_id = reader.read_id()
-        print("reader_id: ", reader_id)
         return reader_id
 	
     def read(self):
         print("TAP to read Data!")
         reader_id, name = reader.read()
 
-        print(reader_id, ": ", name)
         return reader_id, name
 
     def write(self, data):
-
-        print("TAP to write new Data!")
+        print("Tap a Card to write!")
         reader.write(data)
-        print("Data writing is complete.")
+        return ["success", data]
 
 
     def get_time(self):

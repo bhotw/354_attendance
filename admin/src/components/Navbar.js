@@ -1,5 +1,4 @@
-// src/components/Navbar.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
@@ -8,12 +7,29 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isAttendanceDropdownOpen, setIsAttendanceDropdownOpen] = useState(false);
   const [isTeamDropdownOpen, setIsTeamDropdownOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-    const username = localStorage.getItem("username");
+
+  const username = localStorage.getItem("username");
+
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -22,25 +38,19 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-right">
-        <span className="username">{username}</span>
-        <div className="dropdown">
-          <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="dropdown-toggle">
-            ▼
-          </button>
-          {isDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/view-admin-user" className="dropdown-item">
-                View Admin Users
-              </Link>
-              <Link to="/add-admin-user" className="dropdown-item">
-                Add Admin User
-              </Link>
-              <button onClick={handleLogout} className="dropdown-item">
-                Log Out
-              </button>
-            </div>
-          )}
-        </div>
+        {isDropdownOpen && (
+          <div className="dropdown-menu">
+            <Link to="/view-admin-user" className="dropdown-item">
+              View Admin Users
+            </Link>
+            <Link to="/add-admin-user" className="dropdown-item">
+              Add Admin User
+            </Link>
+            <button onClick={handleLogout} className="dropdown-item">
+              Log Out
+            </button>
+          </div>
+        )}
 
         <div className="dropdown">
           <button onClick={() => setIsAttendanceDropdownOpen(!isAttendanceDropdownOpen)} className="dropdown-toggle">
@@ -70,8 +80,24 @@ const Navbar = () => {
               <Link to="/register-team-member" className="dropdown-item">
                 Register Team Member
               </Link>
+              <Link to="/writetocard" className="dropdown-item">
+                Write to Card
+              </Link>
+              <Link to="/readcard" className="dropdown-item">
+                Read Card
+              </Link>
+              <Link to="/addcard" className="dropdown-item">
+                Add Card
+              </Link>
             </div>
           )}
+        </div>
+
+        <span className="username">{username}</span>
+        <div className="dropdown">
+          <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="dropdown-toggle">
+            ▼
+          </button>
         </div>
       </div>
     </nav>

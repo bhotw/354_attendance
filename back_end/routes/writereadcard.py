@@ -1,0 +1,65 @@
+from flask import Blueprint, request, jsonify
+from readerClass import ReaderClass
+from extensions import db
+from models.user import User
+from flask_jwt_extended import jwt_required
+
+card_bp = Blueprint("card", __name__, url_prefix="/api/card")
+
+reader = ReaderClass()
+
+
+@card_bp.route("/write", methods=["POST"])
+@jwt_required()
+def write_card():
+    try:
+        data = request.get_json()
+        name = data.get("name")
+
+        if not name:
+            return jsonify({"status": "error", "message": "Name is required"}), 400
+
+        success, message = reader.write(name)
+
+        if success:
+            return jsonify({"status": "success", "message": message}), 200
+        else:
+            return jsonify({"status": "error", "message": message}), 500
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@card_bp.route("/read", methods=["GET"])
+@jwt_required()
+def read_card():
+    try:
+        card_id, card_name = reader.read()
+
+        if not card_id:
+            return jsonify({"status": "error", "message": ""}), 400
+        if not card_name:
+            return jsonify({"status": "error", "message": "Name is required"}), 400
+        if card_id and card_name:
+            return jsonify({"status": "success", "card_id": card_id, "name": card_name})
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@card_bp.route("/read_user", methods=["GET"])
+@jwt_required()
+def read_user():
+    try:
+        card_id = reader.read_id()
+        if not card_id:
+            return jsonify({"status": "error", "message": "Need a valid card id."}), 400
+        user = User.query.filter_by(card_id=card_id)
+
+        if not user:
+            return jsonify({"status": "error", "message": "Card is not in our team."}), 400
+
+        return jsonify(user)
+
+    except Excepation as e:
+        return jsonify({"status": "error", "message": str(e)}), 500

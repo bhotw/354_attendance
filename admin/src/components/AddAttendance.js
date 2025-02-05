@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate, navigate } from "react-router-dom";
 import api from "../axiosInstance";
-import './AddAdminUser.css';
+import './AddAttendance.css';
 
 
 const AddAttendance = () => {
@@ -37,37 +37,37 @@ const AddAttendance = () => {
   }, []);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setMessage("");
+      e.preventDefault();
+      setMessage("");
 
-  const attendanceData = {
-    user_id: selectedUserId,
-    date,
-    sign_in_time: signInTime,
-    sign_out_time: signOutTime,
-  };
+      const attendanceData = {
+        user_id: selectedUserId,
+        date,
+        sign_in_time: signInTime,
+        sign_out_time: signOutTime,
+      };
 
-  try {
-    const token = localStorage.getItem("token");
-    const response = await api.post(
-      "/api/manual/add_attendance",
-      attendanceData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      try {
+        const token = localStorage.getItem("token");
+        const response = await api.post(
+          "/api/manual/add_attendance",
+          attendanceData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setMessage("✅ Attendance record added successfully!");
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+          setMessage(error.response.data.message);
+        } else {
+          setMessage("❌ Failed to add attendance.");
+        }
+        console.error("Error submitting attendance:", error);
       }
-    );
-
-    setMessage("✅ Attendance record added successfully!");
-  } catch (error) {
-    if (error.response && error.response.data && error.response.data.message) {
-      setMessage(error.response.data.message);
-    } else {
-      setMessage("❌ Failed to add attendance.");
-    }
-    console.error("Error submitting attendance:", error);
-  }
 };
 
   return (

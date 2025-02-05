@@ -1,25 +1,4 @@
-/* src/components/Navbar.css */
-.navbar {
-    max-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border-radius: 10px;
-}
-
-
-.navbar-left {
-  font-size: 20px;
-}
-
-.navbar-logo {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+/* .navbar styles remain the same */
 
 .navbar-right {
   display: flex;
@@ -31,11 +10,13 @@
   font-size: 16px;
 }
 
+/* Hover effect to show dropdown */
 .dropdown {
   position: relative;
   margin-left: 20px;
 }
 
+/* Dropdown button styles */
 .dropdown-toggle {
   background-color: #333;
   color: white;
@@ -44,6 +25,7 @@
   font-size: 16px;
 }
 
+/* Initially hide the dropdown menu */
 .dropdown-menu {
   position: absolute;
   top: 30px;
@@ -54,8 +36,15 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   min-width: 150px;
   padding: 10px 0;
+  display: none;  /* Hidden by default */
 }
 
+/* Show the dropdown menu when hovering over the dropdown button */
+.dropdown:hover .dropdown-menu {
+  display: block; /* Show dropdown */
+}
+
+/* Dropdown item styles */
 .dropdown-item {
   padding: 8px 15px;
   display: block;
@@ -68,6 +57,7 @@
   color: white;
 }
 
+/* Remove any default button styling */
 button {
   background: none;
   border: none;

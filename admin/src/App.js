@@ -10,6 +10,10 @@ import ViewAttendance from "./components/ViewAttendance";
 import ViewTeam from "./components/ViewTeam";
 import Attendance from "./components/Attendance";
 import ViewAdminUsers from "./components/ViewAdminUsers";
+import WriteToCard from "./components/WriteToCard";
+import ReadCard from "./components/ReadCard";
+import ReadUserCard from "./components/ReadUserCard";
+import AddCard from "./components/AddCard";
 
 
 
@@ -28,6 +32,11 @@ function App() {
         <Route path="/add-attendance" element={<AddAttendance />} />
         <Route path="/viewteam" element={<ViewTeam />} />
         <Route path="/view-attendance" element={<ViewAttendance />} />
+        <Route path="/writetocard" element={<WriteToCard />} />
+        <Route path="/readcard" element={<ReadCard />} />
+        <Route path="/readusercard" element={<ReadUserCard />} />
+        <Route path="./addcard" element={<AddCard />} />
+
       </Routes>
     </Router>
   );
