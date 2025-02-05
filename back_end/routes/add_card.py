@@ -3,6 +3,7 @@ from extensions import db
 from models.user import User
 from flask_jwt_extended import jwt_required
 from readerClass import ReaderClass
+from sqlalchemy.exc import IntegrityError
 
 reader = ReaderClass()
 add_card_bp = Blueprint("add_card", __name__, url_prefix="/api/add_card")
