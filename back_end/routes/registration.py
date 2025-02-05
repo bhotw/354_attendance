@@ -71,7 +71,7 @@ def register_team_member():
         # Commit to the database
         db.session.add(new_user)
         db.session.commit()
-        reader.destory()
+        reader.destroy()
         return jsonify({'status': 'success', 'message': 'Team member registered successfully'}), 201
 
     except Exception as e:
