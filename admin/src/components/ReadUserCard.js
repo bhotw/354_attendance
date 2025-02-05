@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../axiosInstance";
 import "./ReadUserCard.css";
+import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 const ReadUserCard = () => {
@@ -49,6 +50,8 @@ const ReadUserCard = () => {
     };
 
   return (
+  <div>
+  <Navbar />
     <div className="read-user-card">
       <h2>Read User RFID Card</h2>
       <p className="status-message">{message}</p>
@@ -71,6 +74,7 @@ const ReadUserCard = () => {
         </div>
       )}
     </div>
+   </div>
   );
 };
 
