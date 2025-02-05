@@ -61,5 +61,5 @@ def read_user():
 
         return jsonify(user)
 
-    except Excepation as e:
+    except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500

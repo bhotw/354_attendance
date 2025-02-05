@@ -19,6 +19,7 @@ def get_attendance():
             "date": record.date.strftime("%Y-%m-%d"),
             "sign_in_time": record.sign_in_time.strftime("%H:%M") if record.sign_in_time else None,
             "sign_out_time": record.sign_out_time.strftime("%H:%M") if record.sign_out_time else None,
+            "days_hours": record.days_hours,
         }
         for record in attendance_records
     ]
