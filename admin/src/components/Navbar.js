@@ -38,20 +38,6 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-right">
-        {isDropdownOpen && (
-          <div className="dropdown-menu">
-            <Link to="/view-admin-user" className="dropdown-item">
-              View Admin Users
-            </Link>
-            <Link to="/add-admin-user" className="dropdown-item">
-              Add Admin User
-            </Link>
-            <button onClick={handleLogout} className="dropdown-item">
-              Log Out
-            </button>
-          </div>
-        )}
-
         <div className="dropdown">
           <button onClick={() => setIsAttendanceDropdownOpen(!isAttendanceDropdownOpen)} className="dropdown-toggle">
             Attendance
@@ -101,6 +87,19 @@ const Navbar = () => {
           <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="dropdown-toggle">
             ▼
           </button>
+          {isDropdownOpen && (
+          <div className="dropdown-menu">
+            <Link to="/view-admin-user" className="dropdown-item">
+              View Admin Users
+            </Link>
+            <Link to="/add-admin-user" className="dropdown-item">
+              Add Admin User
+            </Link>
+            <button onClick={handleLogout} className="dropdown-item">
+              Log Out
+            </button>
+          </div>
+        )}
         </div>
       </div>
     </nav>
