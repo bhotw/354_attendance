@@ -75,7 +75,7 @@ def read_user():
             "parents_email": user.parents_email,
         }
 
-        return jsonify({"status": "success", "team_members": user_data}), 200
+        return jsonify({"status": "success", "user": user_data}), 200
 
     except Exception as e:
         print(e)
