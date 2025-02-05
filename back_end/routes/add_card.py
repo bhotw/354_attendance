@@ -43,6 +43,10 @@ def add_new_card():
         return jsonify(
             {"status": "success", "message": f"Card ID {card_id} successfully assigned to user {user.name}"}), 200
 
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback changes to prevent corruption
+        return jsonify({"status": "error", "message": "Card ID already exists. Please use a different card."}), 400
+
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
