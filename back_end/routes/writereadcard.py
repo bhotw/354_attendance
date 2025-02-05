@@ -58,10 +58,23 @@ def read_user():
         if not card_id:
             return jsonify({"status": "error", "message": "Need a valid card id."}), 400
         user = User.query.filter_by(card_id=card_id)
+
         if not user:
             return jsonify({"status": "error", "message": "Card is not in our team."}), 400
 
-        return jsonify(user)
+        user_data = {
+            "id": user.id,
+            "card_id": user.card_id,
+            "name": user.name,
+            "role": user.role,
+            "email": user.email,
+            "phone_number": user.phone_number,
+            "emergency_contact_name": user.emergency_contact_name,
+            "emergency_contact_phone": user.emergency_contact_phone,
+            "parents_email": user.parents_email,
+        }
+
+        return jsonify({"status": "success", "team_members": user_data}), 200
 
     except Exception as e:
         print(e)

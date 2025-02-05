@@ -59,6 +59,7 @@ const ReadUserCard = () => {
 
       {userData && (
         <div className="user-info">
+          <p><strong>Name:</strong> {userData.id}</p>
           <p><strong>Name:</strong> {userData.name}</p>
           <p><strong>Role:</strong> {userData.role}</p>
           <p><strong>Email:</strong> {userData.email}</p>
