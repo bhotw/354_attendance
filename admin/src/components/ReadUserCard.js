@@ -17,35 +17,37 @@ const ReadUserCard = () => {
     }
   }, [navigate]);
 
-  const handleRead = async () => {
-    setIsReading(true);
-    setMessage("Waiting for card... Tap now.");
+    const handleRead = async () => {
+      setIsReading(true);
+      setMessage("Waiting for card... Tap now.");
 
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
 
-      const response = await api.get("/api/card/read_user", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+        const response = await api.get("/api/card/read_user", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      if (response.data.status === "success") {
-        setUserData(response.data);
-        setMessage("User details retrieved successfully!");
-      } else {
-        setMessage("Error: Card is not in our team.");
+        if (response.data.status === "success") {
+          setUserData(response.data.user);
+          setMessage("User details retrieved successfully!");
+        } else {
+          setMessage("Error: Card is not in our team.");
+          setUserData(null);
+        }
+      } catch (error) {
+        console.error("Read user card error:", error);
+        setMessage(`Error: ${error.response?.data?.message || "Server error"}`);
         setUserData(null);
+      } finally {
+        setIsReading(false);
       }
-    } catch (error) {
-      console.error("Read user card error:", error);
-      setMessage(`Error: ${error.response?.data?.message || "Server error"}`);
-      setUserData(null);
-    } finally {
-      setIsReading(false);
-    }
+    };
+
   };
 
   return (
