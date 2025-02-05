@@ -82,7 +82,6 @@ const Navbar = () => {
           )}
         </div>
 
-        <span className="username">{username}</span>
         <div className="dropdown">
           <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="dropdown-toggle">
           <span className="username">{username}</span>
