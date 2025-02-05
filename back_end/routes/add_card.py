@@ -24,7 +24,6 @@ def add_new_card():
 
     user = User.query.filter_by(id=user_id).first()
     user_name = user.name
-    print(user_name)
     reader.write(user_name)
 
 

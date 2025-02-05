@@ -47,6 +47,7 @@ def register_team_member():
         if existing_user:
             return jsonify({'status': 'error', 'message': 'Email already registered'}), 400
 
+        reader.write(name)
         new_card_id = reader.read_id()
         print("new_card_id: ", new_card_id)
         existing_card = User.query.filter_by(card_id=new_card_id).first()
@@ -70,7 +71,7 @@ def register_team_member():
         # Commit to the database
         db.session.add(new_user)
         db.session.commit()
-
+        reader.destory()
         return jsonify({'status': 'success', 'message': 'Team member registered successfully'}), 201
 
     except Exception as e:
