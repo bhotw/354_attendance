@@ -19,10 +19,10 @@ def write_card():
         if not name:
             return jsonify({"status": "error", "message": "Name is required"}), 400
 
-        success, message = reader.write(name)
+        card_id, card_name = reader.write(name)
 
-        if success:
-            return jsonify({"status": "success", "message": message}), 200
+        if card_id and card_name:
+            return jsonify({"status": "success", "card_id": card_id, "card_name": card_name}), 200
         else:
             return jsonify({"status": "error", "message": message}), 500
 

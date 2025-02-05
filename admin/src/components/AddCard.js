@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axiosInstance";
 import './AddCard.css';
+import Navbar from "../components/Navbar";
 
 const AddCard = () => {
   const [users, setUsers] = useState([]);
@@ -71,6 +72,8 @@ const AddCard = () => {
   };
 
   return (
+  <div>
+  <Navbar />
     <div className="add-card-container">
       <h2>Add New Card</h2>
 
@@ -103,6 +106,7 @@ const AddCard = () => {
           <p><strong>Card ID:</strong> {cardId}</p>
         </div>
       )}
+    </div>
     </div>
   );
 };

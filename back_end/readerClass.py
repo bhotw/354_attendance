@@ -29,8 +29,8 @@ class ReaderClass:
 
     def write(self, data):
         print("Tap a Card to write!")
-        reader.write(data)
-        return ["success", data]
+        id, name = reader.write(data)
+        return id, name
 
 
     def get_time(self):

@@ -35,7 +35,7 @@ function App() {
         <Route path="/writetocard" element={<WriteToCard />} />
         <Route path="/readcard" element={<ReadCard />} />
         <Route path="/readusercard" element={<ReadUserCard />} />
-        <Route path="./addcard" element={<AddCard />} />
+        <Route path="/addcard" element={<AddCard />} />
 
       </Routes>
     </Router>
