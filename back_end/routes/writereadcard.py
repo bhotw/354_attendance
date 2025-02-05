@@ -20,6 +20,7 @@ def write_card():
             return jsonify({"status": "error", "message": "Name is required"}), 400
 
         card_id, card_name = reader.write(name)
+        reader.destroy()
 
         if card_id and card_name:
             return jsonify({"status": "success", "card_id": card_id, "card_name": card_name}), 200
@@ -35,6 +36,7 @@ def write_card():
 def read_card():
     try:
         card_id, card_name = reader.read()
+        reader.destroy()
 
         if not card_id:
             return jsonify({"status": "error", "message": ""}), 400
@@ -52,6 +54,7 @@ def read_card():
 def read_user():
     try:
         card_id = reader.read_id()
+        reader.destroy()
         if not card_id:
             return jsonify({"status": "error", "message": "Need a valid card id."}), 400
         user = User.query.filter_by(card_id=card_id)

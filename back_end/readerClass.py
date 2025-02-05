@@ -1,5 +1,4 @@
 
-
 import time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
@@ -46,6 +45,3 @@ class ReaderClass:
         current_date = month + '-' + day + '-' + year
 
         return current_date, current_time
-
-
- 

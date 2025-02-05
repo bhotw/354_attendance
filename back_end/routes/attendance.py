@@ -53,9 +53,11 @@ def sign_in():
     try:
         db.session.add(new_attendance)
         db.session.commit()
+        reader.destroy()
         return jsonify({'status': 'success', 'message': f'{user.name} signed in successfully'}), 200
     except SQLAlchemyError:
         db.session.rollback()
+        reader.destroy()
         return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
 
 
@@ -64,7 +66,7 @@ def sign_in():
 def sign_out():
     mentor_card_id = reader.read_id()
 
-
+    reader.destroy()
     if not mentor_card_id:
         return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
 
@@ -74,7 +76,7 @@ def sign_out():
         return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
     card_id = reader.read_id()
-
+    reader.destroy()
     if not card_id:
         return jsonify({'status': 'error', 'message': 'User RFID card ID is required'}), 400
 
@@ -92,7 +94,7 @@ def sign_out():
 def bulk_sign_out():
 
     mentor_card_id = reader.read_id()
-
+    reader.destroy()
 
     mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
     if not mentor:
@@ -121,7 +123,7 @@ def bulk_sign_out():
 
     # Verify user
     user_card_id = reader.read_id()
-
+    reader.destroy()
     user = User.query.filter_by(card_id=user_card_id).first()
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404

@@ -22,6 +22,7 @@ def add_new_card():
     user_id = data.get("user_id")
     card_id = reader.read_id()
 
+
     if not user_id or not card_id:
         return jsonify({"error": "Missing required fields"}), 400
 
@@ -34,7 +35,7 @@ def add_new_card():
         user.card_id = card_id
 
         db.session.commit()
-
+        reader.destroy()
         return jsonify(
             {"status": "success", "message": f"Card ID {card_id} successfully assigned to user {user.name}"}), 200
 
