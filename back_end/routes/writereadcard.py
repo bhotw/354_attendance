@@ -61,6 +61,7 @@ def read_user():
 
         if not user:
             return jsonify({"status": "error", "message": "Card is not in our team."}), 400
+        print(user)
 
         user_data = {
             "id": user.id,
