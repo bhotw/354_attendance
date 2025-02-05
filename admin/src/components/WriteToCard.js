@@ -27,6 +27,10 @@ const WriteToCard = ({ onComplete }) => {
     setMessage("Waiting for card... Tap now.");
 
     try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+        }
       const response = await api.post(
         "/api/card/write",
         { name },
@@ -34,8 +38,8 @@ const WriteToCard = ({ onComplete }) => {
       );
 
       if (response.data.status === "success") {
-        card_id = response.data.card_id
-        card_name = response.data.card_name
+        const card_id = response.data.card_id;
+        const card_name = response.data.card_name;
         setMessage(`Success! "${card_name}" written to the "${card_id}".`);
 
       } else {

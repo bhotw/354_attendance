@@ -76,6 +76,7 @@ const ViewAttendance = () => {
               <th>Date</th>
               <th>Sign In Time</th>
               <th>Sign Out Time</th>
+              <th>Days Hours</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -109,6 +110,7 @@ const ViewAttendance = () => {
                     record.sign_out_time || "—"
                   )}
                 </td>
+                <td>{record.days_hours}</td>
                 <td>
                   {editingId === record.id ? (
                     <button className="save-btn" onClick={() => handleSave(record.id)}>Save</button>
