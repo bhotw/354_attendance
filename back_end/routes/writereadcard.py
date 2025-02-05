@@ -57,7 +57,7 @@ def read_user():
         reader.destroy()
         if not card_id:
             return jsonify({"status": "error", "message": "Need a valid card id."}), 400
-        user = User.query.filter_by(card_id=card_id)
+        user = User.query.filter_by(card_id=card_id).first()
 
         if not user:
             return jsonify({"status": "error", "message": "Card is not in our team."}), 400
