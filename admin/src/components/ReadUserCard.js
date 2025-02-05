@@ -48,8 +48,6 @@ const ReadUserCard = () => {
       }
     };
 
-  };
-
   return (
     <div className="read-user-card">
       <h2>Read User RFID Card</h2>
