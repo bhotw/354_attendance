@@ -22,6 +22,11 @@ def add_new_card():
     user_id = data.get("user_id")
     card_id = reader.read_id()
 
+    user = User.query.filter_by(id=user_id).first()
+    user_name = user.name
+    print(name)
+    reader.write(user_name)
+
 
     if not user_id or not card_id:
         return jsonify({"error": "Missing required fields"}), 400
