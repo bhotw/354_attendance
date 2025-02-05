@@ -16,6 +16,7 @@ from routes.view_admin_users import view_admin_user_bp
 from routes.add_attendance import add_attendance_bp
 from routes.view_attendance import view_attendance_bp
 from routes.writereadcard import card_bp
+from routes.add_card import add_card_bp
 
 
 app = Flask(__name__)
@@ -39,6 +40,7 @@ app.register_blueprint(view_attendance_bp, url_prefix="/api/view")
 app.register_blueprint(team_member_bp, url_prefix="/api")
 app.register_blueprint(attendance_bp, url_prefix="/api/attendance")
 app.register_blueprint(card_bp, url_prefix="/api/card")
+app.register_blueprint(add_card_bp, url_prefix="/api/add_card")
 
 
 if __name__ == "__main__":
