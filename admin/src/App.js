@@ -14,6 +14,7 @@ import WriteToCard from "./components/WriteToCard";
 import ReadCard from "./components/ReadCard";
 import ReadUserCard from "./components/ReadUserCard";
 import AddCard from "./components/AddCard";
+import AttendancePerPerson from "./components/AttendancePerPerson";
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/readcard" element={<ReadCard />} />
         <Route path="/readusercard" element={<ReadUserCard />} />
         <Route path="/addcard" element={<AddCard />} />
+        <Route path="/attendanceperperson" element={<AttendancePerPerson />} />
 
       </Routes>
     </Router>

@@ -1,0 +1,174 @@
+.attendance-per-person-container {
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.user-select {
+  max-width: 100%;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.attendance-table th
+{
+  padding: 12px;
+  border: 2px solid #ddd;
+  text-align: center;
+  word-wrap: break-word;
+}
+.attendance-table td {
+  padding: 5px;
+  border: 2px solid #ddd;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.attendance-table th {
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+}
+
+input {
+  width: 90%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.edit-btn,
+.delete-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-flex;  
+  align-items: center;   
+  justify-content: center; 
+  padding: 4px 8px;
+  font-size: 16px;
+}
+.save-btn{
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-flex;  
+  align-items: center;   
+  justify-content: center;
+  font-size: 16px;
+}
+
+.edit-btn i, .delete-btn i {
+  font-size: 14px; 
+}
+
+.save-btn i {
+  font-size: 22px;  
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background: #0056b3;  /* Hover effect */
+}
+.save-btn:hover{
+  background: green;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;  /* Red background for delete */
+}
+
+.delete-btn:hover {
+  background-color: #e60000;  /* Darker red when hovered */
+}
+.button-wrapper {
+  padding: 0px;
+  display: flex;
+  flex-direction: row; /* Layout buttons in a row */
+  justify-content: center; /* Center the buttons horizontally (optional) */
+  align-items: center; /* Vertically align the buttons */
+  gap: 0px; /* Add spacing between the buttons */
+}
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 100%) {
+  .attendance-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .attendance-table th,
+  .attendance-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .edit-btn,
+  .save-btn {
+    padding: 4px 8px;
+  }
+
+  .user-select {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .attendance-per-person-container {
+    padding: 15px;
+  }
+
+  .attendance-table th,
+  .attendance-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .edit-btn,
+  .save-btn {
+    padding: 4px 6px;
+  }
+
+  .user-select {
+    width: 90%;
+  }
+}
