@@ -55,32 +55,32 @@ const Attendance = () => {
 
   return (
     <div className="page">
-      <div className="navbar">
-        <button className="nav-button home" onClick={() => setMessage("")}>
+      <div className="navbar-atten">
+        <button className="nav-logo" onClick={() => setMessage("")}>
           G-House 354
         </button>
-        <button className="nav-button admin" onClick={() => setMessage("")}>
+        <button className="nav-home" onClick={() => setMessage("")}>
           Home
         </button>
       </div>
 
-      <div className="button-container">
+      <div className="button-container-atten">
         {message ? (
           <div className="message-box">
             <h1>{message}</h1>
           </div>
         ) : (
-          <div className="button-grid">
-            <button className="btn sign-in" onClick={() => handleAction("signIn")}>
+          <div className="button-grid-atten">
+            <button className="btn_attendance sign-in" onClick={() => handleAction("signIn")}>
               Sign In
             </button>
-            <button className="btn sign-out" onClick={() => handleAction("signOut")}>
+            <button className="btn_attendance sign-out" onClick={() => handleAction("signOut")}>
               Sign Out
             </button>
-            <button className="btn status" onClick={() => handleAction("status")}>
+            <button className="btn_attendance status" onClick={() => handleAction("status")}>
               Status
             </button>
-            <button className="btn bulk-signout" onClick={() => handleAction("bulkSignOut")}>
+            <button className="btn_attendance bulk-signout" onClick={() => handleAction("bulkSignOut")}>
               Bulk Sign Out
             </button>
           </div>
