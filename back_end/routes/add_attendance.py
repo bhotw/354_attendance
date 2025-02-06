@@ -35,6 +35,12 @@ def add_attendance():
         sign_in_time = datetime.strptime(sign_in_time, "%H:%M").time()
         sign_out_time = datetime.strptime(sign_out_time, "%H:%M").time()
 
+        # Calculate total hours without combining date and time
+        sign_in_seconds = sign_in_time.hour * 3600 + sign_in_time.minute * 60
+        sign_out_seconds = sign_out_time.hour * 3600 + sign_out_time.minute * 60
+
+        days_hours = round((sign_out_seconds - sign_in_seconds) / 3600, 2)  # Convert to hours
+
         # Check if attendance record already exists for the user on that date
         existing_record = Attendance.query.filter_by(user_id=user_id, date=date).first()
 
@@ -47,6 +53,7 @@ def add_attendance():
             date=date,
             sign_in_time=sign_in_time,
             sign_out_time=sign_out_time,
+            days_hours=days_hours,
         )
 
         db.session.add(new_attendance)

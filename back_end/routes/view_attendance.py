@@ -3,6 +3,7 @@ from models.attendance import Attendance
 from models.user import User
 from extensions import db
 from flask_jwt_extended import jwt_required
+from datetime import datetime
 
 view_attendance_bp = Blueprint("view_attendance", __name__, url_prefix="/api/view")
 
@@ -32,13 +33,29 @@ def update_attendance(id):
     data = request.json
     attendance = Attendance.query.get(id)
 
+    sign_in_time = attendance.sign_in_time
+    sign_out_time = attendance.sign_out_time
+
     if not attendance:
         return jsonify({"error": "Attendance record not found"}), 404
 
     if "sign_in_time" in data:
-        attendance.sign_in_time = data["sign_in_time"]
+        sign_in_time = data["sign_in_time"]
     if "sign_out_time" in data:
-        attendance.sign_out_time = data["sign_out_time"]
+        sign_out_time = data["sign_out_time"]
+    
+    sign_in_time = datetime.strptime(sign_in_time, "%H:%M").time()
+    sign_out_time = datetime.strptime(sign_out_time, "%H:%M").time()
+
+    # Calculate total hours without combining date and time
+    sign_in_seconds = sign_in_time.hour * 3600 + sign_in_time.minute * 60
+    sign_out_seconds = sign_out_time.hour * 3600 + sign_out_time.minute * 60
+
+    days_hours = round((sign_out_seconds - sign_in_seconds) / 3600, 2)
+
+    attendance.sign_in_time = sign_in_time
+    attendance.sign_out_time = sign_out_time
+    attendance.days_hours = days_hours
 
     db.session.commit()
     return jsonify({"message": "Attendance updated successfully"}), 200
