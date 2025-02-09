@@ -28,8 +28,13 @@ const Attendance = () => {
         response = await api.post("/api/attendance/sign-out");
         autoReset(10);
       } else if (action === "status") {
-        setMessage("Checking attendance status...");
+        setMessage("Tap your card to check status...");
         response = await api.get("/api/attendance/status");
+        if (response.data.status ==="success") {
+            setMessage(response.data.message);
+        } else {
+            setMessage(`Error: ${response.data.message}`);
+        }
         autoReset(15);
       } else if (action === "bulkSignOut") {
         setMessage("Mentor tap first for authorization.");

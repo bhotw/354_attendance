@@ -159,3 +159,29 @@ def process_sign_out(user):
     except SQLAlchemyError:
         db.session.rollback()
         return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
+
+@attendance_bp.route('/status', methods=['POST'])
+def check_status():
+    user_card_id = reader.read_id()
+    reader.destroy()
+
+    if not user_card_id:
+        return jsonify({'status': 'error', 'message': 'RFID card is required'}), 400
+
+    user = User.query.filter_by(card_id=user_card_id).first()
+    if not user:
+        return jsonify({'status': 'error', 'message': 'User not found'}), 400
+
+    today = datetime.date()
+    sign_in_record = Attendance.query.filter_by(user_id=user.id, date=today).first()
+
+    if sign_in_record:
+        return jsonify({
+            'status': 'success',
+            'message': f"{user.name} signed in at {sign_in_record.sign_in_time.strftime('%I:%M %p')}"
+        })
+    else:
+        return jsonify({
+            'status': 'error',
+            'message': f"{user.name}, you have not signed in today. Speak to a mentor for correct sign-in."
+        })
