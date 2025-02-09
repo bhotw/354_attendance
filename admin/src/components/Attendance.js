@@ -32,9 +32,16 @@ const Attendance = () => {
         response = await api.get("/api/attendance/status");
         autoReset(15);
       } else if (action === "bulkSignOut") {
+        setMessage("Mentor tap first for authorization.");
+        response = await api.post("/api/attendance/mentor-auth");
+        if(response.data.status !== "success"){
+            setMessage(`Error: ${response.data.message}`);
+            autoReset(10);
+            return;
+        }
         setMessage("Bulk sign-out in progress...");
         response = await api.post("/api/attendance/bulk-sign-out");
-        autoReset(10);
+        autoReset(40);
       } else {
         setMessage("");
         return;

@@ -103,37 +103,24 @@ def sign_out():
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
 
-    mentor_card_id = reader.read_id()
-    reader.destroy()
-
-    mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
-    if not mentor:
-        return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
-
     now = datetime.now()
+
     with bulk_sign_out_state['lock']:
-        # Check if bulk sign-out mode is active and not timed out
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
-            # Update last activity timestamp
             bulk_sign_out_state['last_activity'] = now
-            mentor_verified = True
         else:
-            # Need mentor authorization
-            if not mentor_card_id:
-                return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
+            if not session.get('mentor_authenticated'):
+                return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
 
-            # Verify mentor
-            mentor = User.query.filter_by(rfid_card_id=mentor_card_id, role='mentor').first()
-            if not mentor:
-                return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
-
-            # Activate bulk sign-out mode
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = now
 
     # Verify user
     user_card_id = reader.read_id()
     reader.destroy()
+    if not user_card_id:
+        return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
+
     user = User.query.filter_by(card_id=user_card_id).first()
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 404
