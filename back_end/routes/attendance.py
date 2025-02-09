@@ -1,5 +1,5 @@
 # routes/attendance.py
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from extensions import db
 from models.user import User
 from models.attendance import Attendance
@@ -61,22 +61,32 @@ def sign_in():
         return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
 
 
-### Sign-Out Route ###
-@attendance_bp.route('/sign-out', methods=['POST'])
-def sign_out():
+@attendance_bp.route('/mentor-auth', methods=['POST'])
+def mentor_auth():
     mentor_card_id = reader.read_id()
-
     reader.destroy()
+
     if not mentor_card_id:
         return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
-
-    # Verify mentor
     mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
     if not mentor:
         return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
 
+    session['mentor_authenticated'] = True
+
+    return jsonify({'status': 'success', 'message': 'Mentor authenticated. Student can now sign out.'})
+
+
+### Sign-Out Route ###
+@attendance_bp.route('/sign-out', methods=['POST'])
+def sign_out():
+
+    if not session.get('mentor_authenticated'):
+        return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
+
     card_id = reader.read_id()
     reader.destroy()
+
     if not card_id:
         return jsonify({'status': 'error', 'message': 'User RFID card ID is required'}), 400
 

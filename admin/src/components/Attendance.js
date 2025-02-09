@@ -16,7 +16,15 @@ const Attendance = () => {
         response = await api.post("/api/attendance/sign-in");
         autoReset(5);
       } else if (action === "signOut") {
-        setMessage("Mentor tap first, then student tap to sign out!");
+        setMessage("Mentor tap first for authorization.");
+        response = await api.post("/api/attendance/mentor-auth");
+        if(response.data.status !== "success"){
+            setMessage(`Error: ${response.data.message}`);
+            autoReset(10);
+            return;
+        }
+        setMessage("Mentor Authorized! Student tap to Sign Out.");
+
         response = await api.post("/api/attendance/sign-out");
         autoReset(10);
       } else if (action === "status") {
@@ -46,7 +54,7 @@ const Attendance = () => {
     }
   };
 
-    const autoReset = (seconds) => {
+  const autoReset = (seconds) => {
     setTimeout(() => {
       setMessage("");
       navigate("/");
