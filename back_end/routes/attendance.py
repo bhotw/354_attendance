@@ -9,6 +9,7 @@ from threading import Lock
 from readerClass import ReaderClass
 
 reader = ReaderClass()
+reader.destroy()
 
 attendance_bp = Blueprint('attendance', __name__, url_prefix='/api/attendance')
 
@@ -25,6 +26,7 @@ BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=40)
 def sign_in():
 
     card_id = reader.read_id()
+    reader.destroy()
 
     if not card_id:
         return jsonify({'status': 'error', 'message': 'RFID card ID is required'}), 400
