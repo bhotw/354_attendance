@@ -72,7 +72,7 @@ def mentor_auth():
         return jsonify({'status': 'error', 'message': 'Mentor RFID card ID is required'}), 400
     mentor = User.query.filter_by(card_id=mentor_card_id, role='mentor').first()
     if not mentor:
-        return jsonify({'status': 'error', 'message': 'Mentor not found or invalid mentor RFID card'}), 404
+        return jsonify({'status': 'error', 'message': 'Not Mentor !!!'}), 404
 
     session['mentor_authenticated'] = True
 

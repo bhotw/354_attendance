@@ -30,7 +30,7 @@ db.init_app(app)
 # JWT Configuration
 app.config["JWT_SECRET_KEY"] = "i like to eat milk"  # Change this to a secure key
 jwt = JWTManager(app)
-CORS(app)
+CORS(app, supports_credentials=True)
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(admin_bp, url_prefix="/api/admin")
