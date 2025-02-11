@@ -174,7 +174,7 @@ def check_status():
     if not user:
         return jsonify({'status': 'error', 'message': 'User not found'}), 400
 
-    today = datetime.date()
+    today = datetime.now().date()
     sign_in_record = Attendance.query.filter_by(user_id=user.id, date=today).first()
 
     if sign_in_record:
