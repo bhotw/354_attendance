@@ -162,7 +162,7 @@ def process_sign_out(user):
         db.session.rollback()
         return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
 
-@attendance_bp.route('/status', methods=['POST'])
+@attendance_bp.route('/status', methods=['GET'])
 def check_status():
     user_card_id = reader.read_id()
     reader.destroy()

@@ -24,7 +24,7 @@ const Attendance = () => {
             return;
         }
         setMessage("Mentor Authorized! Student tap to Sign Out.");
-
+        await new Promise(resolve => setTimeout(resolve, 2000));
         response = await api.post("/api/attendance/sign-out");
         autoReset(10);
       } else if (action === "status") {
