@@ -19,6 +19,9 @@ from routes.view_attendance import view_attendance_bp
 from routes.writereadcard import card_bp
 from routes.add_card import add_card_bp
 
+import os
+from flask import send_from_directory
+
 
 app = Flask(__name__, static_folder='./admin/build', static_url_path='')
 
