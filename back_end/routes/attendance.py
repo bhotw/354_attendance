@@ -82,9 +82,9 @@ def mentor_auth():
 ### Sign-Out Route ###
 @attendance_bp.route('/sign-out', methods=['POST'])
 def sign_out():
-    print(f"Session: {session}")
-    if not session.get('mentor_authenticated'):
-        return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
+    # print(f"Session: {session}")
+    # if not session.get('mentor_authenticated'):
+    #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
 
     card_id = reader.read_id()
     reader.destroy()
