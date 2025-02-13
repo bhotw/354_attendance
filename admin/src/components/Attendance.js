@@ -55,7 +55,7 @@ const Attendance = () => {
             return;
         }
         setMessage(response.data.message)
-        autoReset(10);
+        autoReset(2);
         return;
       }
        else {
