@@ -90,7 +90,7 @@ const Attendance = () => {
         <button className="nav-logo" onClick={() => setMessage("")}>
           G-House 354
         </button>
-        <button className="nav-home" onClick={(() => handleAction("clear")}>
+        <button className="nav-home" onClick={() => handleAction("clear")}>
           Clear
         </button>
       </div>
