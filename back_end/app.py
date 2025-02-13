@@ -23,8 +23,6 @@ import os
 from flask import send_from_directory
 
 
-app = Flask(__name__, static_folder='../admin/build', static_url_path='')
-
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
@@ -48,13 +46,6 @@ app.register_blueprint(card_bp, url_prefix="/api/card")
 app.register_blueprint(add_card_bp, url_prefix="/api/add_card")
 
 
-@app.route('/')
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory(os.path.join(app.static_folder, 'static'), path)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
