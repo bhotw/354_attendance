@@ -9,7 +9,6 @@ from threading import Lock
 from readerClass import ReaderClass
 
 reader = ReaderClass()
-reader.destroy()
 
 attendance_bp = Blueprint('attendance', __name__, url_prefix='/api/attendance')
 

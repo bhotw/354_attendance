@@ -51,7 +51,7 @@ const Attendance = () => {
         response = await api.post("/api/attendance/clear")
         if(response.data.status !== "success"){
             setMessage(`Error: ${response.data.message}`);
-            autoReset(10);
+            autoReset(2);
             return;
         }
         setMessage(response.data.message)
