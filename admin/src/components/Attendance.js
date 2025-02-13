@@ -76,11 +76,20 @@ const Attendance = () => {
       autoReset(5);
     }
   };
+  const clearReader = async () => {
+    try {
+        setMessage("");
+        navigate("/");
+        const response = await api.post("/api/attendance/clear");
+    } catch (error) {
+        console.error("Error cleaning reader.", error);
+
+    }
+  };
 
   const autoReset = (seconds) => {
-    setTimeout(() => {
-      setMessage("");
-      navigate("/");
+    setTimeout( async () => {
+        clearReader();
     }, seconds * 1000);
   };
 
