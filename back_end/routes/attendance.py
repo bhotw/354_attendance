@@ -188,7 +188,7 @@ def check_status():
             'message': f"{user.name}, you have not signed in today. Speak to a mentor for correct sign-in."
         })
 
-@attendance_bp.route("/clear", methos=["POST"])
+@attendance_bp.route("/clear", methods=["POST"])
 def clear():
     reader.destroy()
     return jsonify({'status': 'success', 'message': "Reader is clean now."}), 200
