@@ -1,0 +1,13 @@
+#!/bin/bash
+cd "$HOME/"
+source flask_react_env/bin/activate
+export FLASK_APP=/354_attendance/back_end/app.py
+#!/bin/bash
+cd "$HOME/"
+source flask_react_env/bin/activate
+export FLASK_APP=/354_attendance/back_end/app.py
+export FLASK_ENV=production
+flask run --host=0.0.0.0 --port=5000
+export FLASK_ENV=production
+flask run --host=0.0.0.0 --port=5000
+

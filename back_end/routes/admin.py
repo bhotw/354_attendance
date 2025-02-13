@@ -5,8 +5,13 @@ from extensions import db
 from models.attendance import Attendance
 from models.user import User
 from flask_jwt_extended import jwt_required
+from .auth import login
 
-admin_bp = Blueprint('admin', __name__)
+admin_bp = Blueprint('admin', __name__, url_prefix="/api/admin")
+
+@admin_bp.route("/")
+def admin_home():
+    return login()
 
 # Middleware to authenticate token
 # def authenticate_token(func):
