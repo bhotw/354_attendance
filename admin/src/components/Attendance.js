@@ -47,7 +47,18 @@ const Attendance = () => {
         setMessage("Bulk sign-out in progress...");
         response = await api.post("/api/attendance/bulk-sign-out");
         autoReset(40);
-      } else {
+      } else if (action === "clear"){
+        response = await api.post("/api/attendance/clear")
+        if(response.data.status !== "success"){
+            setMessage(`Error: ${response.data.message}`);
+            autoReset(10);
+            return;
+        }
+        setMessage(response.data.message)
+        autoReset(10);
+        return;
+      }
+       else {
         setMessage("");
         return;
       }
@@ -79,8 +90,8 @@ const Attendance = () => {
         <button className="nav-logo" onClick={() => setMessage("")}>
           G-House 354
         </button>
-        <button className="nav-home" onClick={() => setMessage("")}>
-          Home
+        <button className="nav-home" onClick={() => handleAction("clear")}>
+          Clear
         </button>
       </div>
 
