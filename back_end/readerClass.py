@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 
 
 class ReaderClass:
-    def __int__(self):
+    def __init__(self):
         self.reader = SimpleMFRC522()
     def destroy(self):
         GPIO.cleanup()
