@@ -21,6 +21,7 @@ class ReaderClass:
             return reader_id
             time.sleep(10)
         print("Tap a Card!")
+        self.destroy()
         return None
 	
     def read_id_name(self):
@@ -31,6 +32,8 @@ class ReaderClass:
             reader_id, name = self.reader.read()
             return reader_id, name
             time.sleep(10)
+
+        self.destroy()
         return None
 
 
@@ -42,6 +45,8 @@ class ReaderClass:
             reader_id, name = self.reader.write(data)
             return reader_id, name
             time.sleep(10)
+
+        self.destroy()
         return None
 
 
