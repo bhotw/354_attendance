@@ -17,10 +17,8 @@ class ReaderClass:
         timeout = 10
         start_time = time.time()
         while time.time() - start_time < timeout:
-            status, TagType = self.reader.READER.MFRC522_Request(self.reader.READER.PICC_REQIDL)
-            if status == self.reader.READER.MI_OK:
-                reader_id, _ = self.reader.read()
-                return reader_id
+            reader_id, _ = self.reader.read()
+            return reader_id
             time.sleep(10)
         print("Tap a Card!")
         return None
@@ -30,10 +28,8 @@ class ReaderClass:
         timeout = 10
         start_time = time.time()
         while time.time() - start_time < timeout:
-            status, TagType = self.reader.READER.MFRC522_Request(self.reader.READER.PICC_REQIDL)
-            if status == self.reader.READER.MI_OK:
-                reader_id, name = self.reader.read()
-                return reader_id, name
+            reader_id, name = self.reader.read()
+            return reader_id, name
             time.sleep(10)
         return None
 
@@ -43,10 +39,8 @@ class ReaderClass:
         timeout = 10
         start_time = time.time()
         while time.time() - start_time < timeout:
-            status, TagType = self.reader.READER.MFRC522_Request(self.reader.READER.PICC_REQIDL)
-            if status == self.reader.READER.MI_OK:
-                reader_id, name = self.reader.write(data)
-                return reader_id, name
+            reader_id, name = self.reader.write(data)
+            return reader_id, name
             time.sleep(10)
         return None
 
