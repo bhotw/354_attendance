@@ -19,7 +19,7 @@ class ReaderClass:
         while time.time() - start_time < timeout:
             reader_id, _ = self.reader.read()
             return reader_id
-            time.sleep(10)
+            time.sleep(0.5)
         print("Tap a Card!")
         self.destroy()
         return None
@@ -31,7 +31,7 @@ class ReaderClass:
         while time.time() - start_time < timeout:
             reader_id, name = self.reader.read()
             return reader_id, name
-            time.sleep(10)
+            time.sleep(0.5)
 
         self.destroy()
         return None
@@ -44,7 +44,7 @@ class ReaderClass:
         while time.time() - start_time < timeout:
             reader_id, name = self.reader.write(data)
             return reader_id, name
-            time.sleep(10)
+            time.sleep(0.5)
 
         self.destroy()
         return None
