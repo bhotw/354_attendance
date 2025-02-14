@@ -128,7 +128,7 @@ def bulk_sign_out():
             process_sign_out(user)
 
     # Proceed to sign out the user
-    return return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
+    return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
 
 
 ### Helper Function to Process Sign-Out ###
