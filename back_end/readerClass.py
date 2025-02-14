@@ -70,17 +70,17 @@ class ReaderClass:
         self.destroy()
         return self.card_detected  # Return the detected card or None
 
-    def read_id_name(self):
-        print("TAP to read Data!")
-        timeout = 10
-        start_time = time.time()
-        while time.time() - start_time < timeout:
-            reader_id, name = self.reader.read()
-            return reader_id, name
-            time.sleep(0.5)
-
-        self.destroy()
-        return None
+    # def read_id_name(self):
+    #     print("TAP to read Data!")
+    #     timeout = 10
+    #     start_time = time.time()
+    #     while time.time() - start_time < timeout:
+    #         reader_id, name = self.reader.read()
+    #         return reader_id, name
+    #         time.sleep(0.5)
+    #
+    #     self.destroy()
+    #     return None
 
 
     def write_name(self, data):
@@ -94,7 +94,27 @@ class ReaderClass:
 
         self.destroy()
         return None
+    def read_id_name(self):
+        print("TAP to read Data!")
+        timeout = 10
+        start_time = time.time()
 
+        while time.time() - start_time < timeout:
+            try:
+                reader_id, name = self.reader.read()
+                if reader_id:
+                    return reader_id, name  # Return the card ID and name if successfully read
+            except Exception as e:
+                print(f"RFID Reader Error: {e}")  # Handle any exceptions during reading
+
+            # Check if the loop is about to time out and break if needed
+            if time.time() - start_time >= timeout:
+                print("Reader timeout reached, no card detected.")  # Print timeout message
+
+            time.sleep(0.5)  # Wait before retrying, prevents constant polling
+
+        self.destroy()  # Cleanup GPIO after timeout
+        return None  # Return None if no card was detected after the timeout
 
     def get_time(self):
 
