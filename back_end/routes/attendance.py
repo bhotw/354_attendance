@@ -110,8 +110,8 @@ def bulk_sign_out():
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
             bulk_sign_out_state['last_activity'] = now
         else:
-            if not session.get('mentor_authenticated'):
-                return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
+            # if not session.get('mentor_authenticated'):
+            #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
 
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = now
