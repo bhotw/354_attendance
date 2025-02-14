@@ -19,7 +19,7 @@ def write_card():
         if not name:
             return jsonify({"status": "error", "message": "Name is required"}), 400
 
-        card_id, card_name = reader.write(name)
+        card_id, card_name = reader.write_name(name)
         reader.destroy()
 
         if card_id and card_name:
@@ -35,7 +35,7 @@ def write_card():
 @jwt_required()
 def read_card():
     try:
-        card_id, card_name = reader.read()
+        card_id, card_name = reader.read_id_name()
         reader.destroy()
 
         if not card_id:
@@ -53,7 +53,7 @@ def read_card():
 @jwt_required()
 def read_user():
     try:
-        card_id = reader.read_id()
+        card_id = reader.read_only_id()
         reader.destroy()
         if not card_id:
             return jsonify({"status": "error", "message": "Need a valid card id."}), 400

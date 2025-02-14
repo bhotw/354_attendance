@@ -21,7 +21,7 @@ def add_new_card():
     data = request.get_json()
 
     user_id = data.get("user_id")
-    card_id = reader.read_id()
+    card_id = reader.read_only_id()
 
     user = User.query.filter_by(id=user_id).first()
     user_name = user.name

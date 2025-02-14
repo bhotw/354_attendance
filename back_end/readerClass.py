@@ -4,31 +4,36 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
 GPIO.setwarnings(False)
-reader = SimpleMFRC522()
-
-
-
 
 
 class ReaderClass:
+    def __int__(self):
+        self.reader = SimpleMFRC522()
     def destroy(self):
         GPIO.cleanup()
         print("reader clean")
 
-    def read_id(self):
+    def read_only_id(self):
+        timeout = 10
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            status, TagType = self.reader.READER.MFRC522_Request(self.reader.READER.PICC_REQIDL)
+            if status == self.reader.READER.MI_OK:
+                reader_id, _ = self.reader.read()
+                return reader_id
+            time.sleep(0.5)
         print("Tap a Card!")
-        reader_id = reader.read_id()
-        return reader_id
+        return None
 	
-    def read(self):
+    def read_id_name(self):
         print("TAP to read Data!")
-        reader_id, name = reader.read()
+        reader_id, name = self.reader.read()
 
         return reader_id, name
 
-    def write(self, data):
+    def write_name(self, data):
         print("Tap a Card to write!")
-        id, name = reader.write(data)
+        id, name = self.reader.write(data)
         return id, name
 
 

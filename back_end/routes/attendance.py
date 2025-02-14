@@ -24,7 +24,7 @@ BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=40)
 @attendance_bp.route('/sign-in', methods=['POST'])
 def sign_in():
 
-    card_id = reader.read_id()
+    card_id = reader.read_only_id()
     reader.destroy()
 
     if not card_id:
@@ -64,7 +64,7 @@ def sign_in():
 
 @attendance_bp.route('/mentor-auth', methods=['POST'])
 def mentor_auth():
-    mentor_card_id = reader.read_id()
+    mentor_card_id = reader.read_only_id()
     reader.destroy()
 
     if not mentor_card_id:
@@ -85,7 +85,7 @@ def sign_out():
     # if not session.get('mentor_authenticated'):
     #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
 
-    card_id = reader.read_id()
+    card_id = reader.read_only_id()
     reader.destroy()
 
     if not card_id:
@@ -117,7 +117,7 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
 
     # Verify user
-    user_card_id = reader.read_id()
+    user_card_id = reader.read_only_id()
     reader.destroy()
     if not user_card_id:
         return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
@@ -163,7 +163,7 @@ def process_sign_out(user):
 
 @attendance_bp.route('/status', methods=['GET'])
 def check_status():
-    user_card_id = reader.read_id()
+    user_card_id = reader.read_only_id()
     reader.destroy()
 
     if not user_card_id:
