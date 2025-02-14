@@ -116,18 +116,19 @@ def bulk_sign_out():
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = now
 
-    # Verify user
-    user_card_id = reader.read_only_id()
-    reader.destroy()
-    if not user_card_id:
-        return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
+            # Verify user
+            user_card_id = reader.read_only_id()
+            reader.destroy()
+            if not user_card_id:
+                return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
 
-    user = User.query.filter_by(card_id=user_card_id).first()
-    if not user:
-        return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            user = User.query.filter_by(card_id=user_card_id).first()
+            if not user:
+                return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            process_sign_out(user)
 
     # Proceed to sign out the user
-    return process_sign_out(user)
+    return return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
 
 
 ### Helper Function to Process Sign-Out ###
