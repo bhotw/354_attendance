@@ -9,7 +9,7 @@ Description=Kiosk Mode for Chromium
 After=network.target
 
 [Service]
-ExecStart=/home/$USER/kiosk.sh
+ExecStart=/home/$USER/354_attendance/scripts/kiosk.sh
 Restart=always
 User=$USER
 Group=$USER
@@ -29,7 +29,7 @@ Description=Frontend Service
 After=network.target
 
 [Service]
-ExecStart=/home/$USER/frontend.sh
+ExecStart=/home/$USER/354_attendance/scripts/frontend.sh
 Restart=always
 User=$USER
 Group=$USER
@@ -47,11 +47,10 @@ Description=Backend Service
 After=network.target postgresql.service
 
 [Service]
-ExecStart=/home/$USER/backend.sh
+ExecStart=/home/$USER/354_attendance/scripts/backend.sh
 Restart=always
 User=$USER
 Group=$USER
-EnvironmentFile=/home/$USER/backend/.env
 
 [Install]
 WantedBy=multi-user.target
