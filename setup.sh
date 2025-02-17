@@ -12,9 +12,8 @@ chmod +x ./scripts/createservices.sh
 echo "Running installation scripts..."
 ./scripts/installev.sh
 ./scripts/createenv.sh
-./scripts/kiosk.sh
-./scripts/frontend.sh
-./scripts/backend.sh
 ./scripts/createservices.sh
+
+
 
 echo "Setup completed!"
