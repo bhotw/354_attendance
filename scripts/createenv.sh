@@ -21,7 +21,7 @@ echo pwd
 echo "Installing requirements..."
 pip install -r requirements.txt
 
-cd back_end
+cd /home/attendance_user/354_attendance/back_end
 echo "Creating ./back_end/.env file..."
 cat <<EOL > ./back_end/.env
 DB_URL=postgresql://$DB_USER:$DB_PASS@localhost:5432/$DB_NAME
