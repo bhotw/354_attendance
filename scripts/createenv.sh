@@ -1,9 +1,16 @@
 #!/bin/bash
 
-DB_USER="backend_user"
-DB_PASS="backend_pass"
-DB_NAME="backend_db"
+# Prompt user for DB credentials
+read -p "Enter the database username: " DB_USER
+read -sp "Enter the database password: " DB_PASS
+echo
+read -p "Enter the database name: " DB_NAME
 
+# Inform the user about the chosen credentials
+echo "Using the following credentials:"
+echo "DB_USER=$DB_USER"
+echo "DB_PASS=$DB_PASS"
+echo "DB_NAME=$DB_NAME"
 echo "Creating PostgreSQL user and database..."
 sudo -u postgres psql <<EOF
 CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';
@@ -11,13 +18,14 @@ CREATE DATABASE $DB_NAME OWNER $DB_USER;
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOF
 
-echo pwd
+# Run table_creation.py to create tables or any necessary setup
+
 echo "Creating virtual environment..."
 python3 -m venv backend_env
 
 echo "Activating virtual environment..."
 source backend_env/bin/activate
-pwd
+
 echo "Installing requirements..."
 pip install -r requirements.txt
 
@@ -26,5 +34,8 @@ echo "Creating ./back_end/.env file..."
 cat <<EOL | sudo tee > .env
 DB_URL=postgresql://$DB_USER:$DB_PASS@localhost:5432/$DB_NAME
 EOL
+
+echo "Running table_creation.py script..."
+python3 /home/attendance_user/354_attendance/back_end/table_creation.py
 
 echo "Virtual environment setup complete!"
