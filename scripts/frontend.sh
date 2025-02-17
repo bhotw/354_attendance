@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd $HOME/354_attendance/admin
+cd $HOME/attendance_user/354_attendance/admin
 serve -s build

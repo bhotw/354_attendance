@@ -12,12 +12,13 @@ GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOF
 
 cd ..
+echo pwd
 echo "Creating virtual environment..."
 python3 -m venv backend_env
 
 echo "Activating virtual environment..."
 source backend_env/bin/activate
-
+echo pwd
 echo "Installing requirements..."
 pip install -r requirements.txt
 
