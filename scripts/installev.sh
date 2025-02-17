@@ -17,7 +17,7 @@ sudo npm install -g n
 sudo n stable
 
 echo "Installing dependencies from admin/package.json..."
-cd admin
+cd ../admin
 npm install
 
 echo "Installation completed!"
