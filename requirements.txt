@@ -11,7 +11,7 @@ jinja2==3.1.5
 MarkupSafe==3.0.2
 mfrc522==0.0.7
 packaging==24.2
-psycopg2==2.9.10
+psycopg2-binary==2.9.10
 PyJWT==2.10.1
 python-dotenv==1.0.1
 RPi.GPIO==0.7.1

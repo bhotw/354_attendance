@@ -1,14 +1,20 @@
 #!/bin/bash
 
-echo "Making all scripts executable..."
-chmod +x installev.sh createenv.sh kiosk.sh frontend.sh backend.sh createservices.sh
+# Ensure scripts are executable
+chmod +x ./scripts/installev.sh
+chmod +x ./scripts/createenv.sh
+chmod +x ./scripts/kiosk.sh
+chmod +x ./scripts/frontend.sh
+chmod +x ./scripts/backend.sh
+chmod +x ./scripts/createservices.sh
 
+# Run the scripts sequentially
 echo "Running installation scripts..."
-./installev.sh
-./createenv.sh
-./kiosk.sh
-./frontend.sh
-./backend.sh
-./createservices.sh
+./scripts/installev.sh
+./scripts/createenv.sh
+./scripts/kiosk.sh
+./scripts/frontend.sh
+./scripts/backend.sh
+./scripts/createservices.sh
 
 echo "Setup completed!"
