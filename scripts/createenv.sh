@@ -17,13 +17,13 @@ python3 -m venv backend_env
 
 echo "Activating virtual environment..."
 source backend_env/bin/activate
-echo pwd
+pwd
 echo "Installing requirements..."
 pip install -r requirements.txt
 
 cd /home/attendance_user/354_attendance/back_end
 echo "Creating ./back_end/.env file..."
-cat <<EOL > ./back_end/.env
+cat <<EOL | sudo tee > .env
 DB_URL=postgresql://$DB_USER:$DB_PASS@localhost:5432/$DB_NAME
 EOL
 
