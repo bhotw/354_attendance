@@ -27,6 +27,9 @@ if ! grep -q "192.168.1.0/24   md5" "$PG_HBA"; then
     echo "host    all   all   192.168.1.0/24   md5" | sudo tee -a "$PG_HBA"
     echo "Restarting PostgreSQL to apply changes..."
     sudo systemctl restart postgresql
+else
+    echo "pg_hba.conf already contains the required entry. No changes made."
+fi
 
 echo "Creating virtual environment..."
 python3 -m venv backend_env
