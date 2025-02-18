@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Prompt user for DB credentials
+
 read -p "Enter the database username: " DB_USER
 read -sp "Enter the database password: " DB_PASS
 read -p "Enter the database name: " DB_NAME
@@ -8,7 +8,7 @@ read -p "Enter the database name: " DB_NAME
 PG_VERSION=$(ls /etc/postgresql/ | sort -V | tail -n 1)
 PG_HBA="/etc/postgresql/$PG_VERSION/main/pg_hba.conf"
 
-# Inform the user about the chosen credentials
+
 echo "Using the following credentials:"
 echo "DB_USER=$DB_USER"
 echo "DB_PASS=$DB_PASS"
@@ -21,7 +21,7 @@ CREATE DATABASE $DB_NAME OWNER $DB_USER;
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOF
 
-# Run table_creation.py to create tables or any necessary setup
+
 echo "Updating pg_hba.conf to allow local network access..."
 if ! grep -q "192.168.1.0/24   md5" "$PG_HBA"; then
     echo "host    all   all   192.168.1.0/24   md5" | sudo tee -a "$PG_HBA"
