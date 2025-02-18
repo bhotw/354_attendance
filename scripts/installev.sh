@@ -16,6 +16,8 @@ echo "Ensuring latest stable Node.js version..."
 sudo npm install -g n
 sudo n stable
 
+sudo npm install -g serve
+
 echo "Installing dependencies from admin/package.json..."
 cd admin
 npm install

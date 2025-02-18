@@ -3,7 +3,7 @@
 # Prompt user for DB credentials
 read -p "Enter the database username: " DB_USER
 read -sp "Enter the database password: " DB_PASS
-DB_NAME = "attendancedb"
+read -sp "Enter the database password: " DB_NAME
 # Inform the user about the chosen credentials
 echo "Using the following credentials:"
 echo "DB_USER=$DB_USER"
