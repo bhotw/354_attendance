@@ -38,4 +38,7 @@ EOL
 echo "Running table_creation.py script..."
 python3 /home/attendance_user/354_attendance/back_end/table_creation.py
 
-echo "Virtual environment setup complete!"
+echo "Add Admin user for the System."
+python3 /home/attendance_user/354_attendance/back_end/add_admin_user.py
+
+echo "Attendance setup complete!!!"
