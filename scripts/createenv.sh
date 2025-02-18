@@ -4,6 +4,7 @@
 read -p "Enter the database username: " DB_USER
 read -sp "Enter the database password: " DB_PASS
 read -sp "Enter the database password: " DB_NAME
+PG_HBA="/etc/postgresql/$(psql -V | awk '{print $3}' | cut -d'.' -f1,2)/main/pg_hba.conf"
 # Inform the user about the chosen credentials
 echo "Using the following credentials:"
 echo "DB_USER=$DB_USER"
@@ -17,6 +18,8 @@ GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOF
 
 # Run table_creation.py to create tables or any necessary setup
+echo "Updating pg_hba.conf to allow local network access..."
+echo "host    all   all   192.168.1.0/24   md5" | sudo tee -a $PG_HBA
 
 echo "Creating virtual environment..."
 python3 -m venv backend_env
