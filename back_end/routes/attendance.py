@@ -7,6 +7,8 @@ from datetime import datetime, date, timedelta
 from sqlalchemy.exc import SQLAlchemyError
 from threading import Lock
 from readerClass import ReaderClass
+from flask_socketio import SocketIO, emit
+from flask import current_app
 
 reader = ReaderClass()
 
@@ -101,34 +103,65 @@ def sign_out():
 
 
 ### Bulk Sign-Out Route ###
+# @attendance_bp.route('/bulk-sign-out', methods=['POST'])
+# def bulk_sign_out():
+#
+#     now = datetime.now()
+#
+#     with bulk_sign_out_state['lock']:
+#         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
+#             bulk_sign_out_state['last_activity'] = now
+#         else:
+#             # if not session.get('mentor_authenticated'):
+#             #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
+#
+#             bulk_sign_out_state['active'] = True
+#             bulk_sign_out_state['last_activity'] = now
+#
+#             # Verify user
+#             user_card_id = reader.read_only_id()
+#             reader.destroy()
+#             if not user_card_id:
+#                 return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
+#
+#             user = User.query.filter_by(card_id=user_card_id).first()
+#             if not user:
+#                 return jsonify({'status': 'error', 'message': 'User not found'}), 404
+#             process_sign_out(user)
+#
+#     # Proceed to sign out the user
+#     return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
-
     now = datetime.now()
 
     with bulk_sign_out_state['lock']:
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
             bulk_sign_out_state['last_activity'] = now
         else:
-            # if not session.get('mentor_authenticated'):
-            #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
-
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = now
 
-            # Verify user
-            user_card_id = reader.read_only_id()
-            reader.destroy()
-            if not user_card_id:
-                return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
+            while bulk_sign_out_state['active']:
+                user_card_id = reader.read_only_id()
+                reader.destroy()
 
-            user = User.query.filter_by(card_id=user_card_id).first()
-            if not user:
-                return jsonify({'status': 'error', 'message': 'User not found'}), 404
-            process_sign_out(user)
+                if not user_card_id:
+                    break  # Stop the process if no card is detected
 
-    # Proceed to sign out the user
-    return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
+                user = User.query.filter_by(card_id=user_card_id).first()
+                if not user:
+                    emit('sign_out_error', {'status': 'error', 'message': 'User not found'}, broadcast=True)
+                    continue
+
+                response = process_sign_out(user)  # Process the sign-out
+                if response.status_code == 200:
+                    socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'}, broadcast=True)
+
+            bulk_sign_out_state['active'] = False
+            socketio.emit('sign_out_complete', {'status': 'success', 'message': 'Bulk sign-out session closed.'}, broadcast=True)
+
+    return jsonify({'status': 'success', 'message': 'Bulk Sign-Out is Done!'}), 200
 
 
 ### Helper Function to Process Sign-Out ###
@@ -157,6 +190,7 @@ def process_sign_out(user):
 
     try:
         db.session.commit()
+        socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}, broadcast=True)
         return jsonify({'status': 'success', 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}), 200
     except SQLAlchemyError:
         db.session.rollback()

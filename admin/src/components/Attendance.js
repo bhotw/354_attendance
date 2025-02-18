@@ -1,11 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate, navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
 import "./Attendance.css";
-import api from "../axiosInstance";
+import api, { API_BASE_URL } from "../axiosInstance";
+
+const socket = io(API_BASE_URL);
 
 const Attendance = () => {
   const [message, setMessage] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+    useEffect(() => {
+    // Listen for bulk sign-out updates from the server
+    socket.on("bulk_sign_out_update", (data) => {
+      setMessage(data.message);
+    });
+
+    return () => {
+      socket.off("bulk_sign_out_update"); // Cleanup on unmount
+    };
+  }, []);
 
   const handleAction = async (action) => {
     try {
@@ -44,8 +58,10 @@ const Attendance = () => {
             autoReset(10);
             return;
         }
-        setMessage("Bulk sign-out in progress...");
-        response = await api.post("/api/attendance/bulk-sign-out");
+        setMessage("Bulk sign-out mode activated. Students can now tap.");
+        socket.emit("bulk_sign_out_start");
+//        response = await api.post("/api/attendance/bulk-sign-out");
+
         autoReset(40);
       } else if (action === "clear"){
         response = await api.post("/api/attendance/clear")

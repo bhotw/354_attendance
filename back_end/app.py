@@ -28,12 +28,18 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI  # Set the configuration
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 db.init_app(app)
+
+
 # JWT Configuration
 app.config["JWT_SECRET_KEY"] = "i like to eat milk"  # Change this to a secure key
 jwt = JWTManager(app)
 CORS(app, supports_credentials=True)
+
+
+
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
 app.register_blueprint(admin_bp, url_prefix="/api/admin")
@@ -50,4 +56,5 @@ app.register_blueprint(add_card_bp, url_prefix="/api/add_card")
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    # app.run(host='0.0.0.0', port=5000)
+    socketio.run(app, host='0.0.0.0', port=5000)
