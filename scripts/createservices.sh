@@ -44,10 +44,10 @@ echo "frontend.service created!"
 cat <<EOL | sudo tee /etc/systemd/system/backend.service
 [Unit]
 Description=Backend Service
-After=network.target postgresql.service
+After=network.target
 
 [Service]
-ExecStart=/home/attendance_user/354_attendance/scripts/backend.sh
+ExecStart=/bin/bash /home/attendance_user/354_attendance/scripts/backend.sh
 Restart=always
 User=$USER
 Group=$USER
