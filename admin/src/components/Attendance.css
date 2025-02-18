@@ -1,0 +1,123 @@
+html, body {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+  padding: 5px;
+
+}
+
+.navbar-atten {
+  width: calc(100% - 20px);
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+.nav-home {
+  width: 12rem;
+  color: white;
+  background: #4CAF50; /* Green background */
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0;
+}
+.nav-logo {
+  width: 12rem;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Button Grid (Only visible when message is empty) */
+.button-grid-atten {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  margin-left: auto;
+  margin-right: 30px;
+  column-gap: 50px;
+  row-gap: 50px;
+
+
+}
+/* Buttons */
+.btn_attendance {
+  background-color: transparent;
+  font-size: 1.25rem;
+  transition: background-color 0.3s;
+}
+
+/* Button colors */
+.btn_attendance.sign-in {
+    height: 12rem;
+    width: 20rem;
+    background: green;
+    color: white;
+    padding: 5px;
+}
+.btn_attendance.sign-out {
+   height: 12rem;
+   width: 20rem;
+   background: red;
+   color: white;
+   padding: 5px;
+   }
+.btn_attendance.status {
+   height: 5rem;
+   width: 20rem;
+   background: orange;
+   color: white;
+   padding: 5px;
+   }
+.bulk-signout {
+   height: 5rem;
+   width: 20rem;
+   background: blue;
+   color: white;
+   padding: 5px;
+   }
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+/* Message Box (Same size as button grid) */
+.message-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.message-box h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+/* Responsive Design */
+
+@media (max-width: 600px) {
+  .button-grid-atten {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+  }
+}
