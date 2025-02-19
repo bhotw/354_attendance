@@ -50,6 +50,7 @@ const ViewAttendance = () => {
 
   const filterAttendance = (data, criteria) => {
     const today = new Date().toISOString().split("T")[0];
+    console.log("today: ", today);
     const startOfWeek = new Date();
     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Get Sunday of the current week
 
