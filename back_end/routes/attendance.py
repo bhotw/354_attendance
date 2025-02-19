@@ -136,13 +136,17 @@ def bulk_sign_out():
     now = datetime.now()
 
     with bulk_sign_out_state['lock']:
+        print("we inside bulk")
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
             bulk_sign_out_state['last_activity'] = now
         else:
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = now
 
+            print("we inside active")
+
             while bulk_sign_out_state['active']:
+                print("we inside while")
                 user_card_id = reader.read_only_id(timeout=20)
                 reader.destroy()
 
