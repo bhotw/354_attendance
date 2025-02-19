@@ -56,7 +56,10 @@ const ViewAttendance = () => {
     let filteredData = data;
 
     if (criteria === "today") {
-      filteredData = data.filter((record) => record.date === today);
+        filteredData = data.filter((record) => {
+          const recordDate = new Date(record.date).toISOString().split("T")[0]; // Ensure format is YYYY-MM-DD
+          return recordDate === today;
+        });
     } else if (criteria === "this_week") {
       filteredData = data.filter((record) => new Date(record.date) >= startOfWeek);
     }
@@ -101,7 +104,6 @@ const ViewAttendance = () => {
 
         {/* Filter dropdown */}
         <div className="filter-container">
-          <label>Filter: </label>
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="all">All</option>
             <option value="today">Today</option>
