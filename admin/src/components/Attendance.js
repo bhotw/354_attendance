@@ -59,8 +59,9 @@ const Attendance = () => {
             return;
         }
         setMessage("Bulk sign-out mode activated. Students can now tap.");
+        response = await api.post("/api/attendance/bulk-sign-out");
         socket.emit("bulk_sign_out_start");
-//        response = await api.post("/api/attendance/bulk-sign-out");
+
 
         autoReset(40);
       } else if (action === "clear"){

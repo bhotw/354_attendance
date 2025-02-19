@@ -134,7 +134,7 @@ def sign_out():
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
     now = datetime.now()
-
+    print("bulk sing-out")
     with bulk_sign_out_state['lock']:
         print("we inside bulk")
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
