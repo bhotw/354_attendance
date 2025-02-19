@@ -143,7 +143,7 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
         else:
             bulk_sign_out_state['active'] = True
-            bulk_sign_out_state['last_activity'] = now
+            bulk_sign_out_state['last_activity'] = datetime.now()
 
             print("we inside active")
 
