@@ -157,7 +157,7 @@ def bulk_sign_out():
                     continue
 
                 response, status_code = process_sign_out(user)  # Process the sign-out
-                print("response: ", response.message)
+                print("response: ", response.json())
                 if response.status_code == 200:
                     socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'})
                 elif response.status_code == 400:
@@ -180,6 +180,7 @@ def process_sign_out(user):
         return jsonify({'status': 'error', 'message': 'No sign-in record found for today'}), 400
 
     if attendance_record.sign_out_time is not None:
+        print("Already Singed out today.")
         return jsonify({'status': 'error', 'message': 'Already signed out today'}), 400
 
     # Update sign-out time and calculate hours worked
