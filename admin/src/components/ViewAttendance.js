@@ -61,6 +61,7 @@ const ViewAttendance = () => {
       if (criteria === "today") {
         filteredData = data.filter((record) => {
           const recordDate = new Date(record.date);
+          console.log("recordDate: ", recordDate);
           const recordStr = recordDate.getFullYear() + "-" + String(recordDate.getMonth() + 1).padStart(2, "0") + "-" + String(recordDate.getDate()).padStart(2, "0");
           console.log("recordStr: ", recordStr);
           return recordStr === todayStr;
