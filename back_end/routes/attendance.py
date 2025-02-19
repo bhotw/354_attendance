@@ -21,7 +21,7 @@ bulk_sign_out_state = {
     'lock': Lock()
 }
 
-BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=40)
+BULK_SIGN_OUT_TIMEOUT = timedelta(seconds=60)
 
 @attendance_bp.route('/sign-in', methods=['POST'])
 def sign_in():
@@ -143,7 +143,7 @@ def bulk_sign_out():
             bulk_sign_out_state['last_activity'] = now
 
             while bulk_sign_out_state['active']:
-                user_card_id = reader.read_only_id()
+                user_card_id = reader.read_only_id(timeout=20)
                 reader.destroy()
 
                 if not user_card_id:
