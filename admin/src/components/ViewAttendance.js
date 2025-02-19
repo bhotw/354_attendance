@@ -50,7 +50,7 @@ const ViewAttendance = () => {
 
   const filterAttendance = (data, criteria) => {
       const today = new Date();
-      const todayStr = today.getFullYear() + "-" + String(recordDate.getMonth() + 1).padStart(2, "0") + "-" + String(recordDate.getDate()).padStart(2, "0")
+      const todayStr =  today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
       console.log("today: ", todayStr);
 
       const startOfWeek = new Date();
