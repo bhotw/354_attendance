@@ -49,26 +49,26 @@ const ViewAttendance = () => {
   }, [filter, attendance]);
 
   const filterAttendance = (data, criteria) => {
-    const day = new Date();
-    const today = day.toISOString().split("T")[0];
-    console.log("today: ", today);
-    const startOfWeek = new Date();
-    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Get Sunday of the current week
+      const today = new Date();
+      const todayStr = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
 
-    let filteredData = data;
+      const startOfWeek = new Date();
+      startOfWeek.setDate(today.getDate() - today.getDay()); // Get Sunday of the current week
 
-    if (criteria === "today") {
-        filteredData = data.filter((record) =>
-         {
-          const recordDate = new Date(record.date).toISOString().split("T")[0]; // Ensure format is YYYY-MM-DD
-          return recordDate === today;
+      let filteredData = data;
+
+      if (criteria === "today") {
+        filteredData = data.filter((record) => {
+          const recordDate = new Date(record.date);
+          const recordStr = recordDate.getFullYear() + "-" + String(recordDate.getMonth() + 1).padStart(2, "0") + "-" + String(recordDate.getDate()).padStart(2, "0");
+          return recordStr === todayStr;
         });
-    } else if (criteria === "this_week") {
-      filteredData = data.filter((record) => new Date(record.date) >= startOfWeek);
-    }
+      } else if (criteria === "this_week") {
+        filteredData = data.filter((record) => new Date(record.date) >= startOfWeek);
+      }
 
-    setFilteredAttendance(filteredData);
-  };
+      setFilteredAttendance(filteredData);
+    };
 
   const handleEdit = (id, sign_in_time, sign_out_time) => {
     setEditingId(id);
