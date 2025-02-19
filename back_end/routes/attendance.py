@@ -7,8 +7,10 @@ from datetime import datetime, date, timedelta
 from sqlalchemy.exc import SQLAlchemyError
 from threading import Lock
 from readerClass import ReaderClass
-from flask_socketio import SocketIO, emit
+from flask_socketio import emit
 from flask import current_app
+from app import socketio
+
 
 reader = ReaderClass()
 
