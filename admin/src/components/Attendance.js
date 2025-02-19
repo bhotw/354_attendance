@@ -10,20 +10,21 @@ const Attendance = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-    useEffect(() => {
-    // Listen for bulk sign-out updates from the server
-    socket.on("bulk_sign_out_update", (data) => {
-      setMessage(data.message);
-    });
-    socket.on("bulk_sign_out_error", (data) => {
-      setMessage(data.message);
-    });
-    socket.on("bulk_sign_out_complete", (data) => {
-      setMessage(data.message);
-    });
+  useEffect(() => {
+    // Listen for different bulk sign-out events from the server
+    const handleBulkSignOutUpdate = (data) => setMessage(data.message);
+    const handleBulkSignOutError = (data) => setMessage(data.message);
+    const handleBulkSignOutComplete = (data) => setMessage(data.message);
 
+    socket.on("bulk_sign_out_update", handleBulkSignOutUpdate);
+    socket.on("bulk_sign_out_error", handleBulkSignOutError);
+    socket.on("bulk_sign_out_complete", handleBulkSignOutComplete);
+
+    // Cleanup on unmount by removing all event listeners
     return () => {
-      socket.off("bulk_sign_out_update"); // Cleanup on unmount
+      socket.off("bulk_sign_out_update", handleBulkSignOutUpdate);
+      socket.off("bulk_sign_out_error", handleBulkSignOutError);
+      socket.off("bulk_sign_out_complete", handleBulkSignOutComplete);
     };
   }, []);
 
@@ -34,19 +35,19 @@ const Attendance = () => {
       if (action === "signIn") {
         setMessage("Tap your card to sign in!");
         response = await api.post("/api/attendance/sign-in");
-        autoReset(5);
+        autoReset(2);
       } else if (action === "signOut") {
         setMessage("Mentor tap first for authorization.");
         response = await api.post("/api/attendance/mentor-auth");
         if(response.data.status !== "success"){
             setMessage(`Error: ${response.data.message}`);
-            autoReset(10);
+            autoReset(5);
             return;
         }
         setMessage("Mentor Authorized! Student tap to Sign Out.");
         await new Promise(resolve => setTimeout(resolve, 2000));
         response = await api.post("/api/attendance/sign-out");
-        autoReset(10);
+        autoReset(2);
       } else if (action === "status") {
         setMessage("Tap your card to check status...");
         response = await api.get("/api/attendance/status");
@@ -61,7 +62,7 @@ const Attendance = () => {
         response = await api.post("/api/attendance/mentor-auth");
         if(response.data.status !== "success"){
             setMessage(`Error: ${response.data.message}`);
-            autoReset(10);
+            autoReset(2);
             return;
         }
         setMessage("Bulk sign-out mode activated. Students can now tap.");
