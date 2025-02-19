@@ -161,8 +161,11 @@ def bulk_sign_out():
                     continue
 
                 response = process_sign_out(user)  # Process the sign-out
+                print("response: ", response)
                 if response.status_code == 200:
                     socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'}, broadcast=True)
+                else:
+                    socketio.emit('sign_out_error', {'status': 'error', 'message': response.json['message']}, broadcast=True)
 
             bulk_sign_out_state['active'] = False
             socketio.emit('sign_out_complete', {'status': 'success', 'message': 'Bulk sign-out session closed.'}, broadcast=True)
@@ -196,7 +199,7 @@ def process_sign_out(user):
 
     try:
         db.session.commit()
-        socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}, broadcast=True)
+        # socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}, broadcast=True)
         return jsonify({'status': 'success', 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}), 200
     except SQLAlchemyError:
         db.session.rollback()
