@@ -200,7 +200,7 @@ def process_sign_out(user):
     try:
         db.session.commit()
         # socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}, broadcast=True)
-        return jsonify({'status': 'success', 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours})
+        return jsonify({'status': 'success', 'message': f'{user.name} signed out successfully', 'hours_worked': attendance_record.days_hours}), 200
     except SQLAlchemyError:
         db.session.rollback()
         return jsonify({'status': 'error', 'message': 'Database error occurred'}), 500
