@@ -9,7 +9,7 @@ from threading import Lock
 from readerClass import ReaderClass
 from flask_socketio import emit
 from flask import current_app
-from app import socketio
+from extensions import socketio
 
 
 reader = ReaderClass()
