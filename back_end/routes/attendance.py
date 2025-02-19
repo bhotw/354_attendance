@@ -164,6 +164,8 @@ def bulk_sign_out():
                 print("response: ", response)
                 if response.status_code == 200:
                     socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'})
+                elif response.status_code == 400:
+                    socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{response.message.name}'})
                 else:
                     socketio.emit('bulk_sign_out_error', {'status': 'error', 'message': response.json['message']})
 
