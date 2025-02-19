@@ -103,36 +103,6 @@ def sign_out():
     # Proceed to sign out the user
     return process_sign_out(user)
 
-
-### Bulk Sign-Out Route ###
-# @attendance_bp.route('/bulk-sign-out', methods=['POST'])
-# def bulk_sign_out():
-#
-#     now = datetime.now()
-#
-#     with bulk_sign_out_state['lock']:
-#         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
-#             bulk_sign_out_state['last_activity'] = now
-#         else:
-#             # if not session.get('mentor_authenticated'):
-#             #     return jsonify({'status': 'error', 'message': 'Mentor authentication required before signing out'}), 403
-#
-#             bulk_sign_out_state['active'] = True
-#             bulk_sign_out_state['last_activity'] = now
-#
-#             # Verify user
-#             user_card_id = reader.read_only_id()
-#             reader.destroy()
-#             if not user_card_id:
-#                 return jsonify({'status': 'error', 'message': 'Student RFID card is required'}), 400
-#
-#             user = User.query.filter_by(card_id=user_card_id).first()
-#             if not user:
-#                 return jsonify({'status': 'error', 'message': 'User not found'}), 404
-#             process_sign_out(user)
-#
-#     # Proceed to sign out the user
-#     return jsonify({'status': 'succes', 'message': 'Bulk Sing Out is Done!'}), 400
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
     now = datetime.now()
@@ -157,13 +127,10 @@ def bulk_sign_out():
                     continue
 
                 response, status_code = process_sign_out(user)  # Process the sign-out
-                print(status_code)
-                if response.status_code == 200:
-                    print("200:", status_code)
+                if status_code == 200:
                     socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'})
-                elif response.status_code == 400:
+                elif status_code == 400:
                     socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{response.message.name}'})
-                    print("400: ",status_code)
                 else:
                     socketio.emit('bulk_sign_out_error', {'status': 'error', 'message': response.json['message']})
 
