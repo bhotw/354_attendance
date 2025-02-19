@@ -62,6 +62,7 @@ const ViewAttendance = () => {
         filteredData = data.filter((record) => {
           const recordDate = new Date(record.date);
           const recordStr = recordDate.getFullYear() + "-" + String(recordDate.getMonth() + 1).padStart(2, "0") + "-" + String(recordDate.getDate()).padStart(2, "0");
+          console.log("recordStr: ", recordStr);
           return recordStr === todayStr;
         });
       } else if (criteria === "this_week") {
