@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from config import SQLALCHEMY_DATABASE_URI, SECRET_KEY
 from datetime import timedelta
+from flask_socketio import SocketIO
 
 from extensions import db
 
