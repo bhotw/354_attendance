@@ -51,7 +51,6 @@ const ViewAttendance = () => {
   const filterAttendance = (data, criteria) => {
       const today = new Date();
       const todayStr =  today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
-      console.log("today: ", todayStr);
 
       const startOfWeek = new Date();
       startOfWeek.setDate(today.getDate() - today.getDay()); // Get Sunday of the current week
@@ -61,9 +60,7 @@ const ViewAttendance = () => {
       if (criteria === "today") {
         filteredData = data.filter((record) => {
           const recordDate = new Date(record.date);
-          console.log("recordDate: ", recordDate);
           const recordStr = recordDate.toISOString().split("T")[0];
-          console.log("recordStr: ", recordStr);
           return recordStr === todayStr;
         });
       } else if (criteria === "this_week") {
@@ -111,9 +108,9 @@ const ViewAttendance = () => {
         {/* Filter dropdown */}
         <div className="filter-container">
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-            <option value="all">All</option>
             <option value="today">Today</option>
             <option value="this_week">This Week</option>
+            <option value="all">All</option>
           </select>
         </div>
 
