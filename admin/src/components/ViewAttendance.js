@@ -57,7 +57,7 @@ const ViewAttendance = () => {
     let filteredData = data;
 
     if (criteria === "today") {
-        filteredData = data.filter((record) => new Date(record.date) === today;
+        filteredData = data.filter((record) => new Date(record.date) === today);
 //         {
 //          const recordDate = new Date(record.date).toISOString().split("T")[0]; // Ensure format is YYYY-MM-DD
 //          return recordDate === today;
