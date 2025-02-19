@@ -160,15 +160,15 @@ def bulk_sign_out():
                     emit('sign_out_error', {'status': 'error', 'message': 'User not found'})
                     continue
 
-                response, status_code  = process_sign_out(user)  # Process the sign-out
+                response, status_code = process_sign_out(user)  # Process the sign-out
                 print("response: ", response)
                 if response.status_code == 200:
-                    socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'})
+                    socketio.emit('bulk_sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'})
                 else:
-                    socketio.emit('sign_out_error', {'status': 'error', 'message': response.json['message']})
+                    socketio.emit('bulk_sign_out_error', {'status': 'error', 'message': response.json['message']})
 
             bulk_sign_out_state['active'] = False
-            socketio.emit('sign_out_complete', {'status': 'success', 'message': 'Bulk sign-out session closed.'})
+            socketio.emit('bulk_sign_out_complete', {'status': 'success', 'message': 'Bulk sign-out session closed.'})
 
     return jsonify({'status': 'success', 'message': 'Bulk Sign-Out is Done!'}), 200
 
