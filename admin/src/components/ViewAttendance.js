@@ -49,7 +49,8 @@ const ViewAttendance = () => {
   }, [filter, attendance]);
 
   const filterAttendance = (data, criteria) => {
-    const today = new Date().toISOString().split("T")[0];
+    const day = new Date();
+    const today = day.toISOString().split("T")[0];
     console.log("today: ", today);
     const startOfWeek = new Date();
     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Get Sunday of the current week
@@ -57,11 +58,11 @@ const ViewAttendance = () => {
     let filteredData = data;
 
     if (criteria === "today") {
-        filteredData = data.filter((record) => new Date(record.date) === today);
-//         {
-//          const recordDate = new Date(record.date).toISOString().split("T")[0]; // Ensure format is YYYY-MM-DD
-//          return recordDate === today;
-//        });
+        filteredData = data.filter((record) =>
+         {
+          const recordDate = new Date(record.date).toISOString().split("T")[0]; // Ensure format is YYYY-MM-DD
+          return recordDate === today;
+        });
     } else if (criteria === "this_week") {
       filteredData = data.filter((record) => new Date(record.date) >= startOfWeek);
     }
