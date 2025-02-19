@@ -160,7 +160,7 @@ def bulk_sign_out():
                     emit('sign_out_error', {'status': 'error', 'message': 'User not found'}, broadcast=True)
                     continue
 
-                response = process_sign_out(user)  # Process the sign-out
+                response, status_code  = process_sign_out(user)  # Process the sign-out
                 print("response: ", response)
                 if response.status_code == 200:
                     socketio.emit('sign_out_update', {'status': 'success', 'user': user.name, 'message': f'{user.name} signed out successfully'}, broadcast=True)
