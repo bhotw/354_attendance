@@ -15,6 +15,12 @@ const Attendance = () => {
     socket.on("bulk_sign_out_update", (data) => {
       setMessage(data.message);
     });
+    socket.on("bulk_sign_out_error", (data) => {
+      setMessage(data.message);
+    });
+    socket.on("bulk_sign_out_complete", (data) => {
+      setMessage(data.message);
+    });
 
     return () => {
       socket.off("bulk_sign_out_update"); // Cleanup on unmount
