@@ -136,24 +136,20 @@ def sign_out():
 @attendance_bp.route('/bulk-sign-out', methods=['POST'])
 def bulk_sign_out():
     now = datetime.now()
-    print("bulk sing-out")
     with bulk_sign_out_state['lock']:
-        print("we inside bulk")
         if bulk_sign_out_state['active'] and (now - bulk_sign_out_state['last_activity'] <= BULK_SIGN_OUT_TIMEOUT):
             bulk_sign_out_state['last_activity'] = now
         else:
             bulk_sign_out_state['active'] = True
             bulk_sign_out_state['last_activity'] = datetime.now()
 
-            print("we inside active")
 
             while bulk_sign_out_state['active']:
-                print("we inside while")
                 user_card_id = reader.read_only_id(timeout=20)
                 reader.destroy()
 
                 if not user_card_id:
-                    break  # Stop the process if no card is detected
+                    break
 
                 user = User.query.filter_by(card_id=user_card_id).first()
                 if not user:
