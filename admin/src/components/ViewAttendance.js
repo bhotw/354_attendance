@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 const ViewAttendance = () => {
   const [attendance, setAttendance] = useState([]);
   const [filteredAttendance, setFilteredAttendance] = useState([]);
-  const [filter, setFilter] = useState("all"); // "today", "this_week", "all"
+  const [filter, setFilter] = useState("today"); // "today", "this_week", "all"
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({ sign_in_time: "", sign_out_time: "" });
   const navigate = useNavigate();
