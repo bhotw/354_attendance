@@ -1,4 +1,9 @@
-/* Ensure the page itself takes the full height and width */
+/* src/components/RegisterTeamMember.css */
+
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -9,27 +14,33 @@ html, body {
   background-color: #f4f6f9;
 }
 
-/* Full-page registration container */
+/* Add padding to push content below the navbar (adjust height as needed) */
 .registration-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 80px 20px 40px; /* 80px to push below navbar */
-  width: 100%;
+  padding: 80px 20px 40px; /* 80px for navbar height */
   min-height: 100vh;
   box-sizing: border-box;
 }
 
-/* Full-width registration box */
+/* Ensure the form itself scrolls properly */
 .registration-box {
   background-color: #ffffff;
   padding: 30px;
-  width: 100%; /* Ensure full width */
-  max-width: 1200px; /* Optional: set a limit for large screens */
-  border-radius: 8px;
+  width: 100%;
+  max-width: 95%;
+  border-radius: 6px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  overflow-y: auto; /* Allow scrolling within the box if needed */
+  max-height: calc(100vh - 120px); /* Avoid overflow beyond viewport */
+}
+
+.registration-box h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333333;
 }
 
 form {
@@ -38,15 +49,59 @@ form {
   gap: 20px;
 }
 
+/* Form styling */
+.form-group {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #dfe3e8;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+/* Submit button styling */
+.submit-button {
+  width: 100%;
+  background-color: #3f51b5;
+  color: #ffffff;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #303f9f;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .registration-container {
-    padding: 100px 10px 20px;
+  .form-group {
+    flex: 1 1 100%;
   }
 
-  .registration-box {
-    padding: 20px;
-    width: 100%;
-    max-width: 100%;
+  .registration-container {
+    padding: 100px 10px 20px;
   }
 }
