@@ -5,10 +5,10 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f6f9;
-  margin: 60px;
+html, body {
+  margin: 0; /* Remove the 60px margin */
+  min-height: 100vh; /* Ensure body expands with content */
+  overflow-y: auto;
 }
 
 
