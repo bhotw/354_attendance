@@ -7,16 +7,15 @@
   z-index: 1000;    /* Ensures it's above other elements */
   background-color: #333;
   color: white;
-  padding: 10px 10px;
+  padding: 15px 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 10px;
 
 }
 
 .navbar-left {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .navbar-logo {
@@ -31,13 +30,13 @@
 }
 
 .username {
-  margin-right: 20px;
+  margin-right: 40px;
   font-size: 16px;
 }
 
 .dropdown {
   position: relative;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .dropdown-toggle {
@@ -50,17 +49,20 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;  /* Position it directly below the navbar */
-  left: 0;
+  top: 100%;
+  left: 60px;
   background-color: white;
   color: black;
   border: 1px solid #ddd;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   min-width: 150px;
-  padding: 10px 0;
+  padding: 10px;
   display: none;  /* Hidden by default */
   z-index: 1000;  /* Ensure the dropdown appears above other content */
+  max-width: calc(100vw - 40px);  /* Prevent the dropdown from going beyond the viewport */
+  left: auto;  /* Reset default left positioning */
+  right: 0;  /* Align to the right of its parent container */
 }
 .dropdown:hover .dropdown-menu {
   display: block;  /* Show the dropdown menu */
@@ -75,10 +77,9 @@
 .dropdown-item:hover {
   background-color: #007bff;
   color: white;
-  border-radius: 10px;
-  padding: 10px ;
-  margin-left: 5%;
-  width: 90%;
+  border-radius: 8px;
+  padding: 8px, 15px;
+  width: 80%;
 }
 
 button {

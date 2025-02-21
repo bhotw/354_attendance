@@ -1,8 +1,5 @@
 /* src/components/RegisterTeamMember.css */
 
-* {
-  box-sizing: border-box;
-}
 
 html, body {
   margin: 0;
@@ -11,35 +8,34 @@ html, body {
   width: 100%;
   overflow-y: auto;
   font-family: 'Arial', sans-serif;
-  background-color: #f4f6f9;
 }
 
 /* Add padding to push content below the navbar (adjust height as needed) */
 .registration-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  padding: 80px 20px 40px; /* 80px for navbar height */
-  min-height: 100vh;
+  padding: 35px 5px; /* 80px for navbar height */
   box-sizing: border-box;
+  min-height: 100vh;
+  margin-top: 70px;
+  max-height: calc(100vh - 110px);
 }
 
 /* Ensure the form itself scrolls properly */
 .registration-box {
   background-color: #ffffff;
   padding: 30px;
-  width: 100%;
-  max-width: 95%;
+  max-width: 100%;
   border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
   overflow-y: auto; /* Allow scrolling within the box if needed */
-  max-height: calc(100vh - 120px); /* Avoid overflow beyond viewport */
+  max-height: calc(100vh - 90px); /* Avoid overflow beyond viewport */
 }
 
 .registration-box h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #333333;
 }
 
@@ -82,7 +78,6 @@ form {
   width: 100%;
   background-color: #3f51b5;
   color: #ffffff;
-  padding: 15px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
@@ -102,6 +97,6 @@ form {
   }
 
   .registration-container {
-    padding: 100px 10px 20px;
+    padding: 30px 10px 20px;
   }
 }

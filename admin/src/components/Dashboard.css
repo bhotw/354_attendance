@@ -1,32 +1,21 @@
 /* src/components/Dashboard.css */
-* {
-  max-width: 100%;
+html, body {
   margin: 0;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f9;
-  color: #333;
+  padding: 0;
   height: 100%;
-  padding-top: 60px;
+  width: 100%;
+  overflow-y: auto; /* Allow scrolling */
+  font-family: 'Arial', sans-serif;
 }
 
 .dashboard-container {
   padding: 2rem;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-top: 0;
-  height: 100%;
-}
-
-.dashboard-container h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 2rem;
+  margin-top: 45px;
+  padding: 30px 5px;
+  height: calc(100vh - 100px); /* Ensure it takes full height minus navbar */
+  overflow-y: auto; /* Allow scrolling within the container */
+  display: flex;
+  flex-direction: column; /* Make sure children stack vertically */
 }
 
 .dashboard-flex {
@@ -34,19 +23,24 @@ body {
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box; /* Make sure width calculations are correct */
 }
 
 .dashboard-card {
   background: white;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
   text-decoration: none;
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 calc(33.333% - 3rem);
+  flex: 1 1 calc(33.333% - 3rem); /* Cards take up 33.333% of the container */
   max-width: calc(33.333% - 3rem);
   min-width: 250px;
+  box-sizing: border-box; /* Ensures correct width calculation */
 }
 
 .dashboard-card:hover {
@@ -66,17 +60,17 @@ body {
   line-height: 1.5;
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .dashboard-card {
-    flex: 1 1 calc(50% - 1.5rem);
+    flex: 1 1 calc(50% - 1.5rem); /* Two cards per row on medium screens */
     max-width: calc(50% - 1.5rem);
   }
 }
 
 @media (max-width: 480px) {
   .dashboard-card {
-    flex: 1 1 100%;
+    flex: 1 1 100%; /* Full-width cards on small screens */
     max-width: 100%;
   }
 }

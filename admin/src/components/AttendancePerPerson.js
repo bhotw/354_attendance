@@ -50,7 +50,14 @@ const AttendancePerPerson = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setAttendance(response.data);
+        const sortedData = response.data.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          if (dateA > dateB) return -1;
+          if (dateA < dateB) return 1;
+          return a.sign_in_time.localeCompare(b.sign_in_time); // Sort by sign-in time if dates are the same
+        });
+        setAttendance(sortedData);
       } catch (error) {
         console.error("Error fetching attendance records:", error);
       }
