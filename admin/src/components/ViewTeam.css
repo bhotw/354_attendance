@@ -21,7 +21,6 @@ html, body {
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow: auto;
   max-width: 100%;
   min-height: 100vh;
   margin-top: 45px;
