@@ -1,12 +1,12 @@
 /* src/components/AddAdminUser.css */
 .add-admin-container {
-  width: 100%;
+  width: 90%;
   margin: 0px auto;
   margin-top: 35px;
-  padding: 10px;
+  padding: 20px;
   background: #f7f7f7;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
@@ -16,7 +16,7 @@ h2 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -26,7 +26,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -34,11 +34,11 @@ input {
 }
 
 button.submit-button {
-  width: 100%;
-  padding: 12px;
+  width: 90%;
+  padding: 20px;
   background-color: #4caf50;
   color: white;
-  border: none;
+  border: 1px solid #ddd;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;

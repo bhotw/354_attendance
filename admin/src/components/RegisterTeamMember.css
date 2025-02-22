@@ -1,40 +1,43 @@
 /* src/components/RegisterTeamMember.css */
 
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f6f9;
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  font-family: 'Arial', sans-serif;
 }
 
-
+/* Add padding to push content below the navbar (adjust height as needed) */
 .registration-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 35px 5px; /* 80px for navbar height */
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin-top: 70px;
+  max-height: calc(100vh - 110px);
 }
 
-
+/* Ensure the form itself scrolls properly */
 .registration-box {
   background-color: #ffffff;
   padding: 30px;
-  width: 100%;
   max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow scrolling within the box if needed */
+  max-height: calc(100vh - 90px); /* Avoid overflow beyond viewport */
 }
 
 .registration-box h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #333333;
 }
-
 
 form {
   display: flex;
@@ -42,7 +45,7 @@ form {
   gap: 20px;
 }
 
-
+/* Form styling */
 .form-group {
   flex: 1 1 300px;
   display: flex;
@@ -55,11 +58,6 @@ form {
   color: #555555;
 }
 
-.form-group .required {
-  color: red;
-  margin-left: 4px;
-}
-
 .form-group input,
 .form-group select {
   padding: 12px 15px;
@@ -69,22 +67,17 @@ form {
   transition: border-color 0.3s ease-in-out;
 }
 
-.form-group input::placeholder {
-  color: #a0a4a8;
-}
-
 .form-group input:focus,
 .form-group select:focus {
   border-color: #3f51b5;
   outline: none;
 }
 
-
+/* Submit button styling */
 .submit-button {
   width: 100%;
   background-color: #3f51b5;
   color: #ffffff;
-  padding: 15px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
@@ -97,9 +90,13 @@ form {
   background-color: #303f9f;
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 600px) {
   .form-group {
     flex: 1 1 100%;
+  }
+
+  .registration-container {
+    padding: 30px 10px 20px;
   }
 }

@@ -1,14 +1,26 @@
 /* src/components/AddAttendance.css */
-.add-attendance-container {
+
+/* Container for the Add Attendance Form */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   width: 100%;
-  max-width: 450px;
-  margin: 35px auto;
-  padding: 20px;
+  overflow-y: auto;
+  font-family: 'Arial', sans-serif;
+}
+.add-attendance-container {
+  margin-top: 45px;
+  padding: 30px 20px;
   background: #f7f7f7;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  max-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header for the Form */
 h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -16,10 +28,12 @@ h2 {
   color: #333;
 }
 
+/* Form Group for Label and Inputs */
 .form-group {
   margin-bottom: 15px;
 }
 
+/* Styling the Labels */
 label {
   font-weight: bold;
   display: block;
@@ -27,14 +41,17 @@ label {
   font-size: 16px;
 }
 
+/* Input and Select Styling */
 select, input {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
+/* Submit Button Styling */
 button.submit-button {
   width: 100%;
   padding: 12px;
@@ -51,6 +68,7 @@ button.submit-button:hover {
   background-color: #4c0aa3;
 }
 
+/* Message Styling */
 .message {
   margin-top: 20px;
   text-align: center;
@@ -58,3 +76,34 @@ button.submit-button:hover {
   color: #333;
   font-weight: bold;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-attendance-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  select, input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  button.submit-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+}
+
+

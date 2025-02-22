@@ -5,11 +5,10 @@ html, body {
   height: 100vh;
   background-color: white;
   padding: 5px;
-
 }
 
 .navbar-atten {
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
   position: fixed;
   top: 10px;
   left: 10px;
@@ -113,11 +112,3 @@ html, body {
 }
 /* Responsive Design */
 
-@media (max-width: 600px) {
-  .button-grid-atten {
-    flex-direction: column;
-  }
-  .btn {
-    width: 100%;
-  }
-}

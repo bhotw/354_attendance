@@ -25,7 +25,7 @@ def add_new_card():
 
     user = User.query.filter_by(id=user_id).first()
     user_name = user.name
-    reader.write(user_name)
+    reader.write_name(user_name)
 
 
     if not user_id or not card_id:

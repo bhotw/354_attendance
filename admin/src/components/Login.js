@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import api from "../axiosInstance";
-import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -21,10 +21,11 @@ const Login = () => {
             console.log(response.data);
             navigate("/dashboard");
         } else {
-            alert(response.data.message);
+            setErrorMessage(response.data.message);
         }
     } catch (error) {
       console.error("Login error:", error);
+      setErrorMessage("Incorrect Username or Password!");
     }
   };
 
@@ -57,6 +58,7 @@ const Login = () => {
             Login
           </button>
         </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
       </div>
     </div>
   );

@@ -1,24 +1,46 @@
+/* Global Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+/* View Attendance Container */
 .view-attendance-container {
-  max-width: 100%;
-  margin: 0 auto;
-  margin-top: 60px;
-  padding: 10px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  min-height: calc(100vh - 110px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
+  padding: 30px 5px; /* Push down below navbar */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  min-height: 100vh;
+  margin-top: 60px;
+  max-height: calc(100vh - 110px);
 }
 
+/* Header Styling */
 h1 {
-  color: #333;
-  margin-bottom: 5px;
+  color: #333333;
   font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px; /* Add space between title and table */
 }
 
+/* Table Container */
+.attendance-table-container {
+  width: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 180px); /* Adjust this value as needed */
+  margin-top: 10px; /* Add space above the table */
+}
+
+/* Table Styling */
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
@@ -28,85 +50,88 @@ h1 {
 
 .attendance-table th,
 .attendance-table td {
-  padding: 12px;
-  border: 2px solid #ddd;
+  padding: 12px 10px;
+  border: 1px solid #dfe3e8;
   text-align: center;
   word-wrap: break-word;
 }
 
 .attendance-table th {
-  background: #007bff;
+  background-color: #007bff;
   color: white;
   font-size: 16px;
 }
 
-input {
-  width: 90%;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
+.attendance-table td {
+  background-color: #f9f9f9;
 }
 
+/* Input Styling */
+input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button Styling */
 .edit-btn,
 .save-btn {
-  background: #007bff;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 6px 10px;
+  padding: 8px 12px;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .edit-btn:hover {
-  background: #0056b3;
+  background-color: #0056b3;
 }
 
 .save-btn {
-  background: #28a745;
+  background-color: #28a745;
 }
 
 .save-btn:hover {
-  background: #218838;
+  background-color: #218838;
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
-  .attendance-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
+@media (max-width: 768px) {
   .attendance-table th,
   .attendance-table td {
     font-size: 14px;
-    padding: 10px;
+    padding: 8px;
   }
 
   .edit-btn,
   .save-btn {
-    padding: 4px 8px;
+    padding: 6px 10px;
   }
-}
 
-@media screen and (max-width: 480px) {
   .view-attendance-container {
     padding: 15px;
   }
+}
 
-  .attendance-table th,
-  .attendance-table td {
-    font-size: 12px;
-    padding: 8px;
-  }
-
+@media (max-width: 480px) {
   h1 {
     font-size: 24px;
   }
 
   .edit-btn,
   .save-btn {
-    padding: 4px 6px;
+    padding: 4px 8px;
   }
 }
