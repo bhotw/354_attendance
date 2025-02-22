@@ -36,6 +36,7 @@ db.init_app(app)
 
 # JWT Configuration
 app.config["JWT_SECRET_KEY"] = "i like to eat milk"  # Change this to a secure key
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 86400 # 24 hours in seconds
 jwt = JWTManager(app)
 CORS(app, supports_credentials=True)
 
