@@ -9,6 +9,16 @@ sudo apt install -y python3 python3-venv python3-pip
 echo "Installing PostgreSQL..."
 sudo apt install -y postgresql postgresql-contrib
 
+echo "Installing xprintidle... and figlet...."
+sudo apt-get install xprintidle
+
+echo "Installing figlet...."
+sudo apt-get install figlet
+
+echo "Installing xterm..."
+sudo apt-get install xterm
+
+
 echo "Installing Node.js and npm..."
 sudo apt install -y nodejs npm
 
